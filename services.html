@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cix manages service intent through its API and projects it into replaceable containers running real DNS, LDAP, DHCP, NTP, and syslog software.">
+  <meta name="theme-color" content="#0a0d0f"><title>Managed services — Cix</title>
+  <link rel="icon" href="assets/brand/cix-app-icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body class="inner-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="47" height="28"><span>cix</span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button><nav id="site-nav" aria-label="Primary navigation"><a href="why.html">Why Cix</a><a href="architecture.html">Architecture</a><a href="index.html#build-system">Build system</a><a aria-current="page" href="services.html">Services</a><a href="status.html">Project status</a><a class="nav-cta" href="https://git.home.arpa/itdlabs/cix">View source <span aria-hidden="true">↗</span></a></nav></header>
+  <main id="main">
+    <section class="page-hero services-hero"><p class="eyebrow">Managed service architecture</p><h1>Own the intent.<br>Containerize the service.</h1><p>Cix turns DNS, LDAP, DHCP, NTP, and syslog into API-managed platform capabilities while real, replaceable containers do the protocol work.</p></section>
+
+    <section class="service-principle">
+      <div><p class="section-index">The model</p><h2>Control-plane data.<br>Workload-plane servers.</h2><p>Cix does not hide five custom daemons inside the host. It owns durable configuration and lifecycle relationships, then registers ordinary containers running real upstream service software. The API stays stable while a provider can be rebuilt, replicated, or replaced.</p></div>
+      <div class="service-principle-flow">
+        <p><small>01 / INTENT</small><strong>API resources</strong><span>Records, identities, ranges, forwarders, registrations, health and drain state.</span></p><i>render / synchronize</i><p><small>02 / PROVIDER</small><strong>Service containers</strong><span>Real upstream dnsmasq, glauth, chrony, and sysklogd built through Cix recipes.</span></p><i>standard protocol</i><p><small>03 / CONSUMER</small><strong>Host + workloads</strong><span>DNS, LDAP, DHCP, NTP, and RFC 3164 clients consume familiar protocols.</span></p>
+      </div>
+    </section>
+
+    <section class="service-deep-dive">
+      <article id="ldap">
+        <header><img src="assets/icons/users.svg" alt=""><span>LDAP / identity</span><code>/v1/ldap</code></header>
+        <div><h2>One directory. Replaceable servers.</h2><p>Cix is the durable source of truth for users, groups, IDs, bcrypt password hashes, SSH keys, group membership, and search capability. Register one or more running glauth containers and Cix renders the complete current directory into each provider’s config. Glauth’s watcher reloads it live.</p><ul><li>Human accounts remain API-managed records even if every LDAP container is rebuilt.</li><li><code>ldap_provision</code> creates a container-owned service account, generates a fresh secret, delivers it inside the workload, and removes the account with that container.</li><li><code>ldap_client</code> stages NSS/PAM configuration so workloads can authenticate users live through LDAP; allowed groups can restrict which identities may log in.</li><li>Host login uses the same directory: LDAP bind first when enabled, with local verification only as an availability fallback—not a second password truth.</li></ul></div>
+      </article>
+      <article id="dns">
+        <header><img src="assets/icons/dns.svg" alt=""><span>DNS / naming</span><code>/v1/dns</code></header>
+        <div><h2>Records in Cix. Answers from dnsmasq.</h2><p>DNS records and upstream forwarders are API-owned state. Registered dnsmasq containers receive the full current hosts and forwarding configuration through their own filesystem view, then reload on <code>SIGHUP</code>.</p><ul><li>One update synchronizes every registered replica.</li><li><code>dns_register</code> can bind a workload’s lifecycle to its own DNS record.</li><li><code>dns provision</code> creates replicas, registers them, resolves their real addresses, and configures the host resolver as one re-runnable API workflow.</li><li>Providers serve standard DNS; Cix does not hand-roll a DNS server.</li></ul></div>
+      </article>
+      <article id="dhcp">
+        <header><img src="assets/icons/network.svg" alt=""><span>DHCP / addressing</span><code>/v1/dhcp</code></header>
+        <div><h2>Durable policy. Honest lease ownership.</h2><p>Cix owns ranges, reservations, server assignment, and the deterministic slicing of a range across redundant dnsmasq containers. Short-lived leases remain owned by the server that issued them and are read live from that provider—never copied into DNS as stale second truth.</p><ul><li>Static reservation changes synchronize live.</li><li>Range changes restart only affected providers through the rolling restart mechanism.</li><li>The same container may provide DNS and DHCP, making its own leases immediately resolvable; Cix reports that pairing without entangling the two APIs.</li><li>Replicas receive disjoint address slices because dnsmasq has no shared failover database.</li></ul></div>
+      </article>
+      <article id="syslog">
+        <header><img src="assets/icons/logs.svg" alt=""><span>Syslog / observability</span><code>/v1/syslog</code></header>
+        <div><h2>Durable locally. Forwarded optionally.</h2><p>Cix’s consolidated host log store remains the source read by the API and dashboard. Register a syslog container and every subsequent container-sourced log line is additionally emitted as a real RFC 3164 UDP datagram.</p><ul><li>The durable Cix copy is retained even if forwarding fails.</li><li>Kernel, <code>cixd</code>, and audit records stay local; only container log lines enter this forwarding path.</li><li>The message carries the originating container name.</li><li>A syslog target never receives its own captured output, preventing a feedback loop.</li></ul></div>
+      </article>
+      <article id="ntp">
+        <header><img src="assets/icons/clock.svg" alt=""><span>NTP / time</span><code>/v1/ntp</code></header>
+        <div><h2>Containerized sources. Host-owned clock.</h2><p>Running chrony containers can register as internal time sources. Cix resolves their live addresses afresh and queries them before configured upstream servers. The final host clock change remains in <code>cixd</code>, because <code>clock_settime()</code> requires host-namespace authority that should not be handed into a container.</p><ul><li>Registered providers are ordinary NTP servers for other workloads.</li><li>Host synchronization is automatic hourly or operator-triggered.</li><li>NTP registration is pure bookkeeping: the live protocol is already the source of its answer.</li></ul></div>
+      </article>
+    </section>
+
+    <section class="service-health">
+      <div><p class="section-index">One operational view</p><h2>Health and maintenance across providers.</h2><p>Cix tracks every registered LDAP, DNS, NTP, and syslog provider through one server-health resource. Health is observed; drain is operator intent and persists.</p></div>
+      <div class="health-terminal"><div><span class="ok">●</span><strong>ldap-1</strong><small>healthy · tcp:3893</small></div><div><span class="ok">●</span><strong>dns-1</strong><small>healthy · tcp:53</small></div><div><span class="ok">●</span><strong>ntp-1</strong><small>healthy · process</small></div><div><span class="dim">○</span><strong>syslog-2</strong><small>drained · maintenance</small></div></div>
+      <p class="health-note">Unhealthy or drained LDAP providers are withheld from generated client configuration. If filtering would remove every provider, Cix retains the unfiltered list: a possibly unavailable server is better than deliberately configuring none.</p>
+    </section>
+
+    <section class="service-boundaries">
+      <p class="section-index">Why the distinction matters</p><div><h2>Not “services built into the host.”</h2><p>The host owns the resource model, synchronization, and lifecycle integration. The service containers own their protocol implementations and, where correct, their live protocol state. That boundary keeps the host small, makes providers replaceable, and prevents duplicated sources of truth.</p><a class="button primary" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/README.md">Read the service contracts <img src="assets/icons/arrow-right.svg" alt=""></a></div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a><p>Source-native systems. Directly.</p><div><a href="https://git.home.arpa/itdlabs/cix">Source</a><a href="architecture.html">Architecture</a><a href="status.html">Status</a></div></footer>
+  <script src="app.js"></script>
+</body></html>

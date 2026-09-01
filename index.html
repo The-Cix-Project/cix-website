@@ -21,6 +21,7 @@
       <a href="why.html">Why Cix</a>
       <a href="architecture.html">Architecture</a>
       <a href="#build-system">Build system</a>
+      <a href="services.html">Services</a>
       <a href="status.html">Project status</a>
       <a class="nav-cta" href="https://git.home.arpa/itdlabs/cix">View source <span aria-hidden="true">↗</span></a>
     </nav>
@@ -119,6 +120,22 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
           <div><strong>/dev</strong><small>hardware grants</small></div>
         </div>
         <div class="kernel">KERNEL.ORG LINUX · OPERATOR-SELECTED RELEASE POLICY</div>
+      </div>
+    </section>
+
+    <section class="service-model-home" aria-labelledby="service-model-title">
+      <div class="service-model-copy">
+        <p class="section-index">Platform services</p>
+        <h2 id="service-model-title">The host owns intent.<br>Containers serve protocols.</h2>
+        <p>Cix keeps infrastructure data visible through its API, then projects it into replaceable containers running real service software. DNS, LDAP, DHCP, NTP, and syslog become integrated platform capabilities without baking five protocol servers into the host.</p>
+        <a class="button dark-outline" href="services.html">Explore the service model <img src="assets/icons/arrow-right.svg" alt=""></a>
+      </div>
+      <div class="service-model-flow" aria-label="Cix managed service data flow">
+        <div><small>API-OWNED INTENT</small><strong>records · identities · ranges · policy</strong></div>
+        <i>render · register · synchronize</i>
+        <div class="providers"><small>ORDINARY SERVICE CONTAINERS</small><span><b>dnsmasq</b><b>glauth</b><b>chrony</b><b>sysklogd</b></span></div>
+        <i>standard protocols</i>
+        <div><small>CONSUMERS</small><strong>host · workloads · network clients</strong></div>
       </div>
     </section>
 
