@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cix is a source-native systems distribution with a C control plane, direct Linux primitives, and one resource model for workloads, networks, hardware, and services.">
+  <meta name="theme-color" content="#0a0d0f">
+  <title>Cix — Systems, directly.</title>
+  <link rel="icon" href="assets/brand/cix-app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Cix home">
+      <img src="assets/brand/cix-mark.svg" alt="" width="47" height="28">
+      <span>cix</span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <a href="#why">Why Cix</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#resources">Resources</a>
+      <a href="#status">Project status</a>
+      <a class="nav-cta" href="https://git.home.arpa/itdlabs/cix">View source <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> Source-native systems distribution</p>
+        <h1>Systems,<br><span>directly.</span></h1>
+        <p class="hero-lede">Cix keeps the route from source to running system deliberately short: a C control plane, direct Linux primitives, and one API-first model for workloads, networks, hardware, and services.</p>
+        <div class="actions">
+          <a class="button primary" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/guides/building-cix.md">Build Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
+          <a class="button secondary" href="#architecture">Read the architecture</a>
+        </div>
+        <dl class="hero-facts" aria-label="Core facts">
+          <div><dt>Control plane</dt><dd>C + TCC</dd></div>
+          <div><dt>Host model</dt><dd>Read-only A/B</dd></div>
+          <div><dt>Interface</dt><dd>REST API first</dd></div>
+        </dl>
+      </div>
+
+      <div class="system-window" aria-label="Example Cix terminal session">
+        <div class="window-bar"><span></span><span></span><span></span><b>cix / host</b></div>
+        <pre><code><span class="prompt">$</span> cixctl container ls
+
+<span class="dim">NAME       STATE      IMAGE      NETWORK</span>
+router-01  <span class="ok">running</span>    router     edge
+build-01   <span class="ok">running</span>    pkgbuild   build
+dns-01     <span class="ok">running</span>    dnssvc     services
+
+<span class="prompt">$</span> cixctl system boot
+
+<span class="dim">ACTIVE     SLOT A
+ROOT       squashfs / read-only
+NEXT       SLOT B / available
+KERNEL     mainline Linux</span></code></pre>
+        <div class="window-status"><span><i></i> host healthy</span><span>API v1</span></div>
+      </div>
+    </section>
+
+    <section class="manifesto" id="why">
+      <p class="section-index">01 / Why Cix</p>
+      <div>
+        <h2>Less distance between<br>intent and mechanism.</h2>
+        <p>Cix is not another general-purpose desktop distribution and not a container runtime wearing an operating-system label. It is a full systems distribution for operators who want infrastructure they can inspect, understand, and rebuild.</p>
+      </div>
+    </section>
+
+    <section class="pillars" aria-label="Cix principles">
+      <article>
+        <img src="assets/icons/source.svg" alt="">
+        <p class="number">01</p>
+        <h3>Source-native</h3>
+        <p>Packages, images, the kernel, and Cix itself belong to one source-build pipeline. Compilation is part of the operating model—not an installation afterthought.</p>
+      </article>
+      <article>
+        <img src="assets/icons/terminal.svg" alt="">
+        <p class="number">02</p>
+        <h3>C control plane</h3>
+        <p>The container runtime, REST daemon, CLI, and custom networking plane are native C systems compiled with the Tiny C Compiler.</p>
+      </article>
+      <article>
+        <img src="assets/icons/api.svg" alt="">
+        <p class="number">03</p>
+        <h3>API first</h3>
+        <p>The CLI and web console are REST clients. A capability exists in the API first; no control surface gets a privileged back door.</p>
+      </article>
+      <article>
+        <img src="assets/icons/hardware.svg" alt="">
+        <p class="number">04</p>
+        <h3>First-class resources</h3>
+        <p>Containers, networks, disks, GPUs, DNS, PKI, packages, and services follow one visible lifecycle and resource grammar.</p>
+      </article>
+    </section>
+
+    <section class="architecture" id="architecture">
+      <div class="architecture-intro">
+        <p class="section-index">02 / Architecture</p>
+        <h2>One short path.<br>No hidden control plane.</h2>
+        <p>Every operator surface converges on <code>cixd</code>. The daemon is the only process linked to the runtime, which uses the Linux mechanisms underneath directly.</p>
+        <a class="text-link" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/architecture/architecture.svg">Open the complete architecture <span>↗</span></a>
+      </div>
+      <div class="flow" aria-label="Cix architecture overview">
+        <div class="flow-row clients">
+          <div><img src="assets/icons/terminal.svg" alt=""><span>cixctl</span><small>REST client</small></div>
+          <div><img src="assets/icons/api.svg" alt=""><span>Web console</span><small>REST client</small></div>
+          <div><span class="brace">{ }</span><span>Your tools</span><small>OpenAPI</small></div>
+        </div>
+        <div class="connector"><span>HTTP / JSON</span></div>
+        <div class="daemon"><small>PID 1 · API-FIRST CONTROL PLANE</small><strong>cixd</strong><span>C · TCC · epoll</span></div>
+        <div class="connector branches"><span>direct interfaces</span></div>
+        <div class="flow-row primitives">
+          <div><strong>clone3()</strong><small>namespaces + cgroups</small></div>
+          <div><strong>OverlayFS</strong><small>shared immutable roots</small></div>
+          <div><strong>rtnetlink</strong><small>network data plane</small></div>
+          <div><strong>/dev</strong><small>hardware grants</small></div>
+        </div>
+        <div class="kernel">MAINLINE LINUX KERNEL</div>
+      </div>
+    </section>
+
+    <section class="resources" id="resources">
+      <div class="section-heading">
+        <div><p class="section-index">03 / Resource model</p><h2>The same nouns everywhere.</h2></div>
+        <p>The API, CLI, web console, and documentation describe the same resources with the same lifecycle logic.</p>
+      </div>
+      <div class="resource-grid">
+        <article><img src="assets/icons/container.svg" alt=""><h3>Containers</h3><p>Namespace isolation, cgroup controls, health, restart, dependencies, and console.</p><code>/v1/containers</code></article>
+        <article><img src="assets/icons/network.svg" alt=""><h3>Networks</h3><p>Bridges, routes, VLANs, physical interfaces, addressing, DNS, and DHCP.</p><code>/v1/networks</code></article>
+        <article><img src="assets/icons/hardware.svg" alt=""><h3>Hardware</h3><p>Discover and grant real PCI, USB, GPU, network, disk, CPU, and memory resources.</p><code>/v1/devices</code></article>
+        <article><img src="assets/icons/package.svg" alt=""><h3>Software</h3><p>Recipes, source builds, packages, immutable images, artifacts, and rolling updates.</p><code>/v1/pkg</code></article>
+      </div>
+    </section>
+
+    <section class="source-path">
+      <div>
+        <p class="section-index">04 / Build what you run</p>
+        <h2>From source to running workload.</h2>
+      </div>
+      <ol>
+        <li><span>01</span><img src="assets/icons/source.svg" alt=""><strong>Source</strong><small>Fetch + verify</small></li>
+        <li><span>02</span><img src="assets/icons/terminal.svg" alt=""><strong>Build</strong><small>Compile in Cix</small></li>
+        <li><span>03</span><img src="assets/icons/package.svg" alt=""><strong>Package</strong><small>Track provenance</small></li>
+        <li><span>04</span><img src="assets/icons/container.svg" alt=""><strong>Run</strong><small>Isolated resource</small></li>
+      </ol>
+    </section>
+
+    <section class="status" id="status">
+      <div class="status-copy">
+        <p class="section-index">05 / Project status</p>
+        <h2>Built in public.<br>Verified in layers.</h2>
+        <p>Cix is an active engineering project. Its roadmap records what shipped, how it was tested, and which boundaries remain open. Claims on this site follow that record.</p>
+        <div class="actions">
+          <a class="button primary" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/roadmap/ROADMAP.md">Read the roadmap <img src="assets/icons/arrow-right.svg" alt=""></a>
+          <a class="button dark-outline" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">Explore the API</a>
+        </div>
+      </div>
+      <div class="proof-list">
+        <div><span>01</span><p><strong>Architecture decisions</strong><small>Hard-to-reverse choices documented as ADRs.</small></p></div>
+        <div><span>02</span><p><strong>Real-system verification</strong><small>Bare-metal paths exercised through QEMU and hardware checks.</small></p></div>
+        <div><span>03</span><p><strong>OpenAPI contract</strong><small>The management surface is specified and inspectable.</small></p></div>
+        <div><span>04</span><p><strong>Explicit boundaries</strong><small>Unbuilt work is named rather than marketed as complete.</small></p></div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <img src="assets/brand/cix-mark.svg" alt="" width="110" height="65">
+      <p class="section-index">Cix / pronounced “six”</p>
+      <h2>See the whole system.</h2>
+      <p>Read the source, inspect the API, and follow the mechanisms all the way down.</p>
+      <div class="actions">
+        <a class="button primary" href="https://git.home.arpa/itdlabs/cix">View source <img src="assets/icons/arrow-right.svg" alt=""></a>
+        <a class="button secondary" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md">Read the docs</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a>
+    <p>Source-native systems. Directly.</p>
+    <div><a href="https://git.home.arpa/itdlabs/cix">Source</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md">Documentation</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">API</a></div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
