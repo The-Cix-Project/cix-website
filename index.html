@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cix is a source-native systems distribution with a C control plane, direct Linux primitives, and one resource model for workloads, networks, hardware, and services.">
+  <meta name="description" content="Cix is an open-source, source-native Linux operating system with its own package and build pipeline, a C control plane, and direct Linux primitives.">
   <meta name="theme-color" content="#0a0d0f">
-  <title>Cix — Systems, directly.</title>
+  <title>Cix — Open-source Linux, built from source</title>
   <link rel="icon" href="assets/brand/cix-app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -20,7 +20,7 @@
     <nav id="site-nav" aria-label="Primary navigation">
       <a href="why.html">Why Cix</a>
       <a href="architecture.html">Architecture</a>
-      <a href="#resources">Resources</a>
+      <a href="#build-system">Build system</a>
       <a href="status.html">Project status</a>
       <a class="nav-cta" href="https://git.home.arpa/itdlabs/cix">View source <span aria-hidden="true">↗</span></a>
     </nav>
@@ -29,16 +29,16 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="live-dot"></span> Source-native systems distribution</p>
+        <p class="eyebrow"><span class="live-dot"></span> Open-source Linux operating system</p>
         <h1>Systems,<br><span>directly.</span></h1>
-        <p class="hero-lede">Cix keeps the route from source to running system deliberately short: a C control plane, direct Linux primitives, and one API-first model for workloads, networks, hardware, and services.</p>
+        <p class="hero-lede">Cix is an independently built, source-native Linux operating system. It combines its own package manager, image builder, and delivery pipeline with a C control plane, direct Linux primitives, and one API-first resource model.</p>
         <div class="actions">
           <a class="button primary" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/guides/building-cix.md">Build Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
           <a class="button secondary" href="#architecture">Read the architecture</a>
         </div>
         <dl class="hero-facts" aria-label="Core facts">
           <div><dt>Control plane</dt><dd>Native C</dd></div>
-          <div><dt>Host model</dt><dd>Read-only A/B</dd></div>
+          <div><dt>Software supply</dt><dd>Source → image</dd></div>
           <div><dt>Interface</dt><dd>REST API first</dd></div>
         </dl>
       </div>
@@ -65,7 +65,7 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
       <p class="section-index">01 / Why Cix</p>
       <div>
         <h2>Less distance between<br>intent and mechanism.</h2>
-        <p>Cix is not another general-purpose desktop distribution and not a container runtime wearing an operating-system label. It is a full systems distribution for operators who want infrastructure they can inspect, understand, and rebuild.</p>
+        <p>Cix is an open-source Linux operating system—not another general-purpose desktop distribution and not a container runtime wearing an OS label. It is a full systems distribution for operators who want infrastructure they can inspect, understand, and rebuild.</p>
       </div>
     </section>
 
@@ -151,17 +151,48 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
       </div>
     </section>
 
-    <section class="source-path">
-      <div>
-        <p class="section-index">04 / Build what you run</p>
-        <h2>From source to running workload.</h2>
+    <section class="machine-control" aria-labelledby="machine-title">
+      <div class="machine-intro"><p class="section-index">Control the real machine</p><h2 id="machine-title">Isolation, devices, and disks are not afterthoughts.</h2><p>Cix makes host mechanisms visible as policy-driven API resources—from the identity a container runs under to the physical port a device occupies and the disk where state lives.</p></div>
+      <div class="machine-grid">
+        <article>
+          <div class="machine-icon"><img src="assets/icons/cgroup.svg" alt=""><span>01 / Isolation</span></div>
+          <h3>User namespaces by default.</h3>
+          <p>Every new container gets its own user namespace unless explicitly opted out. Container root maps to a dedicated subordinate-ID range on the host, while cgroup v2 governs CPU, memory, processes, pressure, and device access.</p>
+          <ul><li>Per-container UID/GID mapping</li><li>Real cgroup v2 limits and statistics</li><li>Loud failure—never silent downgrade</li></ul>
+          <code>ContainerCreateRequest.userns</code>
+        </article>
+        <article>
+          <div class="machine-icon"><img src="assets/icons/device.svg" alt=""><span>02 / Hardware</span></div>
+          <h3>Name hardware once. Resolve it live.</h3>
+          <p>Grant PCI, USB, GPU, raw disk, or physical network hardware by discovered ID or an operator-named device map. Exact mappings pin a bus/port location; vendor-model mappings follow matching hardware when it moves.</p>
+          <ul><li>BPF cgroup device enforcement</li><li>Optional devices + USB hotplug reaction</li><li>Atomic live attach and revoke</li></ul>
+          <code>/v1/devicemaps</code>
+        </article>
+        <article>
+          <div class="machine-icon"><img src="assets/icons/disk.svg" alt=""><span>03 / Storage</span></div>
+          <h3>Place storage by intent.</h3>
+          <p>Discover real disks and partitions, assign closed operational roles, format ext4 or btrfs, and migrate storage without inventing a parallel storage registry. The OS disk is protected from role assignment and formatting.</p>
+          <ul><li>State, logs, builds, backups, swap</li><li>Per-container placement and kernel quotas</li><li>Persistent volumes, snapshots, and restore</li></ul>
+          <code>/v1/diskroles</code>
+        </article>
+      </div>
+      <p class="machine-boundary"><strong>Boundary:</strong> Cix containers use namespaces, not a hypervisor. Device grants are direct container access—not a VFIO/IOMMU virtual-machine isolation boundary.</p>
+    </section>
+
+    <section class="source-path" id="build-system">
+      <div class="build-heading">
+        <div><p class="section-index">04 / Package management + build + delivery</p><h2>Its own software<br>supply chain.</h2></div>
+        <div class="self-host-proof"><p class="section-index">Self-hosting proof</p><strong>Cix builds Cix.</strong><span>The same container and recipe system can compile the Cix control plane, build the Linux kernel, assemble the root filesystem, and produce an installer ISO on a running Cix host.</span><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/guides/building-cix.md">Inspect the self-hosted build path ↗</a></div>
       </div>
       <ol>
-        <li><span>01</span><img src="assets/icons/source.svg" alt=""><strong>Source</strong><small>Fetch + verify</small></li>
-        <li><span>02</span><img src="assets/icons/terminal.svg" alt=""><strong>Build</strong><small>Compile in Cix</small></li>
-        <li><span>03</span><img src="assets/icons/package.svg" alt=""><strong>Package</strong><small>Track provenance</small></li>
-        <li><span>04</span><img src="assets/icons/container.svg" alt=""><strong>Run</strong><small>Isolated resource</small></li>
+        <li><span>01</span><img src="assets/icons/sync.svg" alt=""><strong>Sync</strong><small>Track recipe source</small></li>
+        <li><span>02</span><img src="assets/icons/source.svg" alt=""><strong>Verify</strong><small>Pin source + checksum</small></li>
+        <li><span>03</span><img src="assets/icons/terminal.svg" alt=""><strong>Build</strong><small>Compile inside Cix</small></li>
+        <li><span>04</span><img src="assets/icons/package.svg" alt=""><strong>Package</strong><small>Record files + version</small></li>
+        <li><span>05</span><img src="assets/icons/container.svg" alt=""><strong>Image</strong><small>Immutable rootfs versions</small></li>
+        <li><span>06</span><img src="assets/icons/refresh.svg" alt=""><strong>Deliver</strong><small>Rolling or A/B update</small></li>
       </ol>
+      <div class="pipeline-notes"><p><strong>One package system</strong><span>Recipes, dependencies, source builds, install manifests, upgrades, and removals are managed by Cix.</span></p><p><strong>Build artifacts</strong><span>Reuse checksum-verified artifacts when configured; fall back to the source build path.</span></p><p><strong>API-controlled</strong><span>Repository sync, build jobs, packages, images, artifacts, and updates are exposed through REST.</span></p></div>
     </section>
 
     <section class="status" id="status">
