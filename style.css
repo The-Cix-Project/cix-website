@@ -232,7 +232,7 @@ footer a:hover { color: var(--copper); }
 .page-hero > * { position: relative; z-index: 1; }
 .page-hero h1 { max-width: 1050px; margin-bottom: 30px; font-size: clamp(58px, 7vw, 96px); }
 .page-hero > p:last-child { max-width: 750px; margin-bottom: 0; color: #b8bec1; font-size: 20px; }
-.editorial-lead, .argument-grid, .not-section, .evidence-callout, .arch-stack, .diagram-panel, .status-legend, .capability-status, .verification-section, .boundaries-section, .status-source, .service-principle, .service-deep-dive, .service-health, .service-boundaries { padding-left: max(24px, calc((100vw - var(--max)) / 2)); padding-right: max(24px, calc((100vw - var(--max)) / 2)); }
+.editorial-lead, .argument-grid, .not-section, .evidence-callout, .arch-stack, .diagram-panel, .status-legend, .capability-status, .verification-section, .boundaries-section, .status-source, .service-principle, .service-deep-dive, .service-health, .service-boundaries, .proof-context, .proof-workflow, .dashboard-proof, .proof-contract { padding-left: max(24px, calc((100vw - var(--max)) / 2)); padding-right: max(24px, calc((100vw - var(--max)) / 2)); }
 .editorial-lead { padding-top: 110px; padding-bottom: 110px; display: grid; grid-template-columns: 1fr 3fr; gap: 48px; }
 .editorial-lead h2 { max-width: 850px; }
 .editorial-lead div p { max-width: 790px; color: #505a5e; font-size: 20px; }
@@ -358,6 +358,27 @@ footer a:hover { color: var(--copper); }
 .service-boundaries > div > p { max-width: 760px; color: var(--nickel); font-size: 17px; }
 .service-boundaries .button { margin-top: 20px; }
 
+/* Reproduced product proof */
+.proof-context { padding-top: 28px; padding-bottom: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #aaa9a3; }
+.proof-context div { padding: 18px; background: var(--paper); }
+.proof-context small { display: block; margin-bottom: 6px; color: #747b7e; font: 9px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.proof-context strong { font-size: 13px; }
+.proof-workflow { padding-top: 110px; padding-bottom: 110px; }
+.workflow-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #aaa9a3; border-left: 1px solid #aaa9a3; }
+.workflow-grid article { min-width: 0; padding: 28px; border-right: 1px solid #aaa9a3; border-bottom: 1px solid #aaa9a3; }
+.workflow-grid article > span { color: var(--copper); font: 10px var(--mono); text-transform: uppercase; }
+.workflow-grid h3 { margin-top: 38px; }
+.workflow-grid pre { padding: 20px; color: var(--paper); background: var(--carbon); font: 11px/1.7 var(--mono); }
+.dashboard-proof { padding-top: 110px; padding-bottom: 110px; color: var(--paper); background: var(--ferrite); }
+.dashboard-proof > div { max-width: 780px; }
+.dashboard-proof > div > p:last-child { color: var(--nickel); font-size: 17px; }
+.dashboard-proof figure { margin: 45px 0 0; background: var(--paper); border: 1px solid #465057; box-shadow: 22px 22px 0 rgba(0,0,0,.18); }
+.dashboard-proof figure img { width: 100%; height: auto; }
+.dashboard-proof figcaption { padding: 12px 16px; color: #596367; font: 9px var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.proof-contract { padding-top: 105px; padding-bottom: 105px; display: grid; grid-template-columns: 1fr 3fr; gap: 50px; }
+.proof-contract div > p { max-width: 760px; color: #505a5e; font-size: 17px; }
+.proof-contract .actions { margin-top: 28px; }
+
 @media (max-width: 980px) {
   .site-header { width: calc(100% - 40px); }
   .menu-button { display: block; }
@@ -379,6 +400,8 @@ footer a:hover { color: var(--copper); }
   .source-path ol { grid-template-columns: repeat(3, 1fr); }
   .editorial-lead, .arch-stack > article, .diagram-panel, .verification-section, .boundaries-section, .service-principle, .service-deep-dive > article, .service-health, .service-boundaries { grid-template-columns: 1fr; }
   .health-note { grid-column: 1; margin-top: 0; }
+  .proof-context { grid-template-columns: repeat(2, 1fr); }
+  .workflow-grid { grid-template-columns: 1fr; }
   .status-table article { grid-template-columns: 1fr; gap: 15px; }
 }
 
@@ -429,6 +452,8 @@ footer a:hover { color: var(--copper); }
   .service-deep-dive li:nth-child(even) { padding-left: 17px; border-left: 0; }
   .service-deep-dive li:nth-child(even)::before { left: 0; }
   .service-model-flow .providers span { grid-template-columns: repeat(2, 1fr); }
+  .proof-context { grid-template-columns: 1fr; }
+  .proof-contract { grid-template-columns: 1fr; gap: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
