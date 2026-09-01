@@ -277,6 +277,10 @@ footer a:hover { color: var(--copper); }
 .status-hero::after { border-color: rgba(185,231,105,.16); box-shadow: 0 0 0 90px rgba(185,231,105,.025), 0 0 0 180px rgba(185,231,105,.015); }
 .status-legend { min-height: 85px; display: flex; align-items: center; justify-content: center; gap: 45px; background: #dedbd2; border-bottom: 1px solid #bbb8af; }
 .status-legend p { margin: 0; display: flex; align-items: center; gap: 10px; color: #596367; font-size: 12px; }
+.status-provenance { padding: 22px max(24px, calc((100vw - var(--max)) / 2)); display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; color: var(--paper); background: #20272b; border-top: 1px solid #30383d; border-bottom: 1px solid #30383d; }
+.status-provenance p { margin: 0; color: var(--nickel); font: 11px var(--mono); }
+.status-provenance strong { display: block; margin-bottom: 4px; color: var(--copper); font-size: 9px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+.status-provenance code { color: var(--paper); }
 .badge { width: fit-content; padding: 5px 8px; border: 1px solid; font: 700 9px var(--mono); text-transform: uppercase; letter-spacing: .07em; white-space: nowrap; }
 .badge.shipped { color: #476319; border-color: #82a441; background: rgba(185,231,105,.16); }
 .badge.verified { color: #276587; border-color: #69a5c6; background: rgba(95,168,211,.12); }
@@ -367,6 +371,7 @@ footer a:hover { color: var(--copper); }
 }
 
 @media (max-width: 650px) {
+  .status-provenance { grid-template-columns: 1fr; gap: 14px; }
   .hero { min-height: auto; padding-bottom: 70px; }
   h1 { font-size: 60px; }
   .hero-facts { grid-template-columns: 1fr; }
