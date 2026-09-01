@@ -18,10 +18,10 @@
     </a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" aria-label="Primary navigation">
-      <a href="#why">Why Cix</a>
-      <a href="#architecture">Architecture</a>
+      <a href="why.html">Why Cix</a>
+      <a href="architecture.html">Architecture</a>
       <a href="#resources">Resources</a>
-      <a href="#status">Project status</a>
+      <a href="status.html">Project status</a>
       <a class="nav-cta" href="https://git.home.arpa/itdlabs/cix">View source <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
@@ -37,7 +37,7 @@
           <a class="button secondary" href="#architecture">Read the architecture</a>
         </div>
         <dl class="hero-facts" aria-label="Core facts">
-          <div><dt>Control plane</dt><dd>C + TCC</dd></div>
+          <div><dt>Control plane</dt><dd>Native C</dd></div>
           <div><dt>Host model</dt><dd>Read-only A/B</dd></div>
           <div><dt>Interface</dt><dd>REST API first</dd></div>
         </dl>
@@ -45,19 +45,18 @@
 
       <div class="system-window" aria-label="Example Cix terminal session">
         <div class="window-bar"><span></span><span></span><span></span><b>cix / host</b></div>
-        <pre><code><span class="prompt">$</span> cixctl container ls
+        <pre><code><span class="prompt">$</span> cixctl health
+<span class="ok">ok</span>
 
-<span class="dim">NAME       STATE      IMAGE      NETWORK</span>
-router-01  <span class="ok">running</span>    router     edge
-build-01   <span class="ok">running</span>    pkgbuild   build
-dns-01     <span class="ok">running</span>    dnssvc     services
+<span class="prompt">$</span> cixctl boot
+<span class="dim">build:   rolling (2026-09-01T18:42:11Z)
+slot:    a
+kernel:  6.18.40</span>
 
-<span class="prompt">$</span> cixctl system boot
-
-<span class="dim">ACTIVE     SLOT A
-ROOT       squashfs / read-only
-NEXT       SLOT B / available
-KERNEL     mainline Linux</span></code></pre>
+<span class="prompt">$</span> cixctl kernel-policy show
+<span class="dim">channel:  longterm
+running:  6.18.40 (line 6.18)
+channel is at: 6.18.40  -- you are on it</span></code></pre>
         <div class="window-status"><span><i></i> host healthy</span><span>API v1</span></div>
       </div>
     </section>
@@ -102,7 +101,7 @@ KERNEL     mainline Linux</span></code></pre>
         <p class="section-index">02 / Architecture</p>
         <h2>One short path.<br>No hidden control plane.</h2>
         <p>Every operator surface converges on <code>cixd</code>. The daemon is the only process linked to the runtime, which uses the Linux mechanisms underneath directly.</p>
-        <a class="text-link" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/architecture/architecture.svg">Open the complete architecture <span>↗</span></a>
+        <a class="text-link" href="architecture.html">Explore the architecture <span>→</span></a>
       </div>
       <div class="flow" aria-label="Cix architecture overview">
         <div class="flow-row clients">
@@ -119,8 +118,24 @@ KERNEL     mainline Linux</span></code></pre>
           <div><strong>rtnetlink</strong><small>network data plane</small></div>
           <div><strong>/dev</strong><small>hardware grants</small></div>
         </div>
-        <div class="kernel">MAINLINE LINUX KERNEL</div>
+        <div class="kernel">KERNEL.ORG LINUX · OPERATOR-SELECTED RELEASE POLICY</div>
       </div>
+    </section>
+
+    <section class="why-compare" aria-labelledby="compare-title">
+      <div class="section-heading">
+        <div><p class="section-index">Why another distribution?</p><h2 id="compare-title">A different operating model.</h2></div>
+        <p>Cix does not claim that every abstraction is bad. It removes layers when direct, explainable mechanisms can do the job reliably.</p>
+      </div>
+      <div class="comparison" role="table" aria-label="Conventional infrastructure and Cix operating models">
+        <div class="comparison-head" role="row"><span role="columnheader">Concern</span><span role="columnheader">Conventional stack</span><span role="columnheader">Cix</span></div>
+        <div role="row"><strong role="cell">Control path</strong><span role="cell">Multiple tools and privileged surfaces</span><span role="cell">One API-first C control plane</span></div>
+        <div role="row"><strong role="cell">Workload isolation</strong><span role="cell">External container runtime layers</span><span role="cell">Linux namespaces and cgroups directly</span></div>
+        <div role="row"><strong role="cell">Networking</strong><span role="cell">Separate switching or orchestration layer</span><span role="cell">Custom C plane over rtnetlink</span></div>
+        <div role="row"><strong role="cell">Software delivery</strong><span role="cell">Prebuilt packages from an upstream distribution</span><span role="cell">Source recipes, builds, images, and verified artifacts</span></div>
+        <div role="row"><strong role="cell">Host updates</strong><span role="cell">Mutate the live root in place</span><span role="cell">Write, verify, then boot the inactive A/B slot</span></div>
+      </div>
+      <a class="button comparison-cta" href="why.html">The complete case for Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
     </section>
 
     <section class="resources" id="resources">
@@ -155,7 +170,7 @@ KERNEL     mainline Linux</span></code></pre>
         <h2>Built in public.<br>Verified in layers.</h2>
         <p>Cix is an active engineering project. Its roadmap records what shipped, how it was tested, and which boundaries remain open. Claims on this site follow that record.</p>
         <div class="actions">
-          <a class="button primary" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/roadmap/ROADMAP.md">Read the roadmap <img src="assets/icons/arrow-right.svg" alt=""></a>
+          <a class="button primary" href="status.html">See project status <img src="assets/icons/arrow-right.svg" alt=""></a>
           <a class="button dark-outline" href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">Explore the API</a>
         </div>
       </div>

@@ -18,8 +18,8 @@ python3 server.py --host 0.0.0.0 --port 8080
 
 ## Deploy
 
-Serve this directory as static files with Caddy, nginx, or any static host. Only
-`index.html`, `style.css`, `app.js`, and `assets/` are required in production.
+Serve this directory as static files with Caddy, nginx, or any static host. The
+HTML pages, `style.css`, `app.js`, and `assets/` are required in production.
 
 ## Source authorities
 
