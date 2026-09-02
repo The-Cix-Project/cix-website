@@ -480,7 +480,7 @@ footer a:hover { color: var(--copper); }
 .verify-terminal dl div + div { margin-top: 14px; }
 .verify-terminal dt { color: var(--copper); font: 9px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .verify-terminal dd { margin: 4px 0 0; color: var(--nickel); font: 10px/1.6 var(--mono); overflow-wrap: anywhere; }
-.install-facts { padding-top: 110px; padding-bottom: 110px; color: var(--paper); background: var(--ferrite); }
+.install-facts { padding: 110px max(24px, calc((100vw - var(--max)) / 2)); color: var(--paper); background: var(--ferrite); }
 .install-facts > div:first-child > p:last-child { color: var(--nickel); }
 .requirements-grid { margin-top: 46px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #424b50; }
 .requirements-grid article { padding: 28px; background: var(--carbon); }
