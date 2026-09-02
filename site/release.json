@@ -1,0 +1,10 @@
+{
+  "version": "2.5.1",
+  "architecture": "x86-64",
+  "image_size": "71.7 MiB",
+  "environment": "UEFI",
+  "iso": "cix-installer-2.5.1-1-x86_64.iso",
+  "signature": "cix-installer-2.5.1-1-x86_64.iso.minisig",
+  "iso_sha256": "995f44ec0ac6e64eea5fa71fb61577b06d7453d3520f016a978c819399407468",
+  "signature_sha256": "0459aafbbefb742873730f54e2af326e9b77711d5613fe5e9e7fb31da5750c4c"
+}

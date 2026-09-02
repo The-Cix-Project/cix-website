@@ -4,6 +4,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 import sys
+import json
+import re
 
 REPO = Path(__file__).resolve().parents[1]
 ROOT = REPO / "site"
@@ -32,6 +34,19 @@ def local_target(value):
     return (ROOT / u.path.lstrip("/")).resolve()
 
 errors=[]
+manifest = ROOT / "release.json"
+if not manifest.exists():
+    errors.append("site/release.json: release manifest is missing")
+else:
+    try:
+        release = json.loads(manifest.read_text(encoding="utf-8"))
+        required = {"version", "architecture", "image_size", "environment", "iso", "signature", "iso_sha256", "signature_sha256"}
+        missing = required - release.keys()
+        if missing: errors.append(f"site/release.json: missing fields {sorted(missing)}")
+        for key in ("iso_sha256", "signature_sha256"):
+            if key in release and not re.fullmatch(r"[0-9a-f]{64}", release[key]): errors.append(f"site/release.json: {key} must be a lowercase SHA-256")
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"site/release.json: invalid JSON ({exc})")
 for page in PAGES:
     if page.stat().st_size > MAX_PAGE: errors.append(f"{page.name}: page exceeds {MAX_PAGE} bytes")
     parser=Page(); parser.feed(page.read_text(encoding="utf-8"))
