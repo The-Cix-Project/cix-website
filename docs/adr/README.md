@@ -24,6 +24,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | [0014](0014-social-metadata.md) | 2026-09-02 | `22668ea` | Static, page-specific social metadata |
 | [0015](0015-production-static-deployment.md) | 2026-09-02 | `26b8326` | Static TLS production endpoint |
 | [0016](0016-source-map-and-decision-records.md) | 2026-09-02 | `ce5ce0a` | Local ownership map and ADR process |
+| [0017](0017-separated-deployable-tree.md) | 2026-09-02 | `4603187` | Separate deployable site from engineering tooling |
 
 ## History coverage
 
