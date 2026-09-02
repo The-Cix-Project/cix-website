@@ -4,10 +4,11 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
-- Reconcile the website ADR timeline, changelog, diagram, and API references (issue #14).
+No unreleased website changes.
 
 ## 2026-09-02
 
+- `04b4b7d` Reconciled the architectural decision timeline, changelog, diagram, and API references.
 - `ce5ce0a` Documented source ownership and website ADRs.
 - `364a173` Aligned the Get Cix install section with page gutters.
 - `95aca1e` Fixed architecture overview aspect ratio and SVG text rendering.
