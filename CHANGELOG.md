@@ -1,0 +1,31 @@
+# Changelog
+
+All notable website changes are recorded here in reverse chronological order. Dates and commit identifiers are taken from Git history; this file describes the website repository, not the Cix product release stream.
+
+## [Unreleased]
+
+- Reconcile the website ADR timeline, changelog, diagram, and API references (issue #14).
+
+## 2026-09-02
+
+- `ce5ce0a` Documented source ownership and website ADRs.
+- `364a173` Aligned the Get Cix install section with page gutters.
+- `95aca1e` Fixed architecture overview aspect ratio and SVG text rendering.
+- `26b8326` Added production Caddy deployment and security guidance.
+- `22668ea` Added page-specific Open Graph and Twitter metadata.
+- `354c7c3` Added static quality checks, Gitea Actions CI, and launch checklist.
+- `31b9725` Added first-use manuals path to Get Cix.
+- `690b50a` Added a readable architecture overview beside the canonical diagram.
+- `b3c2020` Clarified Secure Boot support and added restrained human-purpose copy.
+- `f0f0b49` Improved keyboard navigation and focus visibility.
+
+## 2026-09-01
+
+- `94a562c` Added reproduced CLI, REST, and dashboard product proof.
+- `cc76564` Added homepage evaluator journeys.
+- `a54d94b` Added the verified prebuilt installer and Cix Cache path.
+- `7e493f3` Calibrated public project status claims.
+- `43c3657` Explained the managed service/container boundary.
+- `10cd04f` Clarified Linux identity and systems capabilities.
+- `fd316fd` Established the mature product story and technical evidence pages.
+- `5f4f898` Created the initial Cix website.

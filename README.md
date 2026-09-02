@@ -25,6 +25,8 @@ HTML pages, `style.css`, `app.js`, and `assets/` are required in production.
 
 - Source layout and ownership: [`docs/README.md`](docs/README.md)
 - Website ADR index: [`docs/adr/README.md`](docs/adr/README.md)
+- Website changelog: [`CHANGELOG.md`](CHANGELOG.md)
+- API and diagram alignment: [`docs/API-ALIGNMENT.md`](docs/API-ALIGNMENT.md)
 - Production deployment: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 - Launch checklist: [`docs/LAUNCH-CHECKLIST.md`](docs/LAUNCH-CHECKLIST.md)
 

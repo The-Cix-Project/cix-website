@@ -1,12 +1,13 @@
-# ADR 0001: Keep the site static and dependency-free
+# ADR 0001: Static, dependency-free site
 
 - Status: Accepted
-- Date: 2026-09-02
+- Date: 2026-09-01
+- Evidence: [`5f4f898`](https://git.home.arpa/itdlabs/cix-website/commit/5f4f898)
 
 ## Decision
 
-Use plain HTML, CSS, JavaScript, SVG, and Python’s standard-library development server. Do not require Node, a package manager, or a frontend build to develop or deploy the site.
+Use plain HTML, CSS, JavaScript, SVG, and a Python standard-library development server. Do not require a frontend build or package installation to develop or deploy the site.
 
 ## Consequences
 
-The site is easy to inspect, copy to a tiny VM, and serve from Caddy or another static server. Shared behavior is explicit in `app.js` and `site-config.js`. Repeated markup is accepted where it keeps page URLs and source viewing straightforward; quality scripts catch drift.
+The site can be inspected, copied to a tiny VM, and served by a conventional static web server. Shared behavior remains explicit rather than hidden in a build pipeline.
