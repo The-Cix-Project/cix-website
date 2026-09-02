@@ -21,6 +21,15 @@ python3 server.py --host 0.0.0.0 --port 8080
 Serve this directory as static files with Caddy, nginx, or any static host. The
 HTML pages, `style.css`, `app.js`, and `assets/` are required in production.
 
+## Engineering map and decisions
+
+- Source layout and ownership: [`docs/README.md`](docs/README.md)
+- Website ADR index: [`docs/adr/README.md`](docs/adr/README.md)
+- Production deployment: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
+- Launch checklist: [`docs/LAUNCH-CHECKLIST.md`](docs/LAUNCH-CHECKLIST.md)
+
+Durable engineering trade-offs belong in a numbered ADR. Product behavior remains governed by the Cix repositories; see ADR 0003 for the boundary.
+
 ## Source authorities
 
 - Product truth: Cix mission, roadmap, architecture, guides, ADRs, code, and OpenAPI contract.
