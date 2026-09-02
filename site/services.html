@@ -21,11 +21,11 @@
 
     <section class="service-deep-dive">
       <article id="ldap">
-        <header><img src="assets/icons/users.svg" alt=""><span>LDAP / identity</span><code>/v1/ldap</code></header>
+        <header><img src="assets/icons/users.svg" alt=""><span>LDAP / identity</span><code>/v1/ldap/users</code></header>
         <div><h2>One directory. Replaceable servers.</h2><p>Cix is the durable source of truth for users, groups, IDs, bcrypt password hashes, SSH keys, group membership, and search capability. Register one or more running glauth containers and Cix renders the complete current directory into each provider’s config. Glauth’s watcher reloads it live.</p><ul><li>Human accounts remain API-managed records even if every LDAP container is rebuilt.</li><li><code>ldap_provision</code> creates a container-owned service account, generates a fresh secret, delivers it inside the workload, and removes the account with that container.</li><li><code>ldap_client</code> stages NSS/PAM configuration so workloads can authenticate users live through LDAP; allowed groups can restrict which identities may log in.</li><li>Host login uses the same directory: LDAP bind first when enabled, with local verification only as an availability fallback—not a second password truth.</li></ul></div>
       </article>
       <article id="dns">
-        <header><img src="assets/icons/dns.svg" alt=""><span>DNS / naming</span><code>/v1/dns</code></header>
+        <header><img src="assets/icons/dns.svg" alt=""><span>DNS / naming</span><code>/v1/dns/records</code></header>
         <div><h2>Records in Cix. Answers from dnsmasq.</h2><p>DNS records and upstream forwarders are API-owned state. Registered dnsmasq containers receive the full current hosts and forwarding configuration through their own filesystem view, then reload on <code>SIGHUP</code>.</p><ul><li>One update synchronizes every registered replica.</li><li><code>dns_register</code> can bind a workload’s lifecycle to its own DNS record.</li><li><code>dns provision</code> creates replicas, registers them, resolves their real addresses, and configures the host resolver as one re-runnable API workflow.</li><li>Providers serve standard DNS; Cix does not hand-roll a DNS server.</li></ul></div>
       </article>
       <article id="dhcp">
@@ -33,11 +33,11 @@
         <div><h2>Durable policy. Honest lease ownership.</h2><p>Cix owns ranges, reservations, server assignment, and the deterministic slicing of a range across redundant dnsmasq containers. Short-lived leases remain owned by the server that issued them and are read live from that provider—never copied into DNS as stale second truth.</p><ul><li>Static reservation changes synchronize live.</li><li>Range changes restart only affected providers through the rolling restart mechanism.</li><li>The same container may provide DNS and DHCP, making its own leases immediately resolvable; Cix reports that pairing without entangling the two APIs.</li><li>Replicas receive disjoint address slices because dnsmasq has no shared failover database.</li></ul></div>
       </article>
       <article id="syslog">
-        <header><img src="assets/icons/logs.svg" alt=""><span>Syslog / observability</span><code>/v1/syslog</code></header>
+        <header><img src="assets/icons/logs.svg" alt=""><span>Syslog / observability</span><code>/v1/syslog/targets</code></header>
         <div><h2>Durable locally. Forwarded optionally.</h2><p>Cix’s consolidated host log store remains the source read by the API and dashboard. Register a syslog container and every subsequent container-sourced log line is additionally emitted as a real RFC 3164 UDP datagram.</p><ul><li>The durable Cix copy is retained even if forwarding fails.</li><li>Kernel, <code>cixd</code>, and audit records stay local; only container log lines enter this forwarding path.</li><li>The message carries the originating container name.</li><li>A syslog target never receives its own captured output, preventing a feedback loop.</li></ul></div>
       </article>
       <article id="ntp">
-        <header><img src="assets/icons/clock.svg" alt=""><span>NTP / time</span><code>/v1/ntp</code></header>
+        <header><img src="assets/icons/clock.svg" alt=""><span>NTP / time</span><code>/v1/system/ntp</code></header>
         <div><h2>Containerized sources. Host-owned clock.</h2><p>Running chrony containers can register as internal time sources. Cix resolves their live addresses afresh and queries them before configured upstream servers. The final host clock change remains in <code>cixd</code>, because <code>clock_settime()</code> requires host-namespace authority that should not be handed into a container.</p><ul><li>Registered providers are ordinary NTP servers for other workloads.</li><li>Host synchronization is automatic hourly or operator-triggered.</li><li>NTP registration is pure bookkeeping: the live protocol is already the source of its answer.</li></ul></div>
       </article>
     </section>
