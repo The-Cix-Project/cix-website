@@ -5,7 +5,7 @@ Use this checklist when the LAN staging addresses move to public infrastructure.
 ## Release and domain
 
 - [ ] Point the production domain and `www` policy at the published site.
-- [ ] Replace staging cache/source links in `site-config.js`, `get.html`, and navigation.
+- [ ] Replace staging cache/source links in `site/site-config.js`, `site/get.html`, and navigation.
 - [ ] Confirm HTTPS, certificate renewal, HSTS policy, and a safe redirect from HTTP.
 - [ ] Confirm the public source repository, issue tracker, API specification, and brand assets are reachable.
 - [ ] Confirm the current installer, detached signature, release key, and SHA-256 values from Cix Cache.

@@ -5,7 +5,7 @@ Static, dependency-free marketing site for Cix.
 ## Develop locally
 
 ```sh
-python3 server.py
+python3 tools/dev-server.py
 ```
 
 Then open <http://127.0.0.1:8080>.
@@ -13,13 +13,14 @@ Then open <http://127.0.0.1:8080>.
 To make it reachable from another machine on the network:
 
 ```sh
-python3 server.py --host 0.0.0.0 --port 8080
+python3 tools/dev-server.py --host 0.0.0.0 --port 8080
 ```
 
 ## Deploy
 
-Serve this directory as static files with Caddy, nginx, or any static host. The
-HTML pages, `style.css`, `app.js`, and `assets/` are required in production.
+Serve the `site/` directory as static files with Caddy, nginx, or any static host.
+The HTML pages, `style.css`, `app.js`, and `assets/` inside `site/` are required
+in production.
 
 ## Engineering map and decisions
 

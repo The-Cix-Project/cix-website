@@ -1,6 +1,6 @@
 # Production deployment
 
-The site is static. A small VM needs only a web server, the checked-out commit, and a TLS-capable DNS name. Keep `server.py` for local development; use the supplied Caddy example for production.
+The site is static. A small VM needs only a web server, the checked-out commit, and a TLS-capable DNS name. Keep `tools/dev-server.py` for local development; use the supplied Caddy example for production.
 
 ## Caddy on a tiny VM
 
@@ -27,7 +27,7 @@ Deploy only after both checks pass. Record the deployed Git commit and verify `g
 No Caddy, Node, or package installation is needed locally:
 
 ```sh
-python3 server.py --host 0.0.0.0 --port 8765
+python3 tools/dev-server.py --host 0.0.0.0 --port 8765
 ```
 
 This intentionally remains a development server and must not be exposed as the production TLS endpoint.

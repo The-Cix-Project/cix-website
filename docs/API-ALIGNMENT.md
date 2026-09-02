@@ -8,7 +8,7 @@ This website is a client of Cix documentation, not an API specification. Before 
 
 The source snapshot used for the reproduced workflow and this alignment review is Cix commit `4d5f4ffa167520f0e4a64825b4c6c9a5a28942c7` (2026-09-01 20:07:21 +01:00). Re-check this pin before publishing a new website claim.
 
-The product-proof page records a real workflow using `GET /v1/system/site` and `PUT /v1/system/site`; its captured source revision is documented on [proof.html](../proof.html). The website’s local overview is deliberately a summary and remains linked to the canonical diagram and layer explanation.
+The product-proof page records a real workflow using `GET /v1/system/site` and `PUT /v1/system/site`; its captured source revision is documented on [proof.html](../site/proof.html). The website’s local overview is deliberately a summary and remains linked to the canonical diagram and layer explanation.
 
 ## Maintenance rule
 

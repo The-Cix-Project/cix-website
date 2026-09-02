@@ -1,4 +1,4 @@
-# ADR 0003: Stable root-level public paths
+# ADR 0003: Stable public paths under the site document root
 
 - Status: Accepted
 - Date: 2026-09-01
@@ -6,8 +6,8 @@
 
 ## Decision
 
-Root pages such as `/get.html`, `/architecture.html`, and `/status.html` are the public route contract. They are not moved into a source directory without redirects and a deliberate migration.
+Pages such as `/get.html`, `/architecture.html`, and `/status.html` are the public route contract, served from the `site/` document root. They are not moved or renamed within that document root without redirects and a deliberate migration.
 
 ## Consequences
 
-The repository is intentionally flat at its public boundary. Internal ownership and file responsibilities are documented in [`docs/README.md`](../README.md).
+The deployable tree is intentionally simple while the repository itself has separate `site/`, `docs/`, `scripts/`, `tools/`, and `deploy/` areas. Ownership is documented in [`docs/README.md`](../README.md).

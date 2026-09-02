@@ -1,15 +1,15 @@
 # Website engineering map
 
-The Cix website is a static site with stable public URLs. The apparent flatness at the repository root is deliberate: each root `*.html` file is a directly addressable page and must remain deployable without a build step.
+The Cix website is a static site with stable public URLs. Deployable files live in `site/`; the repository root contains engineering documentation, checks, deployment configuration, and tools.
 
 | Area | Location | Responsibility |
 | --- | --- | --- |
-| Public pages | `*.html` at repository root | Stable routes and page content |
-| Shared behavior | `app.js`, `site-config.js` | Navigation, cache endpoint substitution, small progressive enhancements |
-| Shared presentation | `style.css` | Tokens, layout, responsive and focus states |
-| Brand and UI assets | `assets/brand/`, `assets/icons/` | Approved marks and icon system |
-| Diagrams and proof | `assets/diagrams/`, `assets/screens/` | Architecture overview and reproducible evidence |
-| Development | `server.py` | Dependency-free local HTTP server only |
+| Public pages | `site/*.html` | Stable routes and page content |
+| Shared behavior | `site/app.js`, `site/site-config.js` | Navigation, cache endpoint substitution, small progressive enhancements |
+| Shared presentation | `site/style.css` | Tokens, layout, responsive and focus states |
+| Brand and UI assets | `site/assets/brand/`, `site/assets/icons/` | Approved marks and icon system |
+| Diagrams and proof | `site/assets/diagrams/`, `site/assets/screens/` | Architecture overview and reproducible evidence |
+| Development | `tools/dev-server.py` | Dependency-free local HTTP server only |
 | Quality automation | `scripts/`, `.gitea/workflows/` | Link, metadata, accessibility-baseline, and budget checks |
 | Deployment | `deploy/`, `docs/DEPLOYMENT.md` | Production web-server configuration and runbook |
 | Decisions | `docs/adr/` | Accepted engineering decisions and consequences |

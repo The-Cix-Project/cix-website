@@ -1,7 +1,7 @@
 # Production example for a Cix website VM.
 # Replace the hostname and root path before enabling.
 cix.example.org {
-    root * /srv/cix-website
+    root * /srv/cix-website/site
     encode zstd gzip
 
     header {

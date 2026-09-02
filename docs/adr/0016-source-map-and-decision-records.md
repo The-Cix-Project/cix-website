@@ -10,4 +10,4 @@ Keep website ADRs under `docs/adr/`, use the index as navigation and process gui
 
 ## Consequences
 
-The public-route-flat layout becomes comprehensible without moving files or duplicating product specifications.
+The deployable site is separated cleanly from engineering documentation and tooling without changing its public routes or duplicating product specifications.

@@ -5,7 +5,8 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[1]
+ROOT = REPO / "site"
 PAGES = sorted(ROOT.glob("*.html"))
 MAX_PAGE = 60_000
 MAX_CSS = 70_000

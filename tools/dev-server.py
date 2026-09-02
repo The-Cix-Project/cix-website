@@ -26,7 +26,7 @@ def main():
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", default=8080, type=int)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parent.parent / "site"
     handler = lambda *handler_args, **kwargs: SiteHandler(
         *handler_args, directory=str(root), **kwargs
     )

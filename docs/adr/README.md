@@ -10,7 +10,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | --- | --- | --- | --- |
 | [0001](0001-static-no-build.md) | 2026-09-01 | `5f4f898` | Static, dependency-free site |
 | [0002](0002-source-backed-product-story.md) | 2026-09-01 | `fd316fd` | Product story follows source evidence |
-| [0003](0003-stable-public-paths.md) | 2026-09-01 | `fd316fd` | Stable root-level public paths |
+| [0003](0003-stable-public-paths.md) | 2026-09-01 | `fd316fd` | Stable public paths under the site document root |
 | [0004](0004-managed-service-boundary.md) | 2026-09-01 | `43c3657` | Host policy, containerized protocol services |
 | [0005](0005-factual-status-boundary.md) | 2026-09-01 | `7e493f3` | Evidence-calibrated status claims |
 | [0006](0006-prebuilt-cache-trust-path.md) | 2026-09-01 | `a54d94b` | Prebuilt artifacts retain source authority |

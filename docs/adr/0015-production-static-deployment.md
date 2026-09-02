@@ -6,7 +6,7 @@
 
 ## Decision
 
-Production uses a conventional static web server, with the supplied Caddy example defining TLS, compression, caching, and security headers. `server.py` remains development-only.
+Production uses a conventional static web server rooted at `site/`, with the supplied Caddy example defining TLS, compression, caching, and security headers. `tools/dev-server.py` remains development-only.
 
 ## Consequences
 
