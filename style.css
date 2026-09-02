@@ -18,6 +18,11 @@ html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--carbon); background: var(--paper); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
 a { color: inherit; }
 img { display: block; }
+:where(a, button):focus-visible { outline: 3px solid var(--phosphor); outline-offset: 4px; }
+.inner-page :where(a, button):focus-visible { outline-color: var(--copper); }
+.inner-page .page-hero :where(a, button):focus-visible,
+.inner-page .site-header :where(a, button):focus-visible,
+footer :where(a, button):focus-visible { outline-color: var(--phosphor); }
 .skip-link { position: fixed; top: 8px; left: 8px; z-index: 20; padding: 8px 12px; background: var(--paper); transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
 
