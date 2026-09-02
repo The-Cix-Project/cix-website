@@ -40,7 +40,7 @@
         <dl class="hero-facts" aria-label="Core facts">
           <div><dt>Control plane</dt><dd>Native C</dd></div>
           <div><dt>Software supply</dt><dd>Source → image</dd></div>
-          <div><dt>Interface</dt><dd>REST API first</dd></div>
+          <div><dt>Interface</dt><dd>REST API-first</dd></div>
         </dl>
       </div>
 
@@ -118,8 +118,8 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
       <article>
         <img src="assets/icons/api.svg" alt="">
         <p class="number">03</p>
-        <h3>API first</h3>
-        <p>The CLI and web console are REST clients. A capability exists in the API first; no control surface gets a privileged back door.</p>
+        <h3>API-first</h3>
+        <p>The CLI and web dashboard are REST clients. Capabilities exist in the API before any client exposes them; no control surface gets a privileged back door.</p>
       </article>
       <article>
         <img src="assets/icons/hardware.svg" alt="">
@@ -140,7 +140,7 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
       <div class="flow" aria-label="Cix architecture overview">
         <div class="flow-row clients">
           <div><img src="assets/icons/terminal.svg" alt=""><span>cixctl</span><small>REST client</small></div>
-          <div><img src="assets/icons/api.svg" alt=""><span>Web console</span><small>REST client</small></div>
+          <div><img src="assets/icons/api.svg" alt=""><span>Web dashboard</span><small>REST client</small></div>
           <div><span class="brace">{ }</span><span>Your tools</span><small>OpenAPI</small></div>
         </div>
         <div class="connector"><span>HTTP / JSON</span></div>
@@ -191,7 +191,7 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
     <section class="resources" id="resources">
       <div class="section-heading">
         <div><p class="section-index">03 / Resource model</p><h2>The same nouns everywhere.</h2></div>
-        <p>The API, CLI, web console, and documentation describe the same resources with the same lifecycle logic.</p>
+        <p>The API, CLI, web dashboard, and documentation describe the same resources with the same lifecycle logic.</p>
       </div>
       <div class="resource-grid">
         <article><img src="assets/icons/container.svg" alt=""><h3>Containers</h3><p>Namespace isolation, cgroup controls, health, restart, dependencies, and console.</p><code>/v1/containers</code></article>

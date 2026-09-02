@@ -57,6 +57,9 @@ for page in PAGES:
     for ref in parser.links:
         target=local_target(ref)
         if target and not target.exists(): errors.append(f"{page.name}: missing local target {ref}")
+    source = page.read_text(encoding="utf-8")
+    if "web console" in source.lower(): errors.append(f"{page.name}: use canonical term 'web dashboard'")
+    if "API first" in source: errors.append(f"{page.name}: use canonical term 'API-first'")
 
 for pattern, limit in (("*.css", MAX_CSS), ("*.js", MAX_JS)):
     for asset in ROOT.glob(pattern):
