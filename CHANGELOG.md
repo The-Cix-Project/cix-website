@@ -8,6 +8,7 @@ No unreleased website changes.
 
 ## 2026-09-02
 
+- `c5cff99` Aligned every Get Cix section to the shared page gutters.
 - `4603187` Moved deployable pages/assets into `site/`, and the development server into `tools/`; updated checks and deployment paths.
 - `04b4b7d` Reconciled the architectural decision timeline, changelog, diagram, and API references.
 - `ce5ce0a` Documented source ownership and website ADRs.
