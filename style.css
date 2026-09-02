@@ -487,6 +487,13 @@ footer a:hover { color: var(--copper); }
 .requirements-grid img { width: 25px; filter: brightness(0) invert(1); }
 .requirements-grid h3 { margin: 25px 0 10px; }
 .requirements-grid p { margin: 0; color: var(--nickel); font-size: 13px; }
+.manuals-section { padding-top: 110px; padding-bottom: 110px; }
+.manuals-section .section-heading > p { color: #505a5e; }
+.manuals-grid { margin-top: 48px; }
+.manuals-grid article { min-height: 250px; }
+.manuals-grid h3 { margin-top: 42px; }
+.manuals-grid p { margin-bottom: 22px; }
+.manuals-more { margin-top: 30px; }
 .install-actions { margin-top: 35px; display: flex; align-items: center; gap: 28px; }
 .cache-story { padding-top: 110px; padding-bottom: 110px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: center; }
 .cache-story > div:first-child > p:not(.section-index) { color: #505a5e; }
