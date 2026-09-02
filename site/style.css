@@ -487,7 +487,7 @@ footer a:hover { color: var(--copper); }
 .requirements-grid img { width: 25px; filter: brightness(0) invert(1); }
 .requirements-grid h3 { margin: 25px 0 10px; }
 .requirements-grid p { margin: 0; color: var(--nickel); font-size: 13px; }
-.manuals-section { padding-top: 110px; padding-bottom: 110px; }
+.manuals-section { padding: 110px max(24px, calc((100vw - var(--max)) / 2)); }
 .manuals-section .section-heading > p { color: #505a5e; }
 .manuals-grid { margin-top: 48px; }
 .manuals-grid article { min-height: 250px; }
@@ -495,7 +495,7 @@ footer a:hover { color: var(--copper); }
 .manuals-grid p { margin-bottom: 22px; }
 .manuals-more { margin-top: 30px; }
 .install-actions { margin-top: 35px; display: flex; align-items: center; gap: 28px; }
-.cache-story { padding-top: 110px; padding-bottom: 110px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: center; }
+.cache-story { padding: 110px max(24px, calc((100vw - var(--max)) / 2)); display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: center; }
 .cache-story > div:first-child > p:not(.section-index) { color: #505a5e; }
 .trust-flow { padding: 28px; color: var(--paper); background: var(--carbon); }
 .trust-flow article { padding: 22px; border: 1px solid #465057; }
@@ -505,14 +505,14 @@ footer a:hover { color: var(--copper); }
 .trust-flow article small { margin-top: 5px; color: var(--nickel); }
 .trust-flow > i { height: 45px; display: grid; place-items: center; color: var(--nickel); font: 9px var(--mono); font-style: normal; text-transform: uppercase; }
 .trust-flow .trust-result { border-color: var(--copper); background: rgba(216,121,69,.06); }
-.cache-properties { padding-top: 110px; padding-bottom: 110px; color: var(--paper); background: var(--ferrite); }
+.cache-properties { padding: 110px max(24px, calc((100vw - var(--max)) / 2)); color: var(--paper); background: var(--ferrite); }
 .cache-properties .section-heading > p { color: var(--nickel); }
 .property-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #475158; border-left: 1px solid #475158; }
 .property-grid article { min-height: 260px; padding: 28px; border-right: 1px solid #475158; border-bottom: 1px solid #475158; }
 .property-grid span { color: var(--copper); font: 10px var(--mono); }
 .property-grid h3 { margin-top: 55px; }
 .property-grid p { color: var(--nickel); font-size: 13px; }
-.staging-note { padding-top: 105px; padding-bottom: 105px; display: grid; grid-template-columns: 1fr 3fr; gap: 50px; color: var(--paper); background: var(--carbon); }
+.staging-note { padding: 105px max(24px, calc((100vw - var(--max)) / 2)); display: grid; grid-template-columns: 1fr 3fr; gap: 50px; color: var(--paper); background: var(--carbon); }
 .staging-note div p { max-width: 760px; color: var(--nickel); font-size: 17px; }
 
 @media (max-width: 980px) {
