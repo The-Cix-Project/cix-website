@@ -49,6 +49,14 @@ for pattern, limit in (("*.css", MAX_CSS), ("*.js", MAX_JS)):
 for asset in (ROOT / "assets").rglob("*"):
     if asset.is_file() and asset.stat().st_size > MAX_ASSET: errors.append(f"{asset.relative_to(ROOT)}: exceeds {MAX_ASSET} byte asset budget")
 
+# Keep the checked-in brand reference self-contained too; it is not deployed,
+# but broken swatches make the engineering reference misleading.
+brand_doc = REPO / "docs/brand/guideline.md"
+if brand_doc.exists():
+    import re
+    for ref in re.findall(r"!\[[^]]*\]\(([^)]+)\)", brand_doc.read_text(encoding="utf-8")):
+        if not (brand_doc.parent / ref).exists(): errors.append(f"{brand_doc}: missing image {ref}")
+
 if errors:
     print("SITE CHECK FAILED")
     print("\n".join(f"- {e}" for e in errors))
