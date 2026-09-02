@@ -239,6 +239,9 @@ footer a:hover { color: var(--copper); }
 .page-hero > * { position: relative; z-index: 1; }
 .page-hero h1 { max-width: 1050px; margin-bottom: 30px; font-size: clamp(58px, 7vw, 96px); }
 .page-hero > p:last-child { max-width: 750px; margin-bottom: 0; color: #b8bec1; font-size: 20px; }
+.error-page { min-height: 100vh; padding: 190px max(24px, calc((100vw - var(--max)) / 2)) 120px; color: var(--paper); background: var(--carbon); }
+.error-page h1 { max-width: 850px; margin: 28px 0; font-size: clamp(58px, 8vw, 110px); }
+.error-page > p:not(.eyebrow) { max-width: 600px; color: #b8bec1; font-size: 20px; }
 .editorial-lead, .argument-grid, .not-section, .evidence-callout, .arch-stack, .diagram-panel, .status-legend, .capability-status, .verification-section, .boundaries-section, .status-source, .service-principle, .service-deep-dive, .service-health, .service-boundaries, .proof-context, .proof-workflow, .dashboard-proof, .proof-contract { padding-left: max(24px, calc((100vw - var(--max)) / 2)); padding-right: max(24px, calc((100vw - var(--max)) / 2)); }
 .editorial-lead { padding-top: 110px; padding-bottom: 110px; display: grid; grid-template-columns: 1fr 3fr; gap: 48px; }
 .editorial-lead h2 { max-width: 850px; }

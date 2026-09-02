@@ -20,6 +20,18 @@ class SiteHandler(SimpleHTTPRequestHandler):
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
         super().end_headers()
 
+    def send_error(self, code, message=None, explain=None):
+        if code == 404:
+            body = (Path(self.directory) / "404.html").read_bytes()
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            if self.command != "HEAD":
+                self.wfile.write(body)
+            return
+        super().send_error(code, message, explain)
+
 
 def main():
     parser = ArgumentParser(description="Serve the Cix website locally")

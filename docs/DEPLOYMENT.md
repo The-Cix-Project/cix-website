@@ -13,7 +13,7 @@ The configuration enables zstd/gzip compression, short HTML caching, immutable a
 
 ## Health check and release
 
-The static health check is the existing `status.html` route:
+The static health check is the existing `status.html` route. Invalid paths use the branded `404.html` fallback in production and local development:
 
 ```sh
 curl --fail --silent --show-error --location https://cix.example.org/status.html >/dev/null
