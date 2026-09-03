@@ -8,6 +8,8 @@ No unreleased website changes.
 
 ## 2026-09-03
 
+- `c9d48d0` Replaced the architecture overview with a presentation-ready, ownership-accurate map of API intent, host state, source/cache artefacts, Linux primitives, providers, workloads, and the verified A/B host; updated its page caption and accessible alternative.
+
 - Approved “Systems, directly.” as the Cix master tagline and documented its required product lockup (issue #25).
 
 ## 2026-09-02
