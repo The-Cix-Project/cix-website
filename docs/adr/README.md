@@ -25,6 +25,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | [0015](0015-production-static-deployment.md) | 2026-09-02 | `26b8326` | Static TLS production endpoint |
 | [0016](0016-source-map-and-decision-records.md) | 2026-09-02 | `ce5ce0a` | Local ownership map and ADR process |
 | [0017](0017-separated-deployable-tree.md) | 2026-09-02 | `4603187` | Separate deployable site from engineering tooling |
+| [0018](0018-approved-master-tagline.md) | 2026-09-03 | Issue `#25` | Approve “Systems, directly.” as the master tagline |
 
 ## History coverage
 

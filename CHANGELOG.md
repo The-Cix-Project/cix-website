@@ -6,6 +6,10 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 No unreleased website changes.
 
+## 2026-09-03
+
+- Approved “Systems, directly.” as the Cix master tagline and documented its required product lockup (issue #25).
+
 ## 2026-09-02
 
 - `c5cff99` Aligned every Get Cix section to the shared page gutters.
