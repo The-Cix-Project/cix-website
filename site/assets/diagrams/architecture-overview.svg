@@ -1,24 +1,69 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
-<title id="title">Cix system map</title>
-<desc id="desc">Four layers show operator surfaces flowing through the cixd API and control plane, into Linux resources, and finally into containers and the read-only A/B host. The control plane is written in C and compiled with TCC.</desc>
-<style>
-.bg{fill:#0a0d0f}.surface{fill:#11181b;stroke:#45535a}.control{fill:#2a1d16;stroke:#d76b35}.linux{fill:#10242a;stroke:#55a9bd}.work{fill:#15251f;stroke:#8ecf76}.host{fill:#171d20;stroke:#aeb9bd}.surface,.control,.linux,.work,.host{stroke-width:2}.cardtext{fill:#f2f0e9;font:600 20px system-ui,sans-serif;stroke:none}.small{fill:#b6c0c2;font:400 14px system-ui,sans-serif;stroke:none}.section{fill:#d76b35;font:700 12px system-ui,sans-serif;letter-spacing:2px;stroke:none}.line{fill:none;stroke-width:3}.a{stroke:#d76b35}.b{stroke:#55a9bd}.c{stroke:#8ecf76}.d{stroke:#aeb9bd}.legend{fill:#b6c0c2;font:400 13px system-ui,sans-serif;stroke:none}
-</style>
-<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#d76b35"/></marker><marker id="b" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#55a9bd"/></marker><marker id="c" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#8ecf76"/></marker><marker id="d" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#aeb9bd"/></marker></defs>
-<rect class="bg" width="1200" height="900" rx="12"/>
-<text x="60" y="52" class="section">CIX / SYSTEM MAP</text><text x="60" y="80" class="small">One API path from operator intent to Linux resources and managed workloads.</text>
-<text x="60" y="124" class="section">01  OPERATOR SURFACES</text>
-<rect class="surface" x="60" y="145" width="250" height="70" rx="7"/><text class="cardtext" x="84" y="176">cixctl</text><text class="small" x="84" y="198">CLI</text>
-<rect class="surface" x="330" y="145" width="250" height="70" rx="7"/><text class="cardtext" x="354" y="176">Web dashboard</text><text class="small" x="354" y="198">same REST API</text>
-<rect class="surface" x="600" y="145" width="250" height="70" rx="7"/><text class="cardtext" x="624" y="176">Physical console</text><text class="small" x="624" y="198">local surface</text>
-<rect class="surface" x="870" y="145" width="270" height="70" rx="7"/><text class="cardtext" x="894" y="176">Your tools</text><text class="small" x="894" y="198">OpenAPI integrations</text>
-<path class="line a" d="M185 215v44 M455 215v44 M725 215v44 M1005 215v44" marker-end="url(#a)"/>
-<rect class="control" x="120" y="259" width="960" height="112" rx="9"/><text x="150" y="291" class="section">02  API + CONTROL PLANE</text><text x="150" y="328" class="cardtext">cixd</text><text x="255" y="328" class="small">C · TCC · epoll · PID 1</text><text x="150" y="351" class="small">One authority for lifecycle, networking, storage, hardware, packages, DNS, PKI, and LDAP.</text>
-<path class="line b" d="M600 371v54" marker-end="url(#b)"/>
-<text x="60" y="460" class="section" style="fill:#55a9bd">03  LINUX RESOURCES</text>
-<rect class="linux" x="60" y="478" width="1080" height="118" rx="9"/><text x="92" y="516" class="cardtext">Runtime</text><text x="92" y="543" class="small">namespaces · cgroups · pidfds</text><text x="330" y="516" class="cardtext">Filesystem</text><text x="330" y="543" class="small">OverlayFS · immutable lowerdir</text><text x="620" y="516" class="cardtext">Network</text><text x="620" y="543" class="small">rtnetlink · bridges · routes</text><text x="880" y="516" class="cardtext">Hardware</text><text x="880" y="543" class="small">device grants · disks</text><text x="92" y="574" class="small">Direct kernel-facing mechanisms; no hidden privileged client path.</text>
-<path class="line c" d="M355 596v58 M845 596v58" marker-end="url(#c)"/>
-<text x="60" y="692" class="section" style="fill:#8ecf76">04  WHAT RUNS</text>
-<rect class="work" x="60" y="710" width="510" height="108" rx="9"/><text x="92" y="747" class="cardtext">Containers</text><text x="92" y="775" class="small">isolated work · network · limits · health</text><rect class="host" x="630" y="710" width="510" height="108" rx="9"/><text x="662" y="747" class="cardtext">Read-only A/B host</text><text x="662" y="775" class="small">kernel policy · verify · rollback</text>
-<path class="line d" d="M315 818v18 M885 818v18" marker-end="url(#d)"/><text x="60" y="850" class="legend">Copper: API/control</text><text x="285" y="850" class="legend">Blue: Linux/resource</text><text x="515" y="850" class="legend">Green: workload/state</text><text x="770" y="850" class="legend">Grey: host/update</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Cix architecture: intent to running system</title>
+  <desc id="desc">Operators and API clients send REST and JSON intent to cixd. cixd is the only process with direct access to Cix runtime and host primitives. It renders host-owned state, builds from source with an optional Cix Cache, and creates isolated workloads. Provider containers deliver DNS, DHCP, LDAP, NTP, and syslog while host identity and logs remain authoritative on the host. A read-only A/B host boots a selected Linux kernel policy through a Secure Boot-capable chain.</desc>
+  <style>
+    .bg{fill:#091013}.band{fill:#101a1e;stroke:#33454c;stroke-width:2}.band2{fill:#0d171a;stroke:#33454c;stroke-width:2}.card{stroke-width:2}.client{fill:#13251f;stroke:#79c78a}.api{fill:#2b1c14;stroke:#e17b3d}.state{fill:#17222b;stroke:#70b7d0}.runtime{fill:#122529;stroke:#62b7c1}.work{fill:#17261d;stroke:#91cf78}.host{fill:#202229;stroke:#bbc0cb}.cache{fill:#282319;stroke:#e5b85d}.h{fill:#f4f0e8;font:700 23px system-ui,sans-serif;stroke:none}.kicker{fill:#ef8b4a;font:700 13px system-ui,sans-serif;letter-spacing:2px;stroke:none}.bandtitle{fill:#d4e0df;font:700 14px system-ui,sans-serif;letter-spacing:1.4px;stroke:none}.title{fill:#f4f0e8;font:700 19px system-ui,sans-serif;stroke:none}.body{fill:#b8c5c6;font:400 14px system-ui,sans-serif;stroke:none}.tiny{fill:#9aa9aa;font:400 12px system-ui,sans-serif;stroke:none}.label{fill:#f4f0e8;font:700 13px system-ui,sans-serif;stroke:none}.flow{fill:none;stroke:#e17b3d;stroke-width:3}.controlflow{fill:none;stroke:#70b7d0;stroke-width:2.5}.project{fill:none;stroke:#91cf78;stroke-width:2.5}.optional{fill:none;stroke:#e5b85d;stroke-width:2.5;stroke-dasharray:8 6}.lineLabel{fill:#d9e2df;font:600 12px system-ui,sans-serif;stroke:none}.legend{fill:#aebbbb;font:400 12px system-ui,sans-serif;stroke:none}
+  </style>
+  <defs>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#e17b3d"/></marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#70b7d0"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#91cf78"/></marker>
+    <marker id="arrow-gold" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 10 4 0 8z" fill="#e5b85d"/></marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="1120" rx="16"/>
+  <text x="58" y="55" class="kicker">CIX / ARCHITECTURE OVERVIEW</text>
+  <text x="58" y="88" class="h">From declared intent to a running system.</text>
+  <text x="58" y="114" class="body">One API boundary. Host-owned state. Source-built artefacts. Isolated workloads on a controlled Linux host.</text>
+
+  <!-- clients -->
+  <rect class="band" x="40" y="145" width="1320" height="126" rx="14"/>
+  <text x="64" y="174" class="bandtitle">01  OPERATOR SURFACES</text>
+  <rect class="card client" x="64" y="192" width="250" height="58" rx="9"/><text x="82" y="218" class="title">cixctl</text><text x="82" y="239" class="tiny">CLI + local console</text>
+  <rect class="card client" x="337" y="192" width="250" height="58" rx="9"/><text x="355" y="218" class="title">Web dashboard</text><text x="355" y="239" class="tiny">vanilla HTML / CSS / JS</text>
+  <rect class="card client" x="610" y="192" width="250" height="58" rx="9"/><text x="628" y="218" class="title">OpenAPI clients</text><text x="628" y="239" class="tiny">automation and integrations</text>
+  <rect class="card client" x="883" y="192" width="453" height="58" rx="9"/><text x="901" y="218" class="title">Physical console</text><text x="901" y="239" class="tiny">PID1-spawned cixctl on video or serial</text>
+  <path class="flow" d="M189 271v36 M462 271v36 M735 271v36 M1109 271v36" marker-end="url(#arrow-orange)"/>
+  <text x="610" y="298" text-anchor="middle" class="lineLabel">HTTP / JSON · every capability is an API contract</text>
+
+  <!-- control -->
+  <rect class="band2" x="40" y="320" width="1320" height="172" rx="14"/>
+  <text x="64" y="349" class="bandtitle">02  CIX CONTROL BOUNDARY</text>
+  <rect class="card api" x="64" y="366" width="520" height="101" rx="10"/><text x="90" y="398" class="title">cixd · the sole host authority</text><text x="90" y="422" class="body">C · TCC · non-blocking epoll · PID 1</text><text x="90" y="446" class="tiny">REST, auth, lifecycle, network, storage, package, PKI and host interfaces</text>
+  <rect class="card api" x="610" y="366" width="726" height="101" rx="10"/><text x="636" y="398" class="title">Declared state becomes managed state</text><text x="636" y="422" class="body">API-owned intent → validation → host primitives or rendered providers</text><text x="636" y="446" class="tiny">Clients never link the runtime library or bypass cixd</text>
+
+  <!-- state and supply chain -->
+  <rect class="band" x="40" y="535" width="1320" height="166" rx="14"/>
+  <text x="64" y="564" class="bandtitle">03  HOST STATE, POLICY &amp; BUILD SUPPLY CHAIN</text>
+  <rect class="card state" x="64" y="582" width="380" height="94" rx="10"/><text x="84" y="612" class="title">Host-owned state</text><text x="84" y="636" class="body">identity · groups · IDs · logs</text><text x="84" y="658" class="tiny">DNS / DHCP / NTP / LDAP intent is durable here</text>
+  <rect class="card state" x="466" y="582" width="380" height="94" rx="10"/><text x="486" y="612" class="title">Storage &amp; update policy</text><text x="486" y="636" class="body">disk roles · volumes · boot · rollback</text><text x="486" y="658" class="tiny">read-only image, inactive-slot writes, verification</text>
+  <rect class="card cache" x="868" y="582" width="468" height="94" rx="10"/><text x="888" y="612" class="title">Source → artefact pipeline</text><text x="888" y="636" class="body">recipes + checksums → build → package → image / ISO</text><text x="888" y="658" class="tiny">Cix Cache is optional: hit reuses verified bytes; miss builds, then may publish</text>
+
+  <!-- runtime -->
+  <path class="controlflow" d="M324 492v42 M656 492v42 M1020 492v42" marker-end="url(#arrow-blue)"/>
+  <rect class="band2" x="40" y="730" width="1320" height="154" rx="14"/>
+  <text x="64" y="759" class="bandtitle">04  LINUX PRIMITIVES cixd DRIVES DIRECTLY</text>
+  <rect class="card runtime" x="64" y="777" width="286" height="84" rx="9"/><text x="84" y="806" class="title">Isolation</text><text x="84" y="830" class="body">clone3 · namespaces · cgroup v2</text><text x="84" y="849" class="tiny">pidfds · device BPF grants</text>
+  <rect class="card runtime" x="372" y="777" width="286" height="84" rx="9"/><text x="392" y="806" class="title">Filesystem</text><text x="392" y="830" class="body">OverlayFS · images · upperdirs</text><text x="392" y="849" class="tiny">config staged before clone</text>
+  <rect class="card runtime" x="680" y="777" width="286" height="84" rx="9"/><text x="700" y="806" class="title">Network</text><text x="700" y="830" class="body">rtnetlink · bridges · routes</text><text x="700" y="849" class="tiny">custom C data plane</text>
+  <rect class="card runtime" x="988" y="777" width="348" height="84" rx="9"/><text x="1008" y="806" class="title">Devices &amp; disks</text><text x="1008" y="830" class="body">PCI / USB / GPU · quotas · roles</text><text x="1008" y="849" class="tiny">named and port-based grants</text>
+
+  <!-- what runs -->
+  <path class="project" d="M250 884v38 M550 884v38 M850 884v38 M1160 884v38" marker-end="url(#arrow-green)"/>
+  <rect class="band" x="40" y="922" width="1320" height="126" rx="14"/>
+  <text x="64" y="951" class="bandtitle">05  WHAT RUNS ON THE HOST</text>
+  <rect class="card work" x="64" y="968" width="606" height="58" rx="9"/><text x="84" y="994" class="title">Workload containers</text><text x="84" y="1015" class="tiny">apps receive their own namespaces, cgroup, filesystem, network and optional devices</text>
+  <rect class="card work" x="694" y="968" width="310" height="58" rx="9"/><text x="714" y="994" class="title">Service providers</text><text x="714" y="1015" class="tiny">dnsmasq · glauth · chrony · sysklogd</text>
+  <rect class="card host" x="1028" y="968" width="308" height="58" rx="9"/><text x="1048" y="994" class="title">Read-only A/B host</text><text x="1048" y="1015" class="tiny">kernel policy · Secure Boot path · verify / rollback</text>
+
+  <!-- ownership links -->
+  <path class="project" d="M254 676 C254 732 840 714 840 968" marker-end="url(#arrow-green)"/>
+  <text x="405" y="716" class="lineLabel">host-owned identity / logs are projected to providers; host copy remains authoritative</text>
+  <path class="optional" d="M1102 676 C1102 734 1120 742 1120 968" marker-end="url(#arrow-gold)"/>
+  <text x="1130" y="742" class="lineLabel">optional cache</text>
+
+  <line x1="64" y1="1080" x2="108" y2="1080" class="flow"/><text x="120" y="1084" class="legend">orange = request / control</text>
+  <line x1="350" y1="1080" x2="394" y2="1080" class="controlflow"/><text x="406" y="1084" class="legend">blue = host primitive</text>
+  <line x1="650" y1="1080" x2="694" y2="1080" class="project"/><text x="706" y="1084" class="legend">green = rendered workload</text>
+  <line x1="1000" y1="1080" x2="1044" y2="1080" class="optional"/><text x="1056" y="1084" class="legend">gold dashed = optional path</text>
 </svg>
