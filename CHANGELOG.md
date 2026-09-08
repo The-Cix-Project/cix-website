@@ -4,7 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
-No unreleased website changes.
+- Aligned architecture, services, resource, status, kernel example, and cache-client copy with current Cix sources: containers now declare `services[]`, `cix-init` supervises them, readiness is derived from service state, and individual service lifecycle actions are available. Kept the reproduced proof capture pinned to its original source revision and recorded the newer contract review in `docs/API-ALIGNMENT.md`.
 
 ## 2026-09-03
 

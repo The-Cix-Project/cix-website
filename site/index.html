@@ -50,14 +50,14 @@
 <span class="ok">ok</span>
 
 <span class="prompt">$</span> cixctl boot
-<span class="dim">build:   rolling (2026-09-01T18:42:11Z)
+<span class="dim">build:   rolling (2026-09-08T18:42:11Z)
 slot:    a
-kernel:  6.18.40</span>
+kernel:  7.2.3</span>
 
 <span class="prompt">$</span> cixctl kernel-policy show
 <span class="dim">channel:  longterm
-running:  6.18.40 (line 6.18)
-channel is at: 6.18.40  -- you are on it</span></code></pre>
+running:  7.2.3 (line 7.2)
+channel is at: 7.2.3  -- you are on it</span></code></pre>
         <div class="window-status"><span><i></i> host healthy</span><span>Illustrative · API v1</span></div>
       </div>
     </section>
@@ -194,7 +194,7 @@ channel is at: 6.18.40  -- you are on it</span></code></pre>
         <p>The API, CLI, web dashboard, and documentation describe the same resources with the same lifecycle logic.</p>
       </div>
       <div class="resource-grid">
-        <article><img src="assets/icons/container.svg" alt=""><h3>Containers</h3><p>Namespace isolation, cgroup controls, health, restart, dependencies, and console.</p><code>/v1/containers</code></article>
+        <article><img src="assets/icons/container.svg" alt=""><h3>Containers</h3><p>Namespace isolation, cgroup controls, supervised services, derived readiness, dependencies, and console.</p><code>/v1/containers</code></article>
         <article><img src="assets/icons/network.svg" alt=""><h3>Networks</h3><p>Bridges, routes, VLANs, physical interfaces, addressing, DNS, and DHCP.</p><code>/v1/networks</code></article>
         <article><img src="assets/icons/hardware.svg" alt=""><h3>Hardware</h3><p>Discover and grant real PCI, USB, GPU, network, disk, CPU, and memory resources.</p><code>/v1/devices</code></article>
         <article><img src="assets/icons/package.svg" alt=""><h3>Software</h3><p>Recipes, source builds, packages, immutable images, artifacts, and rolling updates.</p><code>/v1/pkg</code></article>

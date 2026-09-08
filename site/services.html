@@ -13,9 +13,9 @@
     <section class="page-hero services-hero"><p class="eyebrow">Managed service architecture</p><h1>Own the intent.<br>Containerize the service.</h1><p>Cix turns DNS, LDAP, DHCP, NTP, and syslog into API-managed platform capabilities while real, replaceable containers do the protocol work.</p></section>
 
     <section class="service-principle">
-      <div><p class="section-index">The model</p><h2>Control-plane data.<br>Workload-plane servers.</h2><p>Cix does not hide five custom daemons inside the host. It owns durable configuration and lifecycle relationships, then registers ordinary containers running real upstream service software. The API stays stable while a provider can be rebuilt, replicated, or replaced.</p></div>
+      <div><p class="section-index">The model</p><h2>Control-plane data.<br>Workload-plane servers.</h2><p>Cix does not hide five custom daemons inside the host. It owns durable configuration and lifecycle relationships, then registers ordinary containers running real upstream service software. Each container declares the services it runs; <code>cix-init</code> supervises them and reports service-level state back to the API. The API stays stable while a provider can be rebuilt, replicated, or replaced.</p></div>
       <div class="service-principle-flow">
-        <p><small>01 / INTENT</small><strong>API resources</strong><span>Records, identities, ranges, forwarders, registrations, health and drain state.</span></p><i>render / synchronize</i><p><small>02 / PROVIDER</small><strong>Service containers</strong><span>Real upstream dnsmasq, glauth, chrony, and sysklogd built through Cix recipes.</span></p><i>standard protocol</i><p><small>03 / CONSUMER</small><strong>Host + workloads</strong><span>DNS, LDAP, DHCP, NTP, and RFC 3164 clients consume familiar protocols.</span></p>
+        <p><small>01 / INTENT</small><strong>API resources</strong><span>Records, identities, ranges, forwarders, registrations, health and drain state.</span></p><i>render / synchronize</i><p><small>02 / PROVIDER</small><strong>Declared services</strong><span><code>services[]</code> runs under freestanding <code>cix-init</code>; real upstream dnsmasq, glauth, chrony, and sysklogd are built through Cix recipes.</span></p><i>standard protocol</i><p><small>03 / CONSUMER</small><strong>Host + workloads</strong><span>DNS, LDAP, DHCP, NTP, and RFC 3164 clients consume familiar protocols.</span></p>
       </div>
     </section>
 
@@ -45,7 +45,7 @@
     <section class="service-health">
       <div><p class="section-index">One operational view</p><h2>Health and maintenance across providers.</h2><p>Cix tracks every registered LDAP, DNS, NTP, and syslog provider through one server-health resource. Health is observed; drain is operator intent and persists.</p></div>
       <div class="health-terminal"><div><span class="ok">●</span><strong>ldap-1</strong><small>healthy · tcp:3893</small></div><div><span class="ok">●</span><strong>dns-1</strong><small>healthy · tcp:53</small></div><div><span class="ok">●</span><strong>ntp-1</strong><small>healthy · process</small></div><div><span class="dim">○</span><strong>syslog-2</strong><small>drained · maintenance</small></div></div>
-      <p class="health-note">Unhealthy or drained LDAP providers are withheld from generated client configuration. If filtering would remove every provider, Cix retains the unfiltered list: a possibly unavailable server is better than deliberately configuring none.</p>
+      <p class="health-note">Unhealthy or drained LDAP providers are withheld from generated client configuration. If filtering would remove every provider, Cix retains the unfiltered list: a possibly unavailable server is better than deliberately configuring none. Individual declared services can also be started, stopped, or restarted without restarting their whole container.</p>
     </section>
 
     <section class="service-boundaries">

@@ -6,7 +6,7 @@ This website is a client of Cix documentation, not an API specification. Before 
 - [API guide](https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/README.md)
 - [Architecture source SVG](https://git.home.arpa/itdlabs/cix/src/branch/master/docs/architecture/architecture.svg)
 
-The source snapshot used for the reproduced workflow and this alignment review is Cix commit `4d5f4ffa167520f0e4a64825b4c6c9a5a28942c7` (2026-09-01 20:07:21 +01:00). Re-check this pin before publishing a new website claim.
+The reproduced workflow remains captured from Cix commit `4d5f4ffa167520f0e4a64825b4c6c9a5a28942c7` (2026-09-01 20:07:21 +01:00). The current product contract reviewed for this website update is Cix commit `304fcf4e41cc67f34c857d2d1468f16ffddaf222` (2026-09-08), which replaces container `cmd` with `services[]`, adds `cix-init` supervision, derives readiness from service state, and exposes per-service lifecycle actions.
 
 The product-proof page records a real workflow using `GET /v1/system/site` and `PUT /v1/system/site`; its captured source revision is documented on [proof.html](../site/proof.html). The website’s local overview is deliberately a summary and remains linked to the canonical diagram and layer explanation.
 
