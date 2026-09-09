@@ -4,7 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
-- Aligned architecture, services, resource, status, kernel example, and cache-client copy with current Cix sources: containers now declare `services[]`, `cix-init` supervises them, readiness is derived from service state, and individual service lifecycle actions are available. Kept the reproduced proof capture pinned to its original source revision and recorded the newer contract review in `docs/API-ALIGNMENT.md`.
+- Aligned architecture, services, resource, status, and contract-reference copy with Cix `8b610f36`: wireless-radio handoff, the first verified access point, multi-network DHCP, shared-device ownership, and live kernel-module configuration are now represented, with wireless verification limits kept explicit. Kept the reproduced proof capture pinned to its original source revision and recorded the newer contract review in `docs/API-ALIGNMENT.md`.
 
 ## 2026-09-03
 
