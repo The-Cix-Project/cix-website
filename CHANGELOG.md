@@ -4,7 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
-- Aligned architecture, services, resource, status, and contract-reference copy with Cix `8b610f36`: wireless-radio handoff, the first verified access point, multi-network DHCP, shared-device ownership, and live kernel-module configuration are now represented, with wireless verification limits kept explicit. Kept the reproduced proof capture pinned to its original source revision and recorded the newer contract review in `docs/API-ALIGNMENT.md`.
+- Removed the public process-oriented evidence callout from `Why Cix` and its unused styles. Reviewed Cix through `56d8470a`: added container-visible resource views, enforceable volume sizing and usage, and current storage/runtime wording while keeping the reproduced proof capture pinned to its original source revision.
 
 ## 2026-09-03
 

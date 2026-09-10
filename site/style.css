@@ -242,7 +242,7 @@ footer a:hover { color: var(--copper); }
 .error-page { min-height: 100vh; padding: 190px max(24px, calc((100vw - var(--max)) / 2)) 120px; color: var(--paper); background: var(--carbon); }
 .error-page h1 { max-width: 850px; margin: 28px 0; font-size: clamp(58px, 8vw, 110px); }
 .error-page > p:not(.eyebrow) { max-width: 600px; color: #b8bec1; font-size: 20px; }
-.editorial-lead, .argument-grid, .not-section, .evidence-callout, .arch-stack, .diagram-panel, .status-legend, .capability-status, .verification-section, .boundaries-section, .status-source, .service-principle, .service-deep-dive, .service-health, .service-boundaries, .proof-context, .proof-workflow, .dashboard-proof, .proof-contract { padding-left: max(24px, calc((100vw - var(--max)) / 2)); padding-right: max(24px, calc((100vw - var(--max)) / 2)); }
+.editorial-lead, .argument-grid, .not-section, .arch-stack, .diagram-panel, .status-legend, .capability-status, .verification-section, .boundaries-section, .status-source, .service-principle, .service-deep-dive, .service-health, .service-boundaries, .proof-context, .proof-workflow, .dashboard-proof, .proof-contract { padding-left: max(24px, calc((100vw - var(--max)) / 2)); padding-right: max(24px, calc((100vw - var(--max)) / 2)); }
 .editorial-lead { padding-top: 110px; padding-bottom: 110px; display: grid; grid-template-columns: 1fr 3fr; gap: 48px; }
 .editorial-lead h2 { max-width: 850px; }
 .editorial-lead div p { max-width: 790px; color: #505a5e; font-size: 20px; }
@@ -262,9 +262,6 @@ footer a:hover { color: var(--copper); }
 .not-grid p:nth-child(even) { padding-left: 36px; border-left: 1px solid #3c454a; }
 .not-grid strong { margin-bottom: 7px; }
 .not-grid span { color: var(--nickel); }
-.evidence-callout { padding-top: 110px; padding-bottom: 110px; color: var(--paper); background: var(--carbon); text-align: center; }
-.evidence-callout blockquote { max-width: 920px; margin: 25px auto 30px; font-size: clamp(34px, 4.5vw, 62px); font-weight: 700; line-height: 1.08; letter-spacing: -.045em; }
-.evidence-callout > p:not(.section-index) { max-width: 700px; margin: 0 auto 32px; color: var(--nickel); }
 
 .architecture-hero::after { border-radius: 0; transform: rotate(45deg); right: -220px; }
 .arch-stack { padding-top: 90px; padding-bottom: 110px; }

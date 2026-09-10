@@ -932,7 +932,7 @@ DOCUMENTATION PATTERN
 
 ## Website and launch expression
 
-The website should prove the product before it sells the philosophy. Cix does not need a cloud of claims.
+Cix does not need a cloud of claims.
 
 ---
 
@@ -1348,4 +1348,3 @@ Understand what you build.
 Cix is strongest when its visual, verbal and product systems all point to the same idea: fewer unnecessary layers, clearer mechanisms, one coherent resource model, and infrastructure that remains legible to the people responsible for it.
 
 END / CIX BRAND GUIDELINES V1.0
-
