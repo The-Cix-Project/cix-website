@@ -16,12 +16,13 @@ const primaryLinks = [
   ['status.html', 'Project status', 'Shipped capability, evidence, and current boundaries.'],
   ['sitemap.html', 'Sitemap', 'A plain map of every public website page.'],
 ];
+const navigationLinks = primaryLinks.filter(([href]) => !['operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html'].includes(href));
 
 window.CIX_SITE_MAP = primaryLinks;
 
 if (navigation) {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  navigation.replaceChildren(...primaryLinks.filter(([href]) => href !== 'sitemap.html').map(([href, label]) => {
+  navigation.replaceChildren(...navigationLinks.map(([href, label]) => {
     const link = document.createElement('a');
     link.href = href;
     link.textContent = label;

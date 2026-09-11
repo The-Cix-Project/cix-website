@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Simplified the primary header to orientation pages; kept Operate, API, Build, Resources, and Sitemap discoverable through contextual links and the footer.
 - Added a dynamic, old-school `sitemap.html` generated from the shared page map in `app.js`, and made that map the persistent footer discovery path.
 - Centralized the primary navigation in `site/app.js` so every page exposes the same page order and active state; added a checker guard for missing shared-nav targets.
 - Added `resources.html`, a practical resource and hardware overview covering workloads, networks, storage, volumes, device grants, isolation, and current verification boundaries.
