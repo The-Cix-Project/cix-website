@@ -14,6 +14,7 @@ MAX_PAGE = 60_000
 MAX_CSS = 70_000
 MAX_JS = 25_000
 MAX_ASSET = 2_000_000
+SHARED_NAV = ["getting-started.html", "operate.html", "api.html", "build.html", "resources.html", "why.html", "architecture.html", "services.html", "status.html"]
 
 class Page(HTMLParser):
     def __init__(self):
@@ -34,8 +35,7 @@ def local_target(value):
     return (ROOT / u.path.lstrip("/")).resolve()
 
 errors=[]
-shared_nav = ["getting-started.html", "operate.html", "api.html", "build.html", "resources.html", "why.html", "architecture.html", "services.html", "status.html"]
-for target in shared_nav:
+for target in SHARED_NAV:
     if not (ROOT / target).exists(): errors.append(f"shared navigation references missing page {target}")
 manifest = ROOT / "release.json"
 if not manifest.exists():

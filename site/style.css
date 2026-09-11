@@ -325,6 +325,11 @@ footer a:hover { color: var(--copper); }
 .boundaries-section li { padding: 24px 0; display: flex; flex-direction: column; border-bottom: 1px solid #bbb8af; }
 .boundaries-section li strong { margin-bottom: 7px; }
 .boundaries-section li span { color: #596367; font-size: 14px; }
+.site-map-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid #bbb8af; counter-reset: sitemap; }
+.site-map-list li { padding: 21px 0; color: #8a4b2b; font: 600 13px var(--mono); border-bottom: 1px solid #bbb8af; }
+.site-map-list a { color: var(--carbon); text-underline-offset: 4px; }
+.site-map-list a:hover { color: var(--copper); }
+.site-map-list span { color: #596367; font: 14px/1.5 var(--sans); }
 .status-source { padding-top: 110px; padding-bottom: 110px; color: var(--paper); background: var(--carbon); text-align: center; }
 .status-source p:not(.section-index) { color: var(--nickel); }
 .status-source .button { margin-top: 20px; }

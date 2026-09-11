@@ -5,11 +5,19 @@ const mobileNavigation = window.matchMedia('(max-width: 980px)');
 // Keep the public menu in one place. Pages retain a small static fallback, but
 // the shared runtime normalizes every page to the same order and active state.
 const primaryLinks = [
-  ['getting-started.html', 'Get started'], ['operate.html', 'Operate'],
-  ['api.html', 'API'], ['build.html', 'Build'], ['resources.html', 'Resources'],
-  ['why.html', 'Why Cix'], ['architecture.html', 'Architecture'],
-  ['services.html', 'Services'], ['status.html', 'Project status'],
+  ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
+  ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
+  ['api.html', 'API', 'The REST/OpenAPI boundary for engineers and automation.'],
+  ['build.html', 'Build', 'Recipes, verified artifacts, self-hosting, and delivery.'],
+  ['resources.html', 'Resources', 'Containers, networks, storage, devices, and hardware limits.'],
+  ['why.html', 'Why Cix', 'The operating model and the case for direct Linux primitives.'],
+  ['architecture.html', 'Architecture', 'Ownership boundaries from client to kernel and workload.'],
+  ['services.html', 'Services', 'API-owned DNS, LDAP, DHCP, NTP, and syslog providers.'],
+  ['status.html', 'Project status', 'Shipped capability, evidence, and current boundaries.'],
+  ['sitemap.html', 'Sitemap', 'A plain map of every public website page.'],
 ];
+
+window.CIX_SITE_MAP = primaryLinks;
 
 if (navigation) {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -27,6 +35,28 @@ if (navigation) {
     return link;
   })());
 }
+
+const siteMap = document.querySelector('#site-map');
+if (siteMap) {
+  siteMap.replaceChildren(...primaryLinks.map(([href, label, description], index) => {
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    const note = document.createElement('span');
+    note.textContent = description;
+    item.append(index + 1 + '. ', link, ' — ', note);
+    return item;
+  }));
+}
+
+document.querySelectorAll('footer > div').forEach((footerLinks) => {
+  if (footerLinks.querySelector('a[href="sitemap.html"]')) return;
+  const link = document.createElement('a');
+  link.href = 'sitemap.html';
+  link.textContent = 'Sitemap';
+  footerLinks.append(link);
+});
 
 function closeNavigation({ returnFocus = false } = {}) {
   if (!navigation?.classList.contains('open')) return;
