@@ -4,7 +4,8 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
-- Removed the public process-oriented evidence callout from `Why Cix` and its unused styles. Reviewed Cix through `56d8470a`: added container-visible resource views, enforceable volume sizing and usage, and current storage/runtime wording while keeping the reproduced proof capture pinned to its original source revision.
+- Added `operate.html`, an operator-facing path covering deployments, the shared pipeline, readiness, consoles, rolling-rootfs freshness, persistent volumes, approval gates, and current security boundaries.
+- Reflected Cix through `5c3b277d`: added the unified package/image/deployment/host pipeline, deployment image-readiness waits, explicit publish/roll/deploy gates, attributable audit records, and rolling-rootfs freshness to the status, architecture, and supply-chain copy. The reproduced proof capture remains pinned to its original source revision.
 
 ## 2026-09-03
 
