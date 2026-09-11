@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Centralized the primary navigation in `site/app.js` so every page exposes the same page order and active state; added a checker guard for missing shared-nav targets.
 - Added `resources.html`, a practical resource and hardware overview covering workloads, networks, storage, volumes, device grants, isolation, and current verification boundaries.
 - Added `build.html`, a source-to-host supply-chain overview covering recipes, isolated builds, verified cache artifacts, self-hosting, kernel/rootfs/ISO assembly, and delivery references.
 - Added `api.html`, an engineer-facing entry point for the REST/OpenAPI boundary, client relationship, read/write model, authentication, and integration limits.

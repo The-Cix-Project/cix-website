@@ -34,6 +34,9 @@ def local_target(value):
     return (ROOT / u.path.lstrip("/")).resolve()
 
 errors=[]
+shared_nav = ["getting-started.html", "operate.html", "api.html", "build.html", "resources.html", "why.html", "architecture.html", "services.html", "status.html"]
+for target in shared_nav:
+    if not (ROOT / target).exists(): errors.append(f"shared navigation references missing page {target}")
 manifest = ROOT / "release.json"
 if not manifest.exists():
     errors.append("site/release.json: release manifest is missing")
