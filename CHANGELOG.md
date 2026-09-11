@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Added `build.html`, a source-to-host supply-chain overview covering recipes, isolated builds, verified cache artifacts, self-hosting, kernel/rootfs/ISO assembly, and delivery references.
 - Added `api.html`, an engineer-facing entry point for the REST/OpenAPI boundary, client relationship, read/write model, authentication, and integration limits.
 - Added `operate.html`, an operator-facing path covering deployments, the shared pipeline, readiness, consoles, rolling-rootfs freshness, persistent volumes, approval gates, and current security boundaries.
 - Reflected Cix through `5c3b277d`: added the unified package/image/deployment/host pipeline, deployment image-readiness waits, explicit publish/roll/deploy gates, attributable audit records, and rolling-rootfs freshness to the status, architecture, and supply-chain copy. The reproduced proof capture remains pinned to its original source revision.
