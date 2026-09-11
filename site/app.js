@@ -21,7 +21,7 @@ window.CIX_SITE_MAP = primaryLinks;
 
 if (navigation) {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  navigation.replaceChildren(...primaryLinks.map(([href, label]) => {
+  navigation.replaceChildren(...primaryLinks.filter(([href]) => href !== 'sitemap.html').map(([href, label]) => {
     const link = document.createElement('a');
     link.href = href;
     link.textContent = label;
