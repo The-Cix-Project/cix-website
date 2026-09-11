@@ -5,7 +5,9 @@ const mobileNavigation = window.matchMedia('(max-width: 980px)');
 // Keep the public menu in one place. Pages retain a small static fallback, but
 // the shared runtime normalizes every page to the same order and active state.
 const primaryLinks = [
+  ['index.html', 'Home', 'The Cix overview: systems, directly.'],
   ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
+  ['get.html', 'Download Cix', 'Verify the current installer and release artifacts.'],
   ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
   ['api.html', 'API', 'The REST/OpenAPI boundary for engineers and automation.'],
   ['build.html', 'Build', 'Recipes, verified artifacts, self-hosting, and delivery.'],
@@ -14,9 +16,11 @@ const primaryLinks = [
   ['architecture.html', 'Architecture', 'Ownership boundaries from client to kernel and workload.'],
   ['services.html', 'Services', 'API-owned DNS, LDAP, DHCP, NTP, and syslog providers.'],
   ['status.html', 'Project status', 'Shipped capability, evidence, and current boundaries.'],
+  ['proof.html', 'Product proof', 'Reproduced CLI, REST, and dashboard evidence.'],
   ['sitemap.html', 'Sitemap', 'A plain map of every public website page.'],
+  ['404.html', 'Not found', 'The fallback page for an unknown website address.'],
 ];
-const navigationLinks = primaryLinks.filter(([href]) => !['operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html'].includes(href));
+const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', '404.html'].includes(href));
 
 window.CIX_SITE_MAP = primaryLinks;
 
