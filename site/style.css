@@ -228,6 +228,7 @@ footer { min-height: 112px; display: flex; align-items: center; gap: 40px; color
 footer p { margin: 0; }
 footer > div { margin-left: auto; display: flex; gap: 24px; }
 footer a { text-decoration: none; }
+footer a[aria-current="page"] { color: var(--copper); }
 footer a:hover { color: var(--copper); }
 
 /* Editorial pages */

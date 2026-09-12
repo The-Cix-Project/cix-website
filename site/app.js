@@ -1,5 +1,6 @@
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('#site-nav');
+const footer = document.querySelector('footer');
 const mobileNavigation = window.matchMedia('(max-width: 980px)');
 
 // Keep the public menu in one place. Pages retain a small static fallback, but
@@ -21,6 +22,7 @@ const primaryLinks = [
   ['404.html', 'Not found', 'The fallback page for an unknown website address.'],
 ];
 const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', '404.html'].includes(href));
+const footerLinks = [...navigationLinks, ['sitemap.html', 'Sitemap']];
 
 window.CIX_SITE_MAP = primaryLinks;
 
@@ -55,13 +57,31 @@ if (siteMap) {
   }));
 }
 
-document.querySelectorAll('footer > div').forEach((footerLinks) => {
-  if (footerLinks.querySelector('a[href="sitemap.html"]')) return;
-  const link = document.createElement('a');
-  link.href = 'sitemap.html';
-  link.textContent = 'Sitemap';
-  footerLinks.append(link);
-});
+if (footer) {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const brand = document.createElement('a');
+  brand.className = 'brand footer-brand';
+  brand.href = 'index.html';
+  brand.innerHTML = '<img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span>';
+
+  const strapline = document.createElement('p');
+  strapline.textContent = 'Source-native systems. Directly.';
+
+  const links = document.createElement('div');
+  footerLinks.forEach(([href, label]) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    if (href === currentPage) link.setAttribute('aria-current', 'page');
+    links.append(link);
+  });
+  const source = document.createElement('a');
+  source.href = 'https://git.home.arpa/itdlabs/cix';
+  source.textContent = 'View source ↗';
+  links.append(source);
+
+  footer.replaceChildren(brand, strapline, links);
+}
 
 function closeNavigation({ returnFocus = false } = {}) {
   if (!navigation?.classList.contains('open')) return;
