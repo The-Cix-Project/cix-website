@@ -22,7 +22,15 @@ const primaryLinks = [
   ['404.html', 'Not found', 'The fallback page for an unknown website address.'],
 ];
 const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', '404.html'].includes(href));
-const footerLinks = [...navigationLinks, ['sitemap.html', 'Sitemap']];
+const footerLinks = [
+  ['https://git.home.arpa/itdlabs/cix', 'Source'],
+  ['https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md', 'Documentation'],
+  ['https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml', 'API'],
+  ['https://git.home.arpa/itdlabs/cix/src/branch/master/LICENSE', 'Licence'],
+  ['https://git.home.arpa/itdlabs/cix/src/branch/master/CONTRIBUTING.md', 'Contribute'],
+  ['https://git.home.arpa/itdlabs/cix/src/branch/master/TRADEMARK.md', 'Brand policy'],
+  ['sitemap.html', 'Sitemap'],
+];
 
 window.CIX_SITE_MAP = primaryLinks;
 
@@ -75,10 +83,6 @@ if (footer) {
     if (href === currentPage) link.setAttribute('aria-current', 'page');
     links.append(link);
   });
-  const source = document.createElement('a');
-  source.href = 'https://git.home.arpa/itdlabs/cix';
-  source.textContent = 'View source ↗';
-  links.append(source);
 
   footer.replaceChildren(brand, strapline, links);
 }
