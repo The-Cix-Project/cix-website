@@ -12,7 +12,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | [0002](0002-source-backed-product-story.md) | 2026-09-01 | `fd316fd` | Product story follows source evidence |
 | [0003](0003-stable-public-paths.md) | 2026-09-01 | `fd316fd` | Stable public paths under the site document root |
 | [0004](0004-managed-service-boundary.md) | 2026-09-01 | `43c3657` | Host policy, containerised protocol services |
-| [0005](0005-factual-status-boundary.md) | 2026-09-01 | `7e493f3` | Evidence-calibrated status claims |
+| [0005](0005-factual-status-boundary.md) | 2026-09-01 | `7e493f3` | Evidence-calibrated status claims _(superseded by 0020)_ |
 | [0006](0006-prebuilt-cache-trust-path.md) | 2026-09-01 | `a54d94b` | Prebuilt artefacts retain source authority |
 | [0007](0007-evaluator-journey-information-architecture.md) | 2026-09-01 | `cc76564` | Homepage routes by evaluator intent |
 | [0008](0008-reproduced-product-proof.md) | 2026-09-01 | `94a562c` | Reproducible product proof |
@@ -27,6 +27,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | [0017](0017-separated-deployable-tree.md) | 2026-09-02 | `4603187` | Separate deployable site from engineering tooling |
 | [0018](0018-approved-master-tagline.md) | 2026-09-03 | Issue `#25` | Approve “Systems, directly.” as the master tagline |
 | [0019](0019-category-language-split.md) | 2026-09-12 | Issue `#37` | Brand category in metadata, plain definition in the hero |
+| [0020](0020-status-routes-rather-than-restates.md) | 2026-09-12 | Issue `#32` | Status page routes to the roadmap (supersedes 0005) |
 
 ## History coverage
 

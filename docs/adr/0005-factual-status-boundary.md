@@ -1,6 +1,6 @@
 # ADR 0005: Status claims are evidence-calibrated
 
-- Status: Accepted
+- Status: Superseded by [ADR 0020](0020-status-routes-rather-than-restates.md)
 - Date: 2026-09-01
 - Evidence: [`7e493f3`](https://git.home.arpa/itdlabs/cix-website/commit/7e493f3)
 

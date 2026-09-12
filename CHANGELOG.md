@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Removed the duplicated capability table from the project status page; it now routes to the Cix roadmap, keeps the curated boundaries and evidence routes, and stamps the revision its boundaries were reviewed against. Recorded as ADR 0020, superseding ADR 0005 (issues #32, #31).
 - Moved the homepage `<title>`, meta description, and Open Graph description to the brand guidelines' category language, and kept the plain-English definition in the hero; recorded the split as ADR 0019 (issue #37).
 - Settled on British `-ise` spelling across the site, the changelog, and the website ADRs, and added a check that enforces it; `docs/brand/` is excluded as a verbatim transcription of the owner's document.
 - Completed the British spelling pass across prose: `behaviour`, `artefact`, and `enrolment`. CSS values (`center`) and HTML attributes are code and stay as they are.
