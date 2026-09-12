@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Updated the product status and build path through Cix `eb9d2479`: documented on-box Cix Build System compilation with zstd/libarchive and the now-exercised minisign release-signature selftest, while keeping CBS daemon integration an explicit open boundary.
 - Simplified the primary header to orientation pages; kept Operate, API, Build, Resources, and Sitemap discoverable through contextual links and the footer.
 - Reconciled the sitemap with all 14 deployed HTML pages, including Home, Download Cix, Product proof, and the 404 utility page.
 - Added a dynamic, old-school `sitemap.html` generated from the shared page map in `app.js`, and made that map the persistent footer discovery path.
