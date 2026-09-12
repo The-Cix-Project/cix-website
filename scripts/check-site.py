@@ -43,11 +43,17 @@ if not manifest.exists():
 else:
     try:
         release = json.loads(manifest.read_text(encoding="utf-8"))
-        required = {"version", "architecture", "image_size", "environment", "iso", "signature", "iso_sha256", "signature_sha256"}
+        required = {"version", "architecture", "image_size", "environment", "iso", "signature", "iso_sha256", "signature_sha256", "release_key", "release_key_id", "retired_key", "retired_key_since"}
         missing = required - release.keys()
         if missing: errors.append(f"site/release.json: missing fields {sorted(missing)}")
         for key in ("iso_sha256", "signature_sha256"):
             if key in release and not re.fullmatch(r"[0-9a-f]{64}", release[key]): errors.append(f"site/release.json: {key} must be a lowercase SHA-256")
+        # A published key that is not deployed makes the verify command
+        # unrunnable, which is the one thing this page exists to support.
+        for key in ("release_key", "retired_key"):
+            name = release.get(key)
+            if name and not (ROOT / name).exists(): errors.append(f"site/release.json: {key} names {name}, which is not deployed in site/")
+        if release.get("release_key") == release.get("retired_key"): errors.append("site/release.json: release_key and retired_key must differ")
     except (OSError, json.JSONDecodeError) as exc:
         errors.append(f"site/release.json: invalid JSON ({exc})")
 for page in PAGES:
