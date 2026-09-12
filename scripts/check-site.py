@@ -76,6 +76,23 @@ for pattern, limit in (("*.css", MAX_CSS), ("*.js", MAX_JS)):
 for asset in (ROOT / "assets").rglob("*"):
     if asset.is_file() and asset.stat().st_size > MAX_ASSET: errors.append(f"{asset.relative_to(ROOT)}: exceeds {MAX_ASSET} byte asset budget")
 
+# British -ise spelling across the site and this repository's own prose.
+# docs/brand/ is excluded: it is the owner's document, transcribed verbatim,
+# and is replaced only by a new version from them.
+IZE = re.compile(r"\b[A-Za-z]{3,}iz(e|es|ed|ing|ation|ations)\b")
+# -ize here is not the suffix being normalised; these are the same in both.
+IZE_ALLOWED = {"size", "sizes", "sized", "sizing", "resize", "resizes", "resized",
+               "resizing", "downsize", "upsize", "prize", "prizes", "seize",
+               "seizes", "seized", "capsize", "maize"}
+spellcheck = list(ROOT.glob("*.html")) + list(ROOT.glob("*.js")) + list(ROOT.glob("*.css"))
+spellcheck += [REPO / "CHANGELOG.md", REPO / "README.md"]
+spellcheck += [p for p in (REPO / "docs").rglob("*.md") if "brand" not in p.parts]
+for doc in spellcheck:
+    if not doc.exists(): continue
+    for hit in IZE.finditer(doc.read_text(encoding="utf-8")):
+        if hit.group(0).lower() in IZE_ALLOWED: continue
+        errors.append(f"{doc.relative_to(REPO)}: use British -ise spelling, found {hit.group(0)}")
+
 # Keep the checked-in brand reference self-contained too; it is not deployed,
 # but broken swatches make the engineering reference misleading.
 brand_doc = REPO / "docs/brand/guideline.md"

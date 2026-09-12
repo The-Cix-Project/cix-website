@@ -1,4 +1,4 @@
-# ADR 0004: Host policy, containerized protocol services
+# ADR 0004: Host policy, containerised protocol services
 
 - Status: Accepted
 - Date: 2026-09-01

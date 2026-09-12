@@ -3,7 +3,7 @@ const navigation = document.querySelector('#site-nav');
 const mobileNavigation = window.matchMedia('(max-width: 980px)');
 
 // Keep the public menu in one place. Pages retain a small static fallback, but
-// the shared runtime normalizes every page to the same order and active state.
+// the shared runtime normalises every page to the same order and active state.
 const primaryLinks = [
   ['index.html', 'Home', 'The Cix overview: systems, directly.'],
   ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],

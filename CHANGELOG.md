@@ -4,9 +4,10 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Settled on British `-ise` spelling across the site, the changelog, and the website ADRs, and added a check that enforces it; `docs/brand/` is excluded as a verbatim transcription of the owner's document.
 - Moved the published installer to `2.55.16` and published `cix-release-2026-09.pub`, the key that signs release media from 2026-09-06 onward; `cix-release.pub` stays deployed so earlier ISOs remain verifiable, and Get Cix now explains the rotation.
 - Fixed the rendered verification command, which emitted a literal `\n` instead of a shell line continuation and therefore did not run when pasted.
-- Centralized the release key in `release.json` and added a check that every key it names is deployed, so an advertised key can no longer be missing or stale.
+- Centralised the release key in `release.json` and added a check that every key it names is deployed, so an advertised key can no longer be missing or stale.
 - Corrected the homepage storage resource to `/v1/storage-roles`; `/v1/diskroles` is not a declared path in the Cix OpenAPI contract.
 - Restored the sentence dropped from the brand guideline transcription, which is now byte-identical to the owner's document in the Cix repository.
 - Pointed the Get Cix static fallbacks at the current staging cache host instead of a stale address.
@@ -14,7 +15,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 - Simplified the primary header to orientation pages; kept Operate, API, Build, Resources, and Sitemap discoverable through contextual links and the footer.
 - Reconciled the sitemap with all 14 deployed HTML pages, including Home, Download Cix, Product proof, and the 404 utility page.
 - Added a dynamic, old-school `sitemap.html` generated from the shared page map in `app.js`, and made that map the persistent footer discovery path.
-- Centralized the primary navigation in `site/app.js` so every page exposes the same page order and active state; added a checker guard for missing shared-nav targets.
+- Centralised the primary navigation in `site/app.js` so every page exposes the same page order and active state; added a checker guard for missing shared-nav targets.
 - Added `resources.html`, a practical resource and hardware overview covering workloads, networks, storage, volumes, device grants, isolation, and current verification boundaries.
 - Added `build.html`, a source-to-host supply-chain overview covering recipes, isolated builds, verified cache artifacts, self-hosting, kernel/rootfs/ISO assembly, and delivery references.
 - Added `api.html`, an engineer-facing entry point for the REST/OpenAPI boundary, client relationship, read/write model, authentication, and integration limits.
