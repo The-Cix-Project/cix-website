@@ -87,11 +87,24 @@ IZE_ALLOWED = {"size", "sizes", "sized", "sizing", "resize", "resizes", "resized
 spellcheck = list(ROOT.glob("*.html")) + list(ROOT.glob("*.js")) + list(ROOT.glob("*.css"))
 spellcheck += [REPO / "CHANGELOG.md", REPO / "README.md"]
 spellcheck += [p for p in (REPO / "docs").rglob("*.md") if "brand" not in p.parts]
+# The rest of the British/American split. Deliberately a short list of words
+# that are only ever prose here: `center` is omitted because every occurrence
+# is a CSS value, and CSS is code.
+US_FORMS = {"behavior": "behaviour", "behaviors": "behaviours",
+            "artifact": "artefact", "artifacts": "artefacts",
+            "enrollment": "enrolment", "license": "licence", "defense": "defence",
+            "catalog": "catalogue", "dialog": "dialogue", "gray": "grey"}
+US_WORD = re.compile(r"\b(" + "|".join(US_FORMS) + r")\b", re.IGNORECASE)
 for doc in spellcheck:
     if not doc.exists(): continue
-    for hit in IZE.finditer(doc.read_text(encoding="utf-8")):
+    body = doc.read_text(encoding="utf-8")
+    for hit in IZE.finditer(body):
         if hit.group(0).lower() in IZE_ALLOWED: continue
         errors.append(f"{doc.relative_to(REPO)}: use British -ise spelling, found {hit.group(0)}")
+    if doc.suffix == ".css": continue
+    for hit in US_WORD.finditer(body):
+        found = hit.group(0)
+        errors.append(f"{doc.relative_to(REPO)}: use British spelling {US_FORMS[found.lower()]}, found {found}")
 
 # Keep the checked-in brand reference self-contained too; it is not deployed,
 # but broken swatches make the engineering reference misleading.

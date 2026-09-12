@@ -6,7 +6,7 @@
 
 ## Decision
 
-Keep website ADRs under `docs/adr/`, use the index as navigation and process guidance, and document file ownership in `docs/README.md`. Website ADRs summarise website choices; Cix product ADRs remain authoritative for Cix behavior.
+Keep website ADRs under `docs/adr/`, use the index as navigation and process guidance, and document file ownership in `docs/README.md`. Website ADRs summarise website choices; Cix product ADRs remain authoritative for Cix behaviour.
 
 ## Consequences
 

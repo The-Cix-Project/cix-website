@@ -10,4 +10,4 @@ Use plain HTML, CSS, JavaScript, SVG, and a Python standard-library development 
 
 ## Consequences
 
-The site can be inspected, copied to a tiny VM, and served by a conventional static web server. Shared behavior remains explicit rather than hidden in a build pipeline.
+The site can be inspected, copied to a tiny VM, and served by a conventional static web server. Shared behaviour remains explicit rather than hidden in a build pipeline.

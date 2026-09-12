@@ -5,6 +5,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 ## [Unreleased]
 
 - Settled on British `-ise` spelling across the site, the changelog, and the website ADRs, and added a check that enforces it; `docs/brand/` is excluded as a verbatim transcription of the owner's document.
+- Completed the British spelling pass across prose: `behaviour`, `artefact`, and `enrolment`. CSS values (`center`) and HTML attributes are code and stay as they are.
 - Moved the published installer to `2.55.16` and published `cix-release-2026-09.pub`, the key that signs release media from 2026-09-06 onward; `cix-release.pub` stays deployed so earlier ISOs remain verifiable, and Get Cix now explains the rotation.
 - Fixed the rendered verification command, which emitted a literal `\n` instead of a shell line continuation and therefore did not run when pasted.
 - Centralised the release key in `release.json` and added a check that every key it names is deployed, so an advertised key can no longer be missing or stale.
@@ -17,7 +18,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 - Added a dynamic, old-school `sitemap.html` generated from the shared page map in `app.js`, and made that map the persistent footer discovery path.
 - Centralised the primary navigation in `site/app.js` so every page exposes the same page order and active state; added a checker guard for missing shared-nav targets.
 - Added `resources.html`, a practical resource and hardware overview covering workloads, networks, storage, volumes, device grants, isolation, and current verification boundaries.
-- Added `build.html`, a source-to-host supply-chain overview covering recipes, isolated builds, verified cache artifacts, self-hosting, kernel/rootfs/ISO assembly, and delivery references.
+- Added `build.html`, a source-to-host supply-chain overview covering recipes, isolated builds, verified cache artefacts, self-hosting, kernel/rootfs/ISO assembly, and delivery references.
 - Added `api.html`, an engineer-facing entry point for the REST/OpenAPI boundary, client relationship, read/write model, authentication, and integration limits.
 - Added `operate.html`, an operator-facing path covering deployments, the shared pipeline, readiness, consoles, rolling-rootfs freshness, persistent volumes, approval gates, and current security boundaries.
 - Reflected Cix through `5c3b277d`: added the unified package/image/deployment/host pipeline, deployment image-readiness waits, explicit publish/roll/deploy gates, attributable audit records, and rolling-rootfs freshness to the status, architecture, and supply-chain copy. The reproduced proof capture remains pinned to its original source revision.

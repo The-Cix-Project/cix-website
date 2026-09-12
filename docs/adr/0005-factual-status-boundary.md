@@ -6,7 +6,7 @@
 
 ## Decision
 
-Project status separates shipped foundations, verified behavior, active work, and explicit boundaries. A capability is not presented as complete merely because it is planned or described in an ADR.
+Project status separates shipped foundations, verified behaviour, active work, and explicit boundaries. A capability is not presented as complete merely because it is planned or described in an ADR.
 
 ## Consequences
 

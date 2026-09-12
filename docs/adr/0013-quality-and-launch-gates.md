@@ -10,4 +10,4 @@ Run dependency-free checks for local links, assets, metadata, alt attributes, an
 
 ## Consequences
 
-Cheap regressions fail in CI, while external URLs, browser behavior, release artifacts, and privacy/security decisions stay explicit human checks.
+Cheap regressions fail in CI, while external URLs, browser behaviour, release artefacts, and privacy/security decisions stay explicit human checks.

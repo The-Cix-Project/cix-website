@@ -10,4 +10,4 @@ The site may show a captured CLI → REST → dashboard workflow only when it re
 
 ## Consequences
 
-The proof page demonstrates behavior without presenting a screenshot as a substitute for source or API documentation.
+The proof page demonstrates behaviour without presenting a screenshot as a substitute for source or API documentation.

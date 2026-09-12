@@ -20,7 +20,7 @@ Use this checklist when the LAN staging addresses move to public infrastructure.
 ## Browser and device QA
 
 - [ ] Test Chromium, Firefox, and Safari at desktop and narrow mobile widths.
-- [ ] Test keyboard navigation, visible focus, reduced motion, menu behavior, and screen-reader names.
+- [ ] Test keyboard navigation, visible focus, reduced motion, menu behaviour, and screen-reader names.
 - [ ] Test download, signature, release-key, source, API, and manual links from a clean browser.
 - [ ] Check architecture SVG and overview at normal scale, zoom, print, and grayscale.
 - [ ] Verify no staging hostname, private IP, or unreleased claim remains in the public build.

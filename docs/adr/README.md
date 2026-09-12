@@ -1,6 +1,6 @@
 # Website ADRs
 
-This directory records durable decisions about this website’s information architecture, evidence boundary, accessibility, deployment, and maintenance. It is not a copy of the Cix product ADR directory. Product behavior remains authoritative in the Cix repository.
+This directory records durable decisions about this website’s information architecture, evidence boundary, accessibility, deployment, and maintenance. It is not a copy of the Cix product ADR directory. Product behaviour remains authoritative in the Cix repository.
 
 ADRs are numbered by the first accepted decision evidence in the website’s Git history. Amendments cite the original record and do not consume a new number. Each record includes status, date, evidence commit, decision, and consequences. Add the next number only for a new durable decision; update this index and the changelog in the same change.
 
@@ -13,7 +13,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | [0003](0003-stable-public-paths.md) | 2026-09-01 | `fd316fd` | Stable public paths under the site document root |
 | [0004](0004-managed-service-boundary.md) | 2026-09-01 | `43c3657` | Host policy, containerised protocol services |
 | [0005](0005-factual-status-boundary.md) | 2026-09-01 | `7e493f3` | Evidence-calibrated status claims |
-| [0006](0006-prebuilt-cache-trust-path.md) | 2026-09-01 | `a54d94b` | Prebuilt artifacts retain source authority |
+| [0006](0006-prebuilt-cache-trust-path.md) | 2026-09-01 | `a54d94b` | Prebuilt artefacts retain source authority |
 | [0007](0007-evaluator-journey-information-architecture.md) | 2026-09-01 | `cc76564` | Homepage routes by evaluator intent |
 | [0008](0008-reproduced-product-proof.md) | 2026-09-01 | `94a562c` | Reproducible product proof |
 | [0009](0009-accessibility-and-focus-baseline.md) | 2026-09-02 | `f0f0b49` | Accessibility as release baseline |

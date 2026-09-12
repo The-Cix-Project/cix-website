@@ -5,7 +5,7 @@ The Cix website is a static site with stable public URLs. Deployable files live 
 | Area | Location | Responsibility |
 | --- | --- | --- |
 | Public pages | `site/*.html` | Stable routes and page content |
-| Shared behavior | `site/app.js`, `site/site-config.js` | Navigation, cache endpoint substitution, small progressive enhancements |
+| Shared behaviour | `site/app.js`, `site/site-config.js` | Navigation, cache endpoint substitution, small progressive enhancements |
 | Shared presentation | `site/style.css` | Tokens, layout, responsive and focus states |
 | Brand and UI assets | `site/assets/brand/`, `site/assets/icons/` | Approved marks and icon system |
 | Diagrams and proof | `site/assets/diagrams/`, `site/assets/screens/` | Architecture overview and reproducible evidence |

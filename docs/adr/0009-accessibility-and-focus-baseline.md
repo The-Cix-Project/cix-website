@@ -10,4 +10,4 @@ Keyboard navigation, focus visibility, skip links, responsive menus, semantic la
 
 ## Consequences
 
-Interactive behavior remains progressive and dependency-free, while manual browser and assistive-technology checks remain required.
+Interactive behaviour remains progressive and dependency-free, while manual browser and assistive-technology checks remain required.

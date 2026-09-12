@@ -31,7 +31,7 @@ in production.
 - Production deployment: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 - Launch checklist: [`docs/LAUNCH-CHECKLIST.md`](docs/LAUNCH-CHECKLIST.md)
 
-Durable engineering trade-offs belong in a numbered ADR. Product behavior remains governed by the Cix repositories; see ADR 0003 for the boundary.
+Durable engineering trade-offs belong in a numbered ADR. Product behaviour remains governed by the Cix repositories; see ADR 0003 for the boundary.
 
 ## Source authorities
 

@@ -7,10 +7,10 @@ const mobileNavigation = window.matchMedia('(max-width: 980px)');
 const primaryLinks = [
   ['index.html', 'Home', 'The Cix overview: systems, directly.'],
   ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
-  ['get.html', 'Download Cix', 'Verify the current installer and release artifacts.'],
+  ['get.html', 'Download Cix', 'Verify the current installer and release artefacts.'],
   ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
   ['api.html', 'API', 'The REST/OpenAPI boundary for engineers and automation.'],
-  ['build.html', 'Build', 'Recipes, verified artifacts, self-hosting, and delivery.'],
+  ['build.html', 'Build', 'Recipes, verified artefacts, self-hosting, and delivery.'],
   ['resources.html', 'Resources', 'Containers, networks, storage, devices, and hardware limits.'],
   ['why.html', 'Why Cix', 'The operating model and the case for direct Linux primitives.'],
   ['architecture.html', 'Architecture', 'Ownership boundaries from client to kernel and workload.'],

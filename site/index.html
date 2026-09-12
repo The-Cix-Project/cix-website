@@ -175,7 +175,7 @@ channel is at: 7.2.3  -- you are on it</span></code></pre>
         <div role="row"><strong role="cell">Control path</strong><span role="cell">Multiple tools and privileged surfaces</span><span role="cell">One API-first C control plane</span></div>
         <div role="row"><strong role="cell">Workload isolation</strong><span role="cell">External container runtime layers</span><span role="cell">Linux namespaces and cgroups directly</span></div>
         <div role="row"><strong role="cell">Networking</strong><span role="cell">Separate switching or orchestration layer</span><span role="cell">Custom C plane over rtnetlink</span></div>
-        <div role="row"><strong role="cell">Software delivery</strong><span role="cell">Prebuilt packages from an upstream distribution</span><span role="cell">Source recipes, builds, images, and verified artifacts</span></div>
+        <div role="row"><strong role="cell">Software delivery</strong><span role="cell">Prebuilt packages from an upstream distribution</span><span role="cell">Source recipes, builds, images, and verified artefacts</span></div>
         <div role="row"><strong role="cell">Host updates</strong><span role="cell">Mutate the live root in place</span><span role="cell">Write, verify, then boot the inactive A/B slot</span></div>
       </div>
       <a class="button comparison-cta" href="why.html">The complete case for Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
@@ -190,7 +190,7 @@ channel is at: 7.2.3  -- you are on it</span></code></pre>
         <article><img src="assets/icons/container.svg" alt=""><h3>Containers</h3><p>Namespace isolation, cgroup controls, supervised services, derived readiness, dependencies, and console.</p><code>/v1/containers</code></article>
         <article><img src="assets/icons/network.svg" alt=""><h3>Networks</h3><p>Bridges, routes, VLANs, physical interfaces, addressing, DNS, and DHCP.</p><code>/v1/networks</code></article>
         <article><img src="assets/icons/hardware.svg" alt=""><h3>Hardware</h3><p>Discover and grant real PCI, USB, GPU, radio, network, disk, CPU, and memory resources.</p><code>/v1/devices</code></article>
-        <article><img src="assets/icons/package.svg" alt=""><h3>Software</h3><p>Recipes, source builds, packages, immutable images, artifacts, and rolling updates.</p><code>/v1/pkg</code></article>
+        <article><img src="assets/icons/package.svg" alt=""><h3>Software</h3><p>Recipes, source builds, packages, immutable images, artefacts, and rolling updates.</p><code>/v1/pkg</code></article>
       </div>
     </section>
 
@@ -235,7 +235,7 @@ channel is at: 7.2.3  -- you are on it</span></code></pre>
         <li><span>05</span><img src="assets/icons/container.svg" alt=""><strong>Image</strong><small>Immutable rootfs versions</small></li>
         <li><span>06</span><img src="assets/icons/refresh.svg" alt=""><strong>Deliver</strong><small>Rolling or A/B update</small></li>
       </ol>
-      <div class="pipeline-notes"><p><strong>One package system</strong><span>Recipes, dependencies, source builds, install manifests, upgrades, and removals are managed by Cix.</span></p><p><strong>One pipeline model</strong><span>Packages, images, deployments, and host updates share visible stages, history, and a common view of what is waiting or blocked.</span></p><p><strong>Build artifacts</strong><span>Reuse checksum-verified artifacts when configured; fall back to the source build path.</span></p><p><strong>API-controlled</strong><span>Repository sync, build jobs, packages, images, deployments, artifacts, and updates are exposed through REST.</span></p></div>
+      <div class="pipeline-notes"><p><strong>One package system</strong><span>Recipes, dependencies, source builds, install manifests, upgrades, and removals are managed by Cix.</span></p><p><strong>One pipeline model</strong><span>Packages, images, deployments, and host updates share visible stages, history, and a common view of what is waiting or blocked.</span></p><p><strong>Build artefacts</strong><span>Reuse checksum-verified artefacts when configured; fall back to the source build path.</span></p><p><strong>API-controlled</strong><span>Repository sync, build jobs, packages, images, deployments, artefacts, and updates are exposed through REST.</span></p></div>
     </section>
 
     <section class="status" id="status">

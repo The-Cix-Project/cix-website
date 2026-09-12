@@ -1,4 +1,4 @@
-# ADR 0006: Prebuilt artifacts retain source authority
+# ADR 0006: Prebuilt artefacts retain source authority
 
 - Status: Accepted
 - Date: 2026-09-01
@@ -6,7 +6,7 @@
 
 ## Decision
 
-Present Cix Cache as an optional, API-driven artifact path: recipes and checksums remain authoritative; verified prebuilt bytes avoid a rebuild; cache misses fall back to source. Installer downloads require independent signature verification.
+Present Cix Cache as an optional, API-driven artefact path: recipes and checksums remain authoritative; verified prebuilt bytes avoid a rebuild; cache misses fall back to source. Installer downloads require independent signature verification.
 
 ## Consequences
 
