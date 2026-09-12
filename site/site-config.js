@@ -22,6 +22,10 @@ const applyRelease = (release) => {
   document.querySelectorAll('[data-cache-help]').forEach((link) => { link.href = `${window.CIX_SITE.cacheBaseUrl}/#help`; });
 };
 
-fetch('release.json').then((response) => response.json()).then(applyRelease).catch(() => {
+fetch('release.json').then((response) => {
+  if (!response.ok) throw new Error(`release.json returned HTTP ${response.status}`);
+  return response.json();
+}).then(applyRelease).catch((error) => {
+  console.warn('[cix] release manifest unavailable; using static download fallbacks', error);
   document.querySelectorAll('[data-cache-file]').forEach((link) => { link.href = `${window.CIX_SITE.cacheBaseUrl}/${link.dataset.cacheFile}`; });
 });

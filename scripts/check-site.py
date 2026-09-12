@@ -95,15 +95,21 @@ US_FORMS = {"behavior": "behaviour", "behaviors": "behaviours",
             "enrollment": "enrolment", "license": "licence", "defense": "defence",
             "catalog": "catalogue", "dialog": "dialogue", "gray": "grey"}
 US_WORD = re.compile(r"\b(" + "|".join(US_FORMS) + r")\b", re.IGNORECASE)
+RETIRED_WORDS = re.compile(r"\b(?:lightweight|powerful|seamless|next-generation|intuitive|enterprise-grade|effortless|magically?|revolutionary|next-gen|cloud-native|hyperconverged|AI-powered|blazing-fast)\b", re.IGNORECASE)
 for doc in spellcheck:
     if not doc.exists(): continue
     body = doc.read_text(encoding="utf-8")
+    if doc.parent == ROOT:
+        for hit in RETIRED_WORDS.finditer(body):
+            errors.append(f"{doc.relative_to(REPO)}: retired wording, found {hit.group(0)}")
     for hit in IZE.finditer(body):
         if hit.group(0).lower() in IZE_ALLOWED: continue
         errors.append(f"{doc.relative_to(REPO)}: use British -ise spelling, found {hit.group(0)}")
     if doc.suffix == ".css": continue
     for hit in US_WORD.finditer(body):
         found = hit.group(0)
+        if found == "LICENSE":
+            continue
         errors.append(f"{doc.relative_to(REPO)}: use British spelling {US_FORMS[found.lower()]}, found {found}")
 
 # Keep the checked-in brand reference self-contained too; it is not deployed,

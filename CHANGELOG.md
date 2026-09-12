@@ -4,6 +4,13 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Replaced retired marketing language and honesty-signalling headings with mechanism-led wording, and added a checker guard for the brand avoid-list (issues #35 and #36).
+- Replaced the illustrative homepage terminal with a verbatim capture from `192.168.15.95` on 2026-09-12: `cixctl health`, `cixctl boot`, and `cixctl kernel-policy show` (issue #38).
+- Clarified LDAP security posture for issue #34: LDAPS and the daemon’s own TLS bind are available but opt-in; plaintext remains the honest default, and listener changes use explicit sequenced restarts.
+- Published the source-side ownership foundation for cutover: Apache-2.0 under Omar Sakka’s copyright, DCO-based contributions, and a separate Cix trademark policy; added Licence, Contribute, and Brand policy links to the homepage footer.
+- Documented the API/UI ownership boundary and endpoint inventory for the static site, and made release-manifest failures visible in browser diagnostics while retaining safe download fallbacks (issue #19).
+- Added the missing PKI managed-service section and homepage route: documented the two-tier CA, pre-start certificate delivery, encrypted export/import, and reset redelivery against the seven `/v1/pki/*` API paths (issue #33).
+- Aligned the service, API, and resource pages with Cix `5faa2e6c`: documented managed LDAP/LDAPS listeners and sequenced restarts, staged certificate redelivery after CA reset, and corrected the storage resource route to `/v1/storage-roles`.
 - Removed the duplicated capability table from the project status page; it now routes to the Cix roadmap, keeps the curated boundaries and evidence routes, and stamps the revision its boundaries were reviewed against. Recorded as ADR 0020, superseding ADR 0005 (issues #32, #31).
 - Moved the homepage `<title>`, meta description, and Open Graph description to the brand guidelines' category language, and kept the plain-English definition in the hero; recorded the split as ADR 0019 (issue #37).
 - Settled on British `-ise` spelling across the site, the changelog, and the website ADRs, and added a check that enforces it; `docs/brand/` is excluded as a verbatim transcription of the owner's document.

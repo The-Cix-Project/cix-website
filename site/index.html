@@ -37,21 +37,22 @@
         </dl>
       </div>
 
-      <div class="system-window" aria-label="Example Cix terminal session">
+      <div class="system-window" aria-label="Captured Cix terminal session">
         <div class="window-bar"><span></span><span></span><span></span><b>cix / host</b></div>
         <pre><code><span class="prompt">$</span> cixctl health
 <span class="ok">ok</span>
 
 <span class="prompt">$</span> cixctl boot
-<span class="dim">build:   rolling (2026-09-08T18:42:11Z)
+<span class="dim">build:   v2.57.122 (2026-09-12T14:27:24Z)
 slot:    a
 kernel:  7.2.3</span>
 
 <span class="prompt">$</span> cixctl kernel-policy show
-<span class="dim">channel:  longterm
+<span class="dim">channel:  stable
 running:  7.2.3 (line 7.2)
-channel is at: 7.2.3  -- you are on it</span></code></pre>
-        <div class="window-status"><span><i></i> host healthy</span><span>Illustrative · API v1</span></div>
+channel is at: 7.2.5  -- you are behind it
+resolved from https://www.kernel.org/releases.json at unix 1789219885</span></code></pre>
+        <div class="window-status"><span><i></i> host healthy</span><span>Captured · 192.168.15.95 · 2026-09-12</span></div>
       </div>
     </section>
 
@@ -153,7 +154,7 @@ channel is at: 7.2.3  -- you are on it</span></code></pre>
       <div class="service-model-copy">
         <p class="section-index">Platform services</p>
         <h2 id="service-model-title">The host owns intent.<br>Containers serve protocols.</h2>
-        <p>Cix keeps infrastructure data visible through its API, then projects it into replaceable containers running real service software. DNS, LDAP, DHCP, NTP, and syslog become integrated platform capabilities without baking five protocol servers into the host.</p>
+        <p>Cix keeps infrastructure data visible through its API, then projects it into replaceable containers running real service software. DNS, LDAP, DHCP, NTP, syslog, and PKI become integrated platform capabilities without hiding their ownership or protocol boundaries.</p>
         <a class="button dark-outline" href="services.html">Explore the service model <img src="assets/icons/arrow-right.svg" alt=""></a>
       </div>
       <div class="service-model-flow" aria-label="Cix managed service data flow">
@@ -271,7 +272,7 @@ channel is at: 7.2.3  -- you are on it</span></code></pre>
   <footer>
     <a class="brand footer-brand" href="#top"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a>
     <p>Source-native systems. Directly.</p>
-    <div><a href="https://git.home.arpa/itdlabs/cix">Source</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md">Documentation</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">API</a><a href="sitemap.html">Sitemap</a></div>
+    <div><a href="https://git.home.arpa/itdlabs/cix">Source</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md">Documentation</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">API</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/LICENSE">Licence</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/CONTRIBUTING.md">Contribute</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/TRADEMARK.md">Brand policy</a><a href="sitemap.html">Sitemap</a></div>
   </footer>
   <script src="app.js"></script>
 </body>
