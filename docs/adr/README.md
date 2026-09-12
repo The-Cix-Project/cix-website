@@ -26,6 +26,7 @@ ADRs are numbered by the first accepted decision evidence in the website’s Git
 | [0016](0016-source-map-and-decision-records.md) | 2026-09-02 | `ce5ce0a` | Local ownership map and ADR process |
 | [0017](0017-separated-deployable-tree.md) | 2026-09-02 | `4603187` | Separate deployable site from engineering tooling |
 | [0018](0018-approved-master-tagline.md) | 2026-09-03 | Issue `#25` | Approve “Systems, directly.” as the master tagline |
+| [0019](0019-category-language-split.md) | 2026-09-12 | Issue `#37` | Brand category in metadata, plain definition in the hero |
 
 ## History coverage
 
