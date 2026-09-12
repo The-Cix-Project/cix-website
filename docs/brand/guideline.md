@@ -932,7 +932,7 @@ DOCUMENTATION PATTERN
 
 ## Website and launch expression
 
-Cix does not need a cloud of claims.
+The website should prove the product before it sells the philosophy. Cix does not need a cloud of claims.
 
 ---
 
