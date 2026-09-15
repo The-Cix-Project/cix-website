@@ -17,6 +17,7 @@ const applyRelease = (release) => {
   if (checksums[1]) checksums[1].textContent = release.signature_sha256;
   document.querySelectorAll('[data-release-key-file]').forEach((link) => { link.href = release.release_key; });
   document.querySelectorAll('[data-retired-key-file]').forEach((link) => { link.href = release.retired_key; });
+  document.querySelectorAll('[data-release-link="iso"]').forEach((link) => { link.href = `${window.CIX_SITE.cacheBaseUrl}/${release.iso}`; });
   document.querySelectorAll('[data-cache-file]').forEach((link) => { link.href = `${window.CIX_SITE.cacheBaseUrl}/${link.dataset.cacheFile.endsWith('.minisig') ? release.signature : release.iso}`; });
   document.querySelectorAll('[data-cache-root]').forEach((link) => { link.href = `${window.CIX_SITE.cacheBaseUrl}/`; });
   document.querySelectorAll('[data-cache-help]').forEach((link) => { link.href = `${window.CIX_SITE.cacheBaseUrl}/#help`; });
