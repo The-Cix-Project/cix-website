@@ -18,6 +18,9 @@ cix.example.org {
     @immutable path /assets/* /cix-release*.pub
     header @immutable Cache-Control "public, max-age=31536000, immutable"
 
+    redir /download https://cache.cix.world/cix-installer-2.57.154-1-x86_64.iso 302
+    redir /download/ https://cache.cix.world/cix-installer-2.57.154-1-x86_64.iso 302
+
     file_server
 
     handle_errors {

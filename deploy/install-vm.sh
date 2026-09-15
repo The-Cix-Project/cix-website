@@ -19,6 +19,7 @@ TIMER_FILE="/etc/systemd/system/cix-website-update.timer"
 CADDYFILE="/etc/caddy/Caddyfile"
 CADDY_SITES_DIR="/etc/caddy/sites-enabled"
 CIX_CADDYFILE="$CADDY_SITES_DIR/cix-website.caddy"
+DOWNLOAD_ISO="https://cache.cix.world/cix-installer-2.57.154-1-x86_64.iso"
 DOMAIN=""
 
 usage() {
@@ -103,6 +104,8 @@ cache_repo="__CACHE_REPO_URL__"
 cache_branch="__CACHE_BRANCH__"
 cache_dir="__CACHE_DIR__"
 cache_base="__CACHE_BASE__"
+caddyfile="__CIX_CADDYFILE__"
+main_caddyfile="__CADDYFILE__"
 
 git --git-dir="$repo" fetch --quiet origin "$branch:refs/heads/$branch"
 commit=$(git --git-dir="$repo" rev-parse "refs/heads/$branch")
@@ -130,6 +133,46 @@ fi
 	--cache-base="$cache_base" \
 	--output="$release/site/release.json"
 
+download_target=$(python3 - "$release/site/release.json" "$cache_base" <<'PY'
+import json
+import sys
+with open(sys.argv[1], encoding="utf-8") as stream:
+    print(sys.argv[2].rstrip("/") + "/" + json.load(stream)["iso"])
+PY
+)
+if [ -f "$caddyfile" ]; then
+	if python3 - "$caddyfile" "$download_target" <<'PY'
+import os
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+target = sys.argv[2]
+old = path.read_text(encoding="utf-8")
+lines = old.splitlines(keepends=True)
+new = []
+changed = False
+for line in lines:
+    stripped = line.strip()
+    if stripped.startswith("redir /download ") or stripped.startswith("redir /download/ "):
+        indent = line[:len(line) - len(line.lstrip())]
+        replacement = f"{indent}redir {stripped.split()[1]} {target} 302\n"
+        new.append(replacement)
+        changed = changed or line != replacement
+    else:
+        new.append(line)
+if changed:
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_text("".join(new), encoding="utf-8")
+    os.replace(temporary, path)
+sys.exit(0 if changed else 1)
+PY
+	then
+		caddy validate --config "$main_caddyfile"
+		if systemctl is-active --quiet caddy; then systemctl reload caddy; fi
+	fi
+fi
+
 ln -sfn "$release/site" "$root/current.next"
 mv -Tf "$root/current.next" "$root/current"
 chmod -R a+rX "$release"
@@ -142,6 +185,8 @@ sed -i \
 	-e "s#__CACHE_BRANCH__#$CACHE_BRANCH#g" \
 	-e "s#__CACHE_DIR__#$CACHE_DIR#g" \
 	-e "s#__CACHE_BASE__#$CACHE_BASE#g" \
+	-e "s#__CIX_CADDYFILE__#$CIX_CADDYFILE#g" \
+	-e "s#__CADDYFILE__#$CADDYFILE#g" \
 	"$UPDATE_SCRIPT"
 chmod 0755 "$UPDATE_SCRIPT"
 
@@ -191,6 +236,9 @@ $DOMAIN www.$DOMAIN {
 
 	@immutable path /assets/* /cix-release*.pub
 	header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+	redir /download $DOWNLOAD_ISO 302
+	redir /download/ $DOWNLOAD_ISO 302
 
 	file_server
 

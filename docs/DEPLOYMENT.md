@@ -45,7 +45,7 @@ curl --fail --silent --show-error --location https://cix.example.org/status.html
 python3 scripts/check-site.py
 ```
 
-Deploy only after both checks pass. Record the deployed Git commit and verify `get.html`, the Beta marker, the detached signature, release key, source/API links, and the Cix Cache endpoint from a clean browser. Do not publish LAN hostnames or private IP addresses; complete [`LAUNCH-CHECKLIST.md`](LAUNCH-CHECKLIST.md) before public cutover.
+Deploy only after both checks pass. Record the deployed Git commit and verify `get.html`, `/download`, the Beta marker, the detached signature, release key, source/API links, and the Cix Cache endpoint from a clean browser. The VM updater keeps `/download` pointed at the newest signed ISO. Do not publish LAN hostnames or private IP addresses; complete [`LAUNCH-CHECKLIST.md`](LAUNCH-CHECKLIST.md) before public cutover.
 
 ## Local development
 
