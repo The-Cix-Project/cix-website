@@ -2,7 +2,7 @@
 
 - Status: Superseded by [ADR 0020](0020-status-routes-rather-than-restates.md)
 - Date: 2026-09-01
-- Evidence: [`7e493f3`](https://git.home.arpa/itdlabs/cix-website/commit/7e493f3)
+- Evidence: [`7e493f3`](https://github.com/The-Cix-Project/cix-website/commit/7e493f3)
 
 ## Decision
 

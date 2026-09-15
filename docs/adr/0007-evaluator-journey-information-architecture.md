@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-01
-- Evidence: [`cc76564`](https://git.home.arpa/itdlabs/cix-website/commit/cc76564)
+- Evidence: [`cc76564`](https://github.com/The-Cix-Project/cix-website/commit/cc76564)
 
 ## Decision
 

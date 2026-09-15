@@ -11,7 +11,7 @@
   <header class="site-header">
     <a class="brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="47" height="28"><span>cix</span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    <nav id="site-nav" aria-label="Primary navigation"><a href="getting-started.html">Get started</a><a href="why.html">Why Cix</a><a href="architecture.html">Architecture</a><a href="services.html">Services</a><a href="status.html">Project status</a><a class="nav-cta" href="https://git.home.arpa/itdlabs/cix">View source <span aria-hidden="true">↗</span></a></nav>
+    <nav id="site-nav" aria-label="Primary navigation"><a href="getting-started.html">Get started</a><a href="why.html">Why Cix</a><a href="architecture.html">Architecture</a><a href="services.html">Services</a><a href="status.html">Project status</a><a class="nav-cta" href="https://github.com/The-Cix-Project/cix">View source <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main id="main">
     <section class="page-hero">
@@ -27,8 +27,8 @@
 
     <section class="argument-grid">
       <article><span>01</span><h2>The host stays thin.</h2><p>The host exists to boot, expose hardware, run the control plane, and support containers. Workloads carry the functionality. A read-only squashfs root and A/B update model keep live mutation out of the host upgrade path.</p><a href="architecture.html#host">Inspect the host architecture →</a></article>
-      <article><span>02</span><h2>Source is operational.</h2><p>Cix’s package system connects recipes, verified inputs, builds, packages, immutable images, artefacts, and rolling delivery. It can use its own container and recipe machinery to rebuild Cix and the kernel on-box.</p><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/guides/building-cix.md">Read the build guide ↗</a></article>
-      <article><span>03</span><h2>The API is the boundary.</h2><p><code>cixd</code> alone reaches the runtime and host primitives. The CLI and dashboard are clients of the same REST contract. Automation does not depend on reproducing private UI behaviour.</p><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">Inspect OpenAPI ↗</a></article>
+      <article><span>02</span><h2>Source is operational.</h2><p>Cix’s package system connects recipes, verified inputs, builds, packages, immutable images, artefacts, and rolling delivery. It can use its own container and recipe machinery to rebuild Cix and the kernel on-box.</p><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/guides/building-cix.md">Read the build guide ↗</a></article>
+      <article><span>03</span><h2>The API is the boundary.</h2><p><code>cixd</code> alone reaches the runtime and host primitives. The CLI and dashboard are clients of the same REST contract. Automation does not depend on reproducing private UI behaviour.</p><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml">Inspect OpenAPI ↗</a></article>
       <article><span>04</span><h2>Hardware is explicit.</h2><p>Disks, physical interfaces, GPUs, USB and PCI devices, CPU, and memory become visible, assignable resources instead of implicit properties hidden behind “the host.”</p><a href="architecture.html#runtime">Follow the resource path →</a></article>
     </section>
 
@@ -38,6 +38,6 @@
     </section>
 
   </main>
-  <footer><a class="brand footer-brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a><p>Source-native systems. Directly.</p><div><a href="https://git.home.arpa/itdlabs/cix">Source</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md">Documentation</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml">API</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/LICENSE">Licence</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/CONTRIBUTING.md">Contribute</a><a href="https://git.home.arpa/itdlabs/cix/src/branch/master/TRADEMARK.md">Brand policy</a><a href="sitemap.html">Sitemap</a></div></footer>
+  <footer><a class="brand footer-brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a><p>Source-native systems. Directly.</p><div><a href="https://github.com/The-Cix-Project/cix">Source</a><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/README.md">Documentation</a><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml">API</a><a href="https://github.com/The-Cix-Project/cix/blob/master/LICENSE">Licence</a><a href="https://github.com/The-Cix-Project/cix/blob/master/CONTRIBUTING.md">Contribute</a><a href="https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md">Brand policy</a><a href="sitemap.html">Sitemap</a></div></footer>
   <script src="app.js"></script>
 </body></html>

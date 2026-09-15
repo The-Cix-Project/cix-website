@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-02
-- Evidence: [`31b9725`](https://git.home.arpa/itdlabs/cix-website/commit/31b9725)
+- Evidence: [`31b9725`](https://github.com/The-Cix-Project/cix-website/commit/31b9725)
 
 ## Decision
 

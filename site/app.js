@@ -23,12 +23,12 @@ const primaryLinks = [
 ];
 const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', '404.html'].includes(href));
 const footerLinks = [
-  ['https://git.home.arpa/itdlabs/cix', 'Source'],
-  ['https://git.home.arpa/itdlabs/cix/src/branch/master/docs/README.md', 'Documentation'],
-  ['https://git.home.arpa/itdlabs/cix/src/branch/master/docs/api/openapi.yaml', 'API'],
-  ['https://git.home.arpa/itdlabs/cix/src/branch/master/LICENSE', 'Licence'],
-  ['https://git.home.arpa/itdlabs/cix/src/branch/master/CONTRIBUTING.md', 'Contribute'],
-  ['https://git.home.arpa/itdlabs/cix/src/branch/master/TRADEMARK.md', 'Brand policy'],
+  ['https://github.com/The-Cix-Project/cix', 'Source'],
+  ['https://github.com/The-Cix-Project/cix/blob/master/docs/README.md', 'Documentation'],
+  ['https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml', 'API'],
+  ['https://github.com/The-Cix-Project/cix/blob/master/LICENSE', 'Licence'],
+  ['https://github.com/The-Cix-Project/cix/blob/master/CONTRIBUTING.md', 'Contribute'],
+  ['https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md', 'Brand policy'],
   ['sitemap.html', 'Sitemap'],
 ];
 
@@ -45,7 +45,7 @@ if (navigation) {
   }), (() => {
     const link = document.createElement('a');
     link.className = 'nav-cta';
-    link.href = 'https://git.home.arpa/itdlabs/cix';
+    link.href = 'https://github.com/The-Cix-Project/cix';
     link.innerHTML = 'View source <span aria-hidden="true">↗</span>';
     return link;
   })());

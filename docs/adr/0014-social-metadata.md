@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-02
-- Evidence: [`22668ea`](https://git.home.arpa/itdlabs/cix-website/commit/22668ea)
+- Evidence: [`22668ea`](https://github.com/The-Cix-Project/cix-website/commit/22668ea)
 
 ## Decision
 

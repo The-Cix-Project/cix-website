@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-01
-- Evidence: [`5f4f898`](https://git.home.arpa/itdlabs/cix-website/commit/5f4f898)
+- Evidence: [`5f4f898`](https://github.com/The-Cix-Project/cix-website/commit/5f4f898)
 
 ## Decision
 

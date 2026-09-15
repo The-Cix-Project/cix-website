@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-02
-- Evidence: [`690b50a`](https://git.home.arpa/itdlabs/cix-website/commit/690b50a), amended by [`95aca1e`](https://git.home.arpa/itdlabs/cix-website/commit/95aca1e) and [`c9d48d0`](https://git.home.arpa/itdlabs/cix-website/commit/c9d48d0)
+- Evidence: [`690b50a`](https://github.com/The-Cix-Project/cix-website/commit/690b50a), amended by [`95aca1e`](https://github.com/The-Cix-Project/cix-website/commit/95aca1e) and [`c9d48d0`](https://github.com/The-Cix-Project/cix-website/commit/c9d48d0)
 
 ## Decision
 

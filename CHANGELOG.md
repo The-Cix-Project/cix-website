@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Repointed source, documentation, cache-repository, licence, contribution, brand-policy, and website history links to the public GitHub mirrors under `The-Cix-Project`; staging cache service URLs remain unchanged.
 - Replaced retired marketing language and honesty-signalling headings with mechanism-led wording, and added a checker guard for the brand avoid-list (issues #35 and #36).
 - Replaced the illustrative homepage terminal with a verbatim capture from `192.168.15.95` on 2026-09-12: `cixctl health`, `cixctl boot`, and `cixctl kernel-policy show` (issue #38).
 - Clarified LDAP security posture for issue #34: LDAPS and the daemon’s own TLS bind are available but opt-in; plaintext remains the honest default, and listener changes use explicit sequenced restarts.

@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-01
-- Evidence: [`fd316fd`](https://git.home.arpa/itdlabs/cix-website/commit/fd316fd)
+- Evidence: [`fd316fd`](https://github.com/The-Cix-Project/cix-website/commit/fd316fd)
 
 ## Decision
 

@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-02
-- Evidence: [`f0f0b49`](https://git.home.arpa/itdlabs/cix-website/commit/f0f0b49)
+- Evidence: [`f0f0b49`](https://github.com/The-Cix-Project/cix-website/commit/f0f0b49)
 
 ## Decision
 

@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-09-02
-- Evidence: [`b3c2020`](https://git.home.arpa/itdlabs/cix-website/commit/b3c2020)
+- Evidence: [`b3c2020`](https://github.com/The-Cix-Project/cix-website/commit/b3c2020)
 
 ## Decision
 
