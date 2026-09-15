@@ -17,7 +17,13 @@ commit with `scripts/check-site.py`, switches the served `site/` directory
 atomically, installs a five-minute systemd update timer, and configures Caddy.
 It configures both `example.com` and `www.example.com`. Use `--branch=` if the
 VM should follow a branch other than `master`. The installer preserves an
-existing Caddyfile before replacing it.
+existing Caddyfile, installs a Cix-only site fragment, and reloads the shared
+Caddy process without restarting other services.
+
+The installer imports `/etc/caddy/sites-enabled/*.caddy` from the main
+Caddyfile. Other services should use different hostnames and place their own
+configuration in that directory; Caddy remains the single process listening
+on ports 80 and 443.
 
 For manual installation instead:
 

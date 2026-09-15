@@ -13,6 +13,8 @@ UPDATE_SCRIPT="/usr/local/sbin/cix-website-update"
 SERVICE_FILE="/etc/systemd/system/cix-website-update.service"
 TIMER_FILE="/etc/systemd/system/cix-website-update.timer"
 CADDYFILE="/etc/caddy/Caddyfile"
+CADDY_SITES_DIR="/etc/caddy/sites-enabled"
+CIX_CADDYFILE="$CADDY_SITES_DIR/cix-website.caddy"
 DOMAIN=""
 
 usage() {
@@ -73,6 +75,7 @@ if ! command -v caddy >/dev/null 2>&1; then
 fi
 
 install -d -m 0755 "$SITE_DIR/releases"
+install -d -m 0755 "$CADDY_SITES_DIR"
 
 if [ -d "$REPO_DIR" ]; then
 	if ! git --git-dir="$REPO_DIR" rev-parse --is-bare-repository >/dev/null 2>&1; then
@@ -139,12 +142,13 @@ Persistent=true
 WantedBy=timers.target
 EOF
 
-if [ -e "$CADDYFILE" ] && [ -s "$CADDYFILE" ] &&
-	! grep -q 'Managed by cix-website installer' "$CADDYFILE"; then
-	cp -a "$CADDYFILE" "$CADDYFILE.pre-cix-website.$(date +%s)"
+if grep -q 'Managed by cix-website installer' "$CADDYFILE" 2>/dev/null; then
+	echo "install-vm.sh: the old installer wrote Cix directly into $CADDYFILE" >&2
+	echo "Move that Cix site block into $CIX_CADDYFILE, add the import below, then rerun." >&2
+	exit 1
 fi
 
-cat > "$CADDYFILE" <<EOF
+cat > "$CIX_CADDYFILE" <<EOF
 # Managed by cix-website installer.
 $DOMAIN www.$DOMAIN {
 	root * $SITE_DIR/current
@@ -173,12 +177,22 @@ $DOMAIN www.$DOMAIN {
 }
 EOF
 
+if [ ! -e "$CADDYFILE" ]; then
+	printf '%s\n' "import $CADDY_SITES_DIR/*.caddy" > "$CADDYFILE"
+elif ! grep -Fq "import $CADDY_SITES_DIR/*.caddy" "$CADDYFILE"; then
+	printf '\n%s\n' "import $CADDY_SITES_DIR/*.caddy" >> "$CADDYFILE"
+fi
+
 "$UPDATE_SCRIPT"
 caddy validate --config "$CADDYFILE"
 systemctl daemon-reload
 systemctl enable --now cix-website-update.timer
 systemctl enable caddy
-systemctl restart caddy
+if systemctl is-active --quiet caddy; then
+	systemctl reload caddy
+else
+	systemctl start caddy
+fi
 
 echo "Cix website installed at https://$DOMAIN"
 echo "Following GitHub branch: $BRANCH"
