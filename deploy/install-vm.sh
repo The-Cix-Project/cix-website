@@ -3,7 +3,7 @@ set -eu
 
 # Install the Cix website on a Debian VM and keep it updated from GitHub.
 # Run as root:
-#   ./deploy/install-vm.sh --domain=www.example.com
+#   ./deploy/install-vm.sh --domain=example.com
 
 REPO_URL="https://github.com/The-Cix-Project/cix-website.git"
 BRANCH="master"
@@ -17,11 +17,11 @@ DOMAIN=""
 
 usage() {
 	cat >&2 <<'EOF'
-Usage: install-vm.sh --domain=HOSTNAME
+Usage: install-vm.sh --domain=APEX-DOMAIN
 
 Installs the public Cix website on a Debian VM and follows the master branch.
-The hostname must already resolve to this VM before Caddy can obtain a public
-certificate.
+The apex domain and its www hostname are both configured. They must already
+resolve to this VM before Caddy can obtain public certificates.
 EOF
 }
 
@@ -146,7 +146,7 @@ fi
 
 cat > "$CADDYFILE" <<EOF
 # Managed by cix-website installer.
-$DOMAIN {
+$DOMAIN www.$DOMAIN {
 	root * $SITE_DIR/current/site
 	encode zstd gzip
 
@@ -183,4 +183,3 @@ systemctl restart caddy
 echo "Cix website installed at https://$DOMAIN"
 echo "Following GitHub branch: $BRANCH"
 echo "Manual update: systemctl start cix-website-update.service"
-

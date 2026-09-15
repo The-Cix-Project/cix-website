@@ -9,14 +9,15 @@ For a new Debian VM, the supplied installer performs the complete setup:
 ```sh
 git clone https://github.com/The-Cix-Project/cix-website.git
 cd cix-website
-sudo ./deploy/install-vm.sh --domain=www.example.com
+sudo ./deploy/install-vm.sh --domain=example.com
 ```
 
 It clones the public repository into a bare local mirror, validates each new
 commit with `scripts/check-site.py`, switches the served `site/` directory
 atomically, installs a five-minute systemd update timer, and configures Caddy.
-Use `--branch=` if the VM should follow a branch other than `master`. The
-installer preserves an existing Caddyfile before replacing it.
+It configures both `example.com` and `www.example.com`. Use `--branch=` if the
+VM should follow a branch other than `master`. The installer preserves an
+existing Caddyfile before replacing it.
 
 For manual installation instead:
 
