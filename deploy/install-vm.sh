@@ -27,9 +27,9 @@ EOF
 
 for arg in "$@"; do
 	case "$arg" in
-		--domain=*) DOMAIN=\${arg#--domain=} ;;
-		--branch=*) BRANCH=\${arg#--branch=} ;;
-		--repo-url=*) REPO_URL=\${arg#--repo-url=} ;;
+		--domain=*) DOMAIN=${arg#--domain=} ;;
+		--branch=*) BRANCH=${arg#--branch=} ;;
+		--repo-url=*) REPO_URL=${arg#--repo-url=} ;;
 		--help|-h) usage; exit 0 ;;
 		*) echo "install-vm.sh: unknown option: $arg" >&2; usage; exit 2 ;;
 	esac
