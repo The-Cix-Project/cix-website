@@ -12,8 +12,8 @@ actual Cix dashboard lives in the Cix repository.
 | Surface | Owns | Does not own |
 | --- | --- | --- |
 | `site/app.js` | Shared navigation order, active-page state, sitemap rendering, footer sitemap fallback | Cix resources, API requests, authentication, or endpoint schemas |
-| `site/site-config.js` | Release manifest substitution, verification command, cache/download links | Release truth; `site/release.json` remains the checked-in release identity |
-| `site/release.json` | Version, artefact names, checksums, active and retired release-key filenames | Artefact bytes or signature verification |
+| `site/site-config.js` | Release manifest substitution, verification command, cache/download links | Release selection and verification; production `release.json` is refreshed by the deployment updater |
+| `site/release.json` | Checked-in fallback and production-generated version, artefact names, checksums, active and retired release-key filenames | Artefact bytes or signature verification |
 | Cix source repository | OpenAPI, API behaviour, dashboard, CLI, tests, roadmap, and ADRs | Website presentation |
 
 ## Endpoint labels

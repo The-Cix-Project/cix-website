@@ -7,6 +7,10 @@ set -eu
 
 REPO_URL="https://github.com/The-Cix-Project/cix-website.git"
 BRANCH="master"
+CACHE_REPO_URL="https://github.com/The-Cix-Project/cix-cache.git"
+CACHE_BRANCH="main"
+CACHE_DIR="/srv/cix-cache"
+CACHE_BASE="https://cache.cix.world"
 REPO_DIR="/srv/cix-website.git"
 SITE_DIR="/srv/cix-site"
 UPDATE_SCRIPT="/usr/local/sbin/cix-website-update"
@@ -95,10 +99,22 @@ set -eu
 repo=__REPO_DIR__
 root=__SITE_DIR__
 branch="__BRANCH__"
+cache_repo="__CACHE_REPO_URL__"
+cache_branch="__CACHE_BRANCH__"
+cache_dir="__CACHE_DIR__"
+cache_base="__CACHE_BASE__"
 
 git --git-dir="$repo" fetch --quiet origin "$branch:refs/heads/$branch"
 commit=$(git --git-dir="$repo" rev-parse "refs/heads/$branch")
 release="$root/releases/$commit"
+
+if [ ! -d "$cache_dir/.git" ]; then
+	git clone --quiet --depth=1 --branch="$cache_branch" "$cache_repo" "$cache_dir"
+else
+	git -C "$cache_dir" fetch --quiet origin "$cache_branch"
+	git -C "$cache_dir" checkout --quiet "$cache_branch"
+	git -C "$cache_dir" reset --quiet --hard "origin/$cache_branch"
+fi
 
 if [ ! -d "$release" ]; then
 	temporary="$root/releases/.$commit.new"
@@ -109,6 +125,11 @@ if [ ! -d "$release" ]; then
 	mv "$temporary" "$release"
 fi
 
+"$release/tools/update-release.sh" \
+	--latest-iso="$cache_dir/tools/latest-iso.sh" \
+	--cache-base="$cache_base" \
+	--output="$release/site/release.json"
+
 ln -sfn "$release/site" "$root/current.next"
 mv -Tf "$root/current.next" "$root/current"
 chmod -R a+rX "$release"
@@ -117,6 +138,10 @@ sed -i \
 	-e "s#__REPO_DIR__#$REPO_DIR#g" \
 	-e "s#__SITE_DIR__#$SITE_DIR#g" \
 	-e "s#__BRANCH__#$BRANCH#g" \
+	-e "s#__CACHE_REPO_URL__#$CACHE_REPO_URL#g" \
+	-e "s#__CACHE_BRANCH__#$CACHE_BRANCH#g" \
+	-e "s#__CACHE_DIR__#$CACHE_DIR#g" \
+	-e "s#__CACHE_BASE__#$CACHE_BASE#g" \
 	"$UPDATE_SCRIPT"
 chmod 0755 "$UPDATE_SCRIPT"
 

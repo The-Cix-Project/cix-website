@@ -13,8 +13,10 @@ sudo ./deploy/install-vm.sh --domain=example.com
 ```
 
 It clones the public repository into a bare local mirror, validates each new
-commit with `scripts/check-site.py`, switches the served `site/` directory
-atomically, installs a five-minute systemd update timer, and configures Caddy.
+commit with `scripts/check-site.py`, refreshes the Beta installer manifest from
+the public Cix Cache using its `tools/latest-iso.sh` selector, switches the
+served `site/` directory atomically, installs a five-minute systemd update
+timer, and configures Caddy.
 It configures both `example.com` and `www.example.com`. Use `--branch=` if the
 VM should follow a branch other than `master`. The installer preserves an
 existing Caddyfile, installs a Cix-only site fragment, and reloads the shared
@@ -43,7 +45,7 @@ curl --fail --silent --show-error --location https://cix.example.org/status.html
 python3 scripts/check-site.py
 ```
 
-Deploy only after both checks pass. Record the deployed Git commit and verify `get.html`, the detached signature, release key, source/API links, and the Cix Cache endpoint from a clean browser. Do not publish LAN hostnames or private IP addresses; complete [`LAUNCH-CHECKLIST.md`](LAUNCH-CHECKLIST.md) before public cutover.
+Deploy only after both checks pass. Record the deployed Git commit and verify `get.html`, the Beta marker, the detached signature, release key, source/API links, and the Cix Cache endpoint from a clean browser. Do not publish LAN hostnames or private IP addresses; complete [`LAUNCH-CHECKLIST.md`](LAUNCH-CHECKLIST.md) before public cutover.
 
 ## Local development
 

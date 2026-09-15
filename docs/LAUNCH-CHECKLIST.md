@@ -1,11 +1,11 @@
 # Cix website launch checklist
 
-Use this checklist when the LAN staging addresses move to public infrastructure. Keep the website factual: if a check is not complete, leave the relevant boundary visible.
+Use this checklist to keep the production website and its public download path factual. If a check is not complete, leave the relevant boundary visible.
 
 ## Release and domain
 
 - [ ] Point the production domain and `www` policy at the published site.
-- [ ] Replace staging cache/source links in `site/site-config.js`, `site/get.html`, and navigation.
+- [x] Point the website and cache links at public infrastructure in `site/site-config.js`, `site/get.html`, and navigation.
 - [ ] Confirm HTTPS, certificate renewal, HSTS policy, and a safe redirect from HTTP.
 - [ ] Confirm the public source repository, issue tracker, API specification, and brand assets are reachable.
 - [ ] Confirm the current installer, detached signature, release key, and SHA-256 values from Cix Cache.
