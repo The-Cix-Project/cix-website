@@ -147,7 +147,7 @@ fi
 cat > "$CADDYFILE" <<EOF
 # Managed by cix-website installer.
 $DOMAIN www.$DOMAIN {
-	root * $SITE_DIR/current/site
+	root * $SITE_DIR/current
 	encode zstd gzip
 
 	header {
