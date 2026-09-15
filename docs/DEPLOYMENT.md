@@ -4,6 +4,22 @@ The site is static. A small VM needs only a web server, the checked-out commit, 
 
 ## Caddy on a tiny VM
 
+For a new Debian VM, the supplied installer performs the complete setup:
+
+```sh
+git clone https://github.com/The-Cix-Project/cix-website.git
+cd cix-website
+sudo ./deploy/install-vm.sh --domain=www.example.com
+```
+
+It clones the public repository into a bare local mirror, validates each new
+commit with `scripts/check-site.py`, switches the served `site/` directory
+atomically, installs a five-minute systemd update timer, and configures Caddy.
+Use `--branch=` if the VM should follow a branch other than `master`. The
+installer preserves an existing Caddyfile before replacing it.
+
+For manual installation instead:
+
 1. Check out the reviewed commit into `/srv/cix-website` and make it readable by the web-server user.
 2. Replace `cix.example.org` in [`deploy/Caddyfile`](../deploy/Caddyfile) with the public hostname and set the site root.
 3. Point DNS at the VM, install Caddy, copy the file to its configuration directory, and reload the service.
