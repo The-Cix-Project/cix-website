@@ -1,6 +1,6 @@
 # API/UI inventory
 
-Reviewed against Cix source commit `5faa2e6c` on 2026-09-12.
+Reviewed against Cix source commit `f4392c86` on 2026-09-15.
 
 This repository is a static orientation and proof layer. It does not implement a
 Cix API client, proxy API responses, or duplicate OpenAPI schemas. The deployed
@@ -34,6 +34,9 @@ orientation hint, not a schema claim; the linked OpenAPI contract is authoritati
 | Services page | NTP | `/v1/system/ntp` |
 | Services page | Syslog targets | `/v1/syslog/targets` |
 | Services page | PKI | `/v1/pki/ca`, `/v1/pki/intermediate`, `/v1/pki/certs`, `/v1/pki/certs/{name}`, `/v1/pki/export`, `/v1/pki/import`, `/v1/pki/reset` |
+| API page | Configuration document | `/v1/config`, `/v1/config/diff` |
+| API page | Management address | `/v1/system/management-address` |
+| Resources page | Volume usage | `/v1/volumes/{name}/usage` |
 
 The product-proof page is a recorded workflow, not a live API call. Its
 `GET /v1/system/site` and `PUT /v1/system/site` examples remain pinned to the

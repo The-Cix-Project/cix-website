@@ -1,4 +1,4 @@
-// Staging endpoint. Release identity lives in release.json so one edit updates
+// The cache is still a LAN staging endpoint. Release identity lives in release.json so one edit updates
 // the download links, release strip, verification command, checksums, and the
 // release key the command pins.
 window.CIX_SITE = Object.freeze({ cacheBaseUrl: 'http://claude-code.uk.home.arpa:8080' });

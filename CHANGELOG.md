@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Refreshed the public site against live Cix `v2.57.185` / source `f4392c86`: updated the host capture, current kernel-policy result, status provenance, configuration and management-address references, and corrected the boot-manager description. Kept the installer cache explicitly marked as LAN-only because no public cache endpoint is configured yet.
 - Repointed source, documentation, cache-repository, licence, contribution, brand-policy, and website history links to the public GitHub mirrors under `The-Cix-Project`; staging cache service URLs remain unchanged.
 - Replaced retired marketing language and honesty-signalling headings with mechanism-led wording, and added a checker guard for the brand avoid-list (issues #35 and #36).
 - Replaced the illustrative homepage terminal with a verbatim capture from `192.168.15.95` on 2026-09-12: `cixctl health`, `cixctl boot`, and `cixctl kernel-policy show` (issue #38).
