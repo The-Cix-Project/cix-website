@@ -47,7 +47,7 @@ if [ -z "$DOMAIN" ]; then
 fi
 
 case "$DOMAIN" in
-	*[^A-Za-z0-9.-]*) echo "install-vm.sh: invalid hostname: $DOMAIN" >&2; exit 2 ;;
+	*[!A-Za-z0-9.-]*) echo "install-vm.sh: invalid hostname: $DOMAIN" >&2; exit 2 ;;
 	.*|*.) echo "install-vm.sh: invalid hostname: $DOMAIN" >&2; exit 2 ;;
 esac
 
