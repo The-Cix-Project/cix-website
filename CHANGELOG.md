@@ -4,7 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
-- Refreshed the product alignment against Cix `1b2c290f` / live `v2.57.222`: documented PBS/CPDL recipes and CBS execution, corrected the build-system boundary, refreshed status provenance, and updated the homepage host identity.
+- Refreshed the product alignment against Cix `f34cdbce` / live `v2.57.238`: documented the separate flat `cix-recipes` corpus, refreshed PBS/CPDL and CBS execution claims, corrected the build-system boundary, refreshed status provenance, and updated the homepage host identity.
 - Added a real `/download` HTTP redirect to the current signed installer ISO; the production updater refreshes its Caddy target whenever the cache publishes a newer release.
 - Added a visible Beta stamp to Get Cix and made the production updater refresh `release.json` from Cix Cache’s signed latest-ISO selector, including the ISO and detached-signature hashes. The public cache is now `https://cache.cix.world`; the site remains explicit that Cix is an early release.
 - Refreshed the public site against live Cix `v2.57.185` / source `f4392c86`: updated the host capture, current kernel-policy result, status provenance, configuration and management-address references, and corrected the boot-manager description.
