@@ -497,6 +497,7 @@ footer a:hover { color: var(--copper); }
 .verify-release > div:first-child > p:not(.section-index) { color: #505a5e; font-size: 17px; }
 .verify-actions, .cache-story-actions { margin-top: 28px; display: flex; align-items: center; gap: 24px; }
 .verify-terminal { min-width: 0; color: var(--paper); background: var(--carbon); border: 1px solid #30383e; box-shadow: 20px 20px 0 rgba(9,12,14,.08); }
+.verify-terminal .window-bar span { width: auto; height: auto; margin-left: auto; color: #717b81; border: 0; border-radius: 0; font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .verify-terminal pre { margin: 0; padding: 28px; overflow: auto; color: var(--paper); font: 12px/1.8 var(--mono); }
 .verify-terminal dl { margin: 0; padding: 20px 28px; background: var(--ferrite); border-top: 1px solid #30383e; }
 .verify-terminal dl div + div { margin-top: 14px; }
