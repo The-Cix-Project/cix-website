@@ -1,6 +1,6 @@
 # API/UI inventory
 
-Reviewed against Cix source commit `65b21996` on 2026-09-22.
+Reviewed against Cix source commit `043eb07f` on 2026-09-25.
 
 This repository is a static orientation and proof layer. It does not implement a
 Cix API client, proxy API responses, or duplicate OpenAPI schemas. The deployed
