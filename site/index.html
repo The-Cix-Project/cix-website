@@ -206,9 +206,9 @@ channel is at: 7.2.6  -- you are behind it</span></code></pre>
       <div class="machine-grid">
         <article>
           <div class="machine-icon"><img src="assets/icons/cgroup.svg" alt=""><span>01 / Isolation</span></div>
-          <h3>User namespaces by default.</h3>
-          <p>Every new container gets its own user namespace unless explicitly opted out. Container root maps to a dedicated subordinate-ID range on the host, while cgroup v2 governs CPU, memory, processes, pressure, and device access.</p>
-          <ul><li>Per-container UID/GID mapping</li><li>Real cgroup v2 limits and statistics</li><li>Loud failure—never silent downgrade</li></ul>
+          <h3>Namespace containers by default.</h3>
+          <p>Containers use Linux namespaces and cgroup v2 controls, but full user-namespace UID/GID isolation is not enabled by default. Container processes currently run with real host UID 0; capability bounding-set trimming removes dangerous privileges, while user-namespace isolation remains an open implementation boundary.</p>
+          <ul><li>Linux namespaces and cgroup v2</li><li>Capability bounding-set controls</li><li>Explicit boundary: not a virtual machine</li></ul>
           <code>ContainerCreateRequest.userns</code>
         </article>
         <article>

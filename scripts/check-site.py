@@ -77,6 +77,9 @@ for page in PAGES:
     source = page.read_text(encoding="utf-8")
     if "web console" in source.lower(): errors.append(f"{page.name}: use canonical term 'web dashboard'")
     if "API first" in source: errors.append(f"{page.name}: use canonical term 'API-first'")
+    for false_claim in ("User namespaces by default", "subordinate-ID range"):
+        if false_claim in source:
+            errors.append(f"{page.name}: stale user-namespace claim contains {false_claim!r}")
 
 for pattern, limit in (("*.css", MAX_CSS), ("*.js", MAX_JS)):
     for asset in ROOT.glob(pattern):
