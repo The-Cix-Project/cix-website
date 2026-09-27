@@ -54,6 +54,14 @@ else:
             name = release.get(key)
             if name and not (ROOT / name).exists(): errors.append(f"site/release.json: {key} names {name}, which is not deployed in site/")
         if release.get("release_key") == release.get("retired_key"): errors.append("site/release.json: release_key and retired_key must differ")
+        get_page = (ROOT / "get.html").read_text(encoding="utf-8")
+        if release.get("iso") and release["iso"] not in get_page:
+            errors.append("site/get.html: static installer name does not match site/release.json")
+        for label, key in (("ISO SHA-256", "iso_sha256"), ("Signature SHA-256", "signature_sha256")):
+            digest = release.get(key)
+            expected = re.escape(digest[:32]) + r"<br>" + re.escape(digest[32:]) if digest else ""
+            if expected and not re.search(r"<dt>" + re.escape(label) + r"</dt>\s*<dd>" + expected + r"</dd>", get_page):
+                errors.append(f"site/get.html: static {label} does not match site/release.json")
     except (OSError, json.JSONDecodeError) as exc:
         errors.append(f"site/release.json: invalid JSON ({exc})")
 for page in PAGES:
