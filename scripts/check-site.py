@@ -75,6 +75,9 @@ for page in PAGES:
         target=local_target(ref)
         if target and not target.exists(): errors.append(f"{page.name}: missing local target {ref}")
     source = page.read_text(encoding="utf-8")
+    for mojibake in ("ï¿", "â€", "â†", "Â·"):
+        if mojibake in source:
+            errors.append(f"{page.name}: possible UTF-8 mojibake sequence {mojibake!r}")
     if "web console" in source.lower(): errors.append(f"{page.name}: use canonical term 'web dashboard'")
     if "API first" in source: errors.append(f"{page.name}: use canonical term 'API-first'")
     for false_claim in ("User namespaces by default", "subordinate-ID range"):
