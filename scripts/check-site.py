@@ -80,6 +80,9 @@ for page in PAGES:
     for false_claim in ("User namespaces by default", "subordinate-ID range"):
         if false_claim in source:
             errors.append(f"{page.name}: stale user-namespace claim contains {false_claim!r}")
+    for stale_fallback in ("falls through to the normal source fetch and build path", "fall back to the source build path", "miss: compile from source"):
+        if stale_fallback in source:
+            errors.append(f"{page.name}: unqualified cache fallback contains {stale_fallback!r}")
 
 for pattern, limit in (("*.css", MAX_CSS), ("*.js", MAX_JS)):
     for asset in ROOT.glob(pattern):
