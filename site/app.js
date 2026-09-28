@@ -69,52 +69,41 @@ const terminal = document.querySelector('[data-terminal]');
 if (terminal) {
   const output = terminal.querySelector('.terminal-output');
   const lines = [...terminal.querySelectorAll('.terminal-line')];
-  const toggle = terminal.querySelector('[data-terminal-toggle]');
-  const replay = terminal.querySelector('[data-terminal-replay]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let timer;
-  let paused = false;
-  let position = 0;
-
-  const showAll = () => lines.forEach((line) => line.classList.add('is-visible'));
-  const reveal = () => {
-    if (paused) return;
-    if (position >= lines.length) {
-      timer = window.setTimeout(start, 3200);
-      return;
-    }
-    lines[position].classList.add('is-visible');
-    output.scrollTop = output.scrollHeight;
-    position += 1;
-    timer = window.setTimeout(reveal, 850);
-  };
-  const start = () => {
-    window.clearTimeout(timer);
-    lines.forEach((line) => line.classList.remove('is-visible'));
-    position = 0;
-    paused = false;
-    toggle.textContent = 'Pause';
-    if (reducedMotion) {
-      showAll();
-      return;
-    }
-    terminal.classList.add('terminal-live');
-    reveal();
-  };
-
   if (reducedMotion) {
-    showAll();
+    lines.forEach((line) => line.classList.add('is-visible'));
   } else {
     terminal.classList.add('terminal-live');
-    reveal();
+    const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+    const typeChildren = async (source, target) => {
+      for (const child of source.childNodes) {
+        if (child.nodeType === Node.TEXT_NODE) {
+          for (const character of child.textContent) {
+            target.append(document.createTextNode(character));
+            output.scrollTop = output.scrollHeight;
+            await wait(16);
+          }
+        } else {
+          const copy = child.cloneNode(false);
+          target.append(copy);
+          await typeChildren(child, copy);
+        }
+      }
+    };
+    (async () => {
+      for (const line of lines) {
+        const source = line.cloneNode(true);
+        line.replaceChildren();
+        line.classList.add('is-visible');
+        await typeChildren(source, line);
+        await wait(260);
+      }
+      const cursor = document.createElement('span');
+      cursor.className = 'terminal-cursor';
+      cursor.setAttribute('aria-hidden', 'true');
+      output.querySelector('code').append(cursor);
+    })();
   }
-  toggle.addEventListener('click', () => {
-    paused = !paused;
-    toggle.textContent = paused ? 'Resume' : 'Pause';
-    if (!paused) reveal();
-    else window.clearTimeout(timer);
-  });
-  replay.addEventListener('click', start);
 }
 
 if (footer) {
