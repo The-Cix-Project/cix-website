@@ -74,13 +74,13 @@ if (terminal) {
     lines.forEach((line) => line.classList.add('is-visible'));
   } else {
     terminal.classList.add('terminal-live');
+    output.scrollTop = 0;
     const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
     const typeChildren = async (source, target) => {
       for (const child of source.childNodes) {
         if (child.nodeType === Node.TEXT_NODE) {
           for (const character of child.textContent) {
             target.append(document.createTextNode(character));
-            output.scrollTop = output.scrollHeight;
             await wait(16);
           }
         } else {
@@ -96,6 +96,7 @@ if (terminal) {
         line.replaceChildren();
         line.classList.add('is-visible');
         await typeChildren(source, line);
+        output.scrollTop = Math.max(0, line.offsetTop - output.clientHeight + line.offsetHeight + 20);
         await wait(260);
       }
       const cursor = document.createElement('span');
