@@ -65,6 +65,58 @@ if (siteMap) {
   }));
 }
 
+const terminal = document.querySelector('[data-terminal]');
+if (terminal) {
+  const output = terminal.querySelector('.terminal-output');
+  const lines = [...terminal.querySelectorAll('.terminal-line')];
+  const toggle = terminal.querySelector('[data-terminal-toggle]');
+  const replay = terminal.querySelector('[data-terminal-replay]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer;
+  let paused = false;
+  let position = 0;
+
+  const showAll = () => lines.forEach((line) => line.classList.add('is-visible'));
+  const reveal = () => {
+    if (paused) return;
+    if (position >= lines.length) {
+      timer = window.setTimeout(start, 3200);
+      return;
+    }
+    lines[position].classList.add('is-visible');
+    output.scrollTop = output.scrollHeight;
+    position += 1;
+    timer = window.setTimeout(reveal, 850);
+  };
+  const start = () => {
+    window.clearTimeout(timer);
+    lines.forEach((line) => line.classList.remove('is-visible'));
+    position = 0;
+    paused = false;
+    toggle.textContent = 'Pause';
+    if (reducedMotion) {
+      showAll();
+      return;
+    }
+    terminal.classList.add('terminal-live');
+    reveal();
+  };
+
+  if (reducedMotion) {
+    showAll();
+  } else {
+    terminal.classList.add('terminal-live');
+    reveal();
+  }
+  toggle.addEventListener('click', () => {
+    paused = !paused;
+    toggle.textContent = paused ? 'Resume' : 'Pause';
+    if (!paused) reveal();
+    else window.clearTimeout(timer);
+  });
+  replay.addEventListener('click', start);
+}
+
 if (footer) {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const brand = document.createElement('a');
