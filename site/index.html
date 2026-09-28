@@ -38,24 +38,42 @@
       </div>
 
       <div class="system-window" data-terminal aria-label="Representative Cix command session">
-        <div class="window-bar"><span></span><span></span><span></span><b>cixctl / representative session</b></div>
-        <pre class="terminal-output" tabindex="0"><code><span class="terminal-line"><span class="prompt">$</span> cixctl health
-<span class="ok">ok</span></span>
-<span class="terminal-line"><span class="prompt">$</span> cixctl boot
-<span class="dim">build_version:  &lt;installed Cix build&gt;
-build_time:     &lt;host-reported time&gt;
-slot:           a | b
-kernel_version: &lt;running kernel&gt;</span></span>
-<span class="terminal-line"><span class="prompt">$</span> cixctl kernel-policy show
-<span class="dim">channel:        &lt;configured channel&gt;
-running:        &lt;running kernel line&gt;
-channel is at:  &lt;current channel release&gt;</span></span>
-<span class="terminal-line"><span class="prompt">$</span> cixctl pkg ls
-<span class="dim">name · version · state
-Recipes and package state are read from the host API.</span></span>
-<span class="terminal-line"><span class="prompt">$</span> cixctl container ls
-<span class="dim">Workloads, networks, storage, and readiness are managed through the same API.</span></span></code></pre>
-        <div class="window-status"><span><i></i> session complete</span><span>Values vary by host · <a href="getting-started.html">start with the quickstart</a></span></div>
+        <div class="window-bar"><span></span><span></span><span></span><b>cixctl / captured session</b></div>
+        <pre class="terminal-output" tabindex="0"><code><span class="terminal-line"><span class="prompt">osakka@claude-code:~/new_project$</span> ./build/cixctl --host=192.168.15.95
+<span class="dim">Cix — Systems, directly.
+(c) The Cix Project — Apache-2.0
+
+cixctl 0.2.57-373-dirty
+host   cix 0.2.57-378 · built 2026-09-27 17:38:50 UTC
+       slot a · kernel 7.2.3
+time   2026-09-28 12:10:35 UTC
+
+Type a command, "help", or "exit".</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> boot
+<span class="dim">build:       0.2.57-378
+slot:        a
+kernel:      7.2.3
+root disk:   vdb
+esp:         /dev/vdb1
+root_a:      /dev/vdb2
+root_b:      /dev/vdb3
+config:      /dev/vdb4
+containers:  /dev/vdb5</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> container ls
+<span class="dim">dns-1       running  ready=yes  services=dnsmasq:running
+ldap-1      running  ready=yes  services=glauth:running
+ntp-1       running  ready=yes  services=chronyd:running
+syslog-1    running  ready=yes  services=syslogd:running
+jump        running  ready=yes  services=sshd:running
+cr-1        running  ready=yes  services=keepalived:running,bird:running
+ar-1        running  ready=yes  services=hostapd:running
+... 12 containers total</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> network ls
+<span class="dim">management  192.168.15.0/24
+services    192.168.150.0/24
+access      192.168.151.0/24</span>
+<span class="prompt">cix.internal&gt;</span></span></code></pre>
+        <div class="window-status"><span><i></i> captured session · selected output</span><span>Host values are specific to this machine · <a href="getting-started.html">start with the quickstart</a></span></div>
       </div>
     </section>
 
