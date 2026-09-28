@@ -68,8 +68,6 @@ h1 span { color: var(--copper); }
 .terminal-output { height: 365px; margin: 0; padding: 25px 28px; overflow: auto; color: var(--paper); font: 12px/1.75 var(--mono); scrollbar-color: #465158 #0c1012; }
 .terminal-line { display: block; margin-bottom: 18px; }
 .terminal-line:last-child { margin-bottom: 0; }
-.terminal-live .terminal-line { opacity: 0; transform: translateY(5px); transition: opacity .35s ease, transform .35s ease; }
-.terminal-live .terminal-line.is-visible { opacity: 1; transform: none; }
 .terminal-cursor { display: inline-block; width: .65em; height: 1.1em; margin-left: 3px; vertical-align: -.18em; background: var(--phosphor); animation: terminal-blink 1.1s steps(2, start) infinite; }
 @keyframes terminal-blink { 50% { opacity: 0; } }
 .prompt { color: var(--copper); }

@@ -73,7 +73,6 @@ if (terminal) {
   if (reducedMotion) {
     lines.forEach((line) => line.classList.add('is-visible'));
   } else {
-    terminal.classList.add('terminal-live');
     output.scrollTop = 0;
     const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
     const typeChildren = async (source, target) => {
@@ -91,18 +90,22 @@ if (terminal) {
       }
     };
     (async () => {
-      for (const line of lines) {
-        const source = line.cloneNode(true);
-        line.replaceChildren();
-        line.classList.add('is-visible');
+      const sources = lines.map((line) => line.cloneNode(true));
+      const code = output.querySelector('code');
+      code.replaceChildren();
+      for (const source of sources) {
+        const line = document.createElement('span');
+        line.className = 'terminal-line';
+        code.append(line);
         await typeChildren(source, line);
-        output.scrollTop = Math.max(0, line.offsetTop - output.clientHeight + line.offsetHeight + 20);
+        output.scrollTop = output.scrollHeight;
         await wait(260);
       }
       const cursor = document.createElement('span');
       cursor.className = 'terminal-cursor';
       cursor.setAttribute('aria-hidden', 'true');
-      output.querySelector('code').append(cursor);
+      code.append(cursor);
+      output.scrollTop = output.scrollHeight;
     })();
   }
 }

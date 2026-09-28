@@ -39,8 +39,7 @@
 
       <div class="system-window" data-terminal aria-label="Representative Cix command session">
         <div class="window-bar"><span></span><span></span><span></span><b>cixctl / captured session</b></div>
-        <pre class="terminal-output" tabindex="0"><code><span class="terminal-line"><span class="prompt">osakka@claude-code:~/new_project$</span> ./build/cixctl --host=192.168.15.95
-<span class="dim">Cix — Systems, directly.
+        <pre class="terminal-output" tabindex="0"><code><span class="terminal-line"><span class="dim">Cix — Systems, directly.
 (c) The Cix Project — Apache-2.0
 
 cixctl 0.2.57-373-dirty
@@ -59,15 +58,24 @@ root_a:      /dev/vdb2
 root_b:      /dev/vdb3
 config:      /dev/vdb4
 containers:  /dev/vdb5</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> boot-manager
+<span class="dim">boot manager: 12288 bytes
+sha256: 1b3ed3ff59c50c8b24801c32f741ac5d7c0cb47fe543186974daa82577fc0116
+(a pre-update backup exists)</span></span>
 <span class="terminal-line"><span class="prompt">cix.internal&gt;</span> container ls
 <span class="dim">dns-1       running  ready=yes  services=dnsmasq:running
+dns-2       running  ready=yes  services=dnsmasq:running
 ldap-1      running  ready=yes  services=glauth:running
 ntp-1       running  ready=yes  services=chronyd:running
+ntp-2       running  ready=yes  services=chronyd:running
 syslog-1    running  ready=yes  services=syslogd:running
+syslog-2    running  ready=yes  services=syslogd:running
 jump        running  ready=yes  services=sshd:running
 cr-1        running  ready=yes  services=keepalived:running,bird:running
+cr-2        running  ready=yes  services=keepalived:running,bird:running
 ar-1        running  ready=yes  services=hostapd:running
-... 12 containers total</span></span>
+ldap-2      running  ready=yes  services=glauth:running
+12 containers · all selected rows ready</span></span>
 <span class="terminal-line"><span class="prompt">cix.internal&gt;</span> network ls
 <span class="dim">management  192.168.15.0/24
 services    192.168.150.0/24
