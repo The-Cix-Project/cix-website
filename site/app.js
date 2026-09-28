@@ -93,20 +93,24 @@ if (terminal) {
     (async () => {
       const sources = lines.map((line) => line.cloneNode(true));
       const code = output.querySelector('code');
-      code.replaceChildren();
-      for (const source of sources) {
-        const line = document.createElement('span');
-        line.className = 'terminal-line';
-        code.append(line);
-        await typeChildren(source, line);
+      while (true) {
+        code.replaceChildren();
+        output.scrollTop = 0;
+        for (const [index, source] of sources.entries()) {
+          if (index > 0) await wait(1150);
+          const line = document.createElement('span');
+          line.className = 'terminal-line';
+          code.append(line);
+          await typeChildren(source, line);
+          output.scrollTop = output.scrollHeight;
+        }
+        const cursor = document.createElement('span');
+        cursor.className = 'terminal-cursor';
+        cursor.setAttribute('aria-hidden', 'true');
+        code.append(cursor);
         output.scrollTop = output.scrollHeight;
-        await wait(260);
+        await wait(9000);
       }
-      const cursor = document.createElement('span');
-      cursor.className = 'terminal-cursor';
-      cursor.setAttribute('aria-hidden', 'true');
-      code.append(cursor);
-      output.scrollTop = output.scrollHeight;
     })();
   }
 }

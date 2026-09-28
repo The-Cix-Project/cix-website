@@ -42,10 +42,7 @@
         <pre class="terminal-output" tabindex="0"><code><span class="terminal-line"><span class="dim">Cix — Systems, directly.
 (c) The Cix Project — Apache-2.0
 
-cixctl 0.2.57-373-dirty
-host   cix 0.2.57-378 · built 2026-09-27 17:38:50 UTC
-       slot a · kernel 7.2.3
-time   2026-09-28 12:10:35 UTC
+host   cix 0.2.57-378 · slot a · kernel 7.2.3
 
 Type a command, "help", or "exit".</span></span>
 <span class="terminal-line"><span class="prompt">cix.internal&gt;</span> boot
@@ -59,13 +56,13 @@ root_b:      /dev/vdb3
 config:      /dev/vdb4
 containers:  /dev/vdb5</span></span>
 <span class="terminal-line"><span class="prompt">cix.internal&gt;</span> boot-manager
-<span class="dim">boot manager: 12288 bytes
-sha256: 1b3ed3ff59c50c8b24801c32f741ac5d7c0cb47fe543186974daa82577fc0116
-(a pre-update backup exists)</span></span>
+<span class="dim">boot manager: 12288 bytes · installed
+pre-update backup: available</span></span>
 <span class="terminal-line"><span class="prompt">cix.internal&gt;</span> container ls
 <span class="dim">dns-1       running  ready=yes  services=dnsmasq:running
 dns-2       running  ready=yes  services=dnsmasq:running
 ldap-1      running  ready=yes  services=glauth:running
+ldap-2      running  ready=yes  services=glauth:running
 ntp-1       running  ready=yes  services=chronyd:running
 ntp-2       running  ready=yes  services=chronyd:running
 syslog-1    running  ready=yes  services=syslogd:running
@@ -73,15 +70,49 @@ syslog-2    running  ready=yes  services=syslogd:running
 jump        running  ready=yes  services=sshd:running
 cr-1        running  ready=yes  services=keepalived:running,bird:running
 cr-2        running  ready=yes  services=keepalived:running,bird:running
-ar-1        running  ready=yes  services=hostapd:running
-ldap-2      running  ready=yes  services=glauth:running
-12 containers · all selected rows ready</span></span>
+ar-1        running  ready=yes  services=hostapd:running</span></span>
 <span class="terminal-line"><span class="prompt">cix.internal&gt;</span> network ls
-<span class="dim">management  192.168.15.0/24
-services    192.168.150.0/24
-access      192.168.151.0/24</span>
-<span class="prompt">cix.internal&gt;</span></span></code></pre>
-        <div class="window-status"><span><i></i> captured session · selected output</span><span>Host values are specific to this machine · <a href="getting-started.html">start with the quickstart</a></span></div>
+<span class="dim">management  &lt;management-network&gt;/24  address=&lt;management-address&gt;
+services    &lt;services-network&gt;/24
+access      &lt;access-network&gt;/24</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> kmod
+<span class="dim">rtw88_8822bu  Live
+rtw88_8822b   Live
+igc           Live
+igb           Live
+e1000e        Live
+ixgbe         Live
+tg3           Live</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> device ls
+<span class="dim">usb: Realtek 802.11ac NIC                         assignable
+pci: vdb (virtio-pci)                               assignable
+net: eth0                                            unassignable
+gpu: card0                                           unassignable
+disk: sr0 QEMU DVD-ROM                              assignable</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> server-health
+<span class="dim">ntp      ntp-1     healthy  in_service=yes
+ntp      ntp-2     healthy  in_service=yes
+syslog   syslog-1  healthy  in_service=yes
+syslog   syslog-2  healthy  in_service=yes
+dns      dns-1     healthy  probe=tcp:53
+dns      dns-2     healthy  probe=tcp:53
+ldap     ldap-1    healthy  probe=tcp:636
+ldap     ldap-2    healthy  probe=tcp:636</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> ldap config show
+<span class="dim">start_uid=10000 start_gid=10000
+client_uri=(unset)
+effective_client_uri=ldaps://&lt;ldap-provider&gt;:636/
+base_dn=dc=&lt;site&gt;,dc=&lt;domain&gt;
+bind_password=(set)
+listeners=managed ldap=off:3893 ldaps=on:636 clients_use=ldaps</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> iso status
+<span class="dim">state=ready
+signature=present</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span> schedule ls
+<span class="dim">refresh-upstreams  pkg.refresh-upstreams  every 6h  ok
+recipe-sync        pkg.sync               every 6h  ok</span></span>
+<span class="terminal-line"><span class="prompt">cix.internal&gt;</span></span></code></pre>
+        <div class="window-status"><span><i></i> representative session · anonymised output</span><span>Host values are specific to this machine · <a href="getting-started.html">start with the quickstart</a></span></div>
       </div>
     </section>
 
