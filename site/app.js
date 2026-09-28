@@ -23,7 +23,7 @@ const primaryLinks = [
 ];
 const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', '404.html'].includes(href));
 const footerLinks = [
-  ['https://github.com/The-Cix-Project/cix', 'Source'],
+  ['https://github.com/The-Cix-Project/cix', 'Public source mirror'],
   ['https://github.com/The-Cix-Project/cix/blob/master/docs/README.md', 'Documentation'],
   ['https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml', 'API'],
   ['https://github.com/The-Cix-Project/cix/blob/master/LICENSE', 'Licence'],
@@ -46,7 +46,7 @@ if (navigation) {
     const link = document.createElement('a');
     link.className = 'nav-cta';
     link.href = 'https://github.com/The-Cix-Project/cix';
-    link.innerHTML = 'View source <span aria-hidden="true">↗</span>';
+    link.innerHTML = 'View public source mirror <span aria-hidden="true">↗</span>';
     return link;
   })());
 }
