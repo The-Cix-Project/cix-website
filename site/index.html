@@ -37,29 +37,16 @@
         </dl>
       </div>
 
-      <div class="hero-capture"><p class="capture-note">Representative host output: <code>channel: stable</code> is the kernel update policy, not the installer release channel. The current downloadable installer is beta; see <a href="get.html">release details</a>.</p>
-      <div class="system-window" aria-label="Captured Cix terminal session">
-        <div class="window-bar"><span></span><span></span><span></span><b>cix / host</b></div>
-        <pre><code><span class="prompt">$</span> cixctl health
-<span class="ok">ok</span>
-
-<span class="prompt">$</span> cixctl boot
-<span class="dim">build:      v2.57.238 (2026-09-21T17:19:28Z)
-slot:       b
-kernel:     7.2.3
-root disk   sda
-esp         /dev/sda1
-root_a      /dev/sda2
-root_b      /dev/sda3
-config      /dev/sda4
-containers  /dev/sda5</span>
-
-<span class="prompt">$</span> cixctl kernel-policy show
-<span class="dim">channel:  stable
-running:  7.2.3 (line 7.2)
-channel is at: 7.2.6  -- you are behind it</span></code></pre>
-        <div class="window-status"><span><i></i> host healthy</span><span>Representative host · SATA layout · kernel policy: stable</span></div>
-      </div></div>
+      <div class="hero-start-card">
+        <p class="section-index">Start here</p>
+        <h2>Install a host.<br>Run a workload.</h2>
+        <ol>
+          <li><strong>Download</strong><span>Get the current beta installer for UEFI x86-64.</span></li>
+          <li><strong>Verify</strong><span>Check the detached signature before writing the disk.</span></li>
+          <li><strong>Operate</strong><span>Connect through the API and run containers on the host.</span></li>
+        </ol>
+        <a class="text-link" href="get.html">Download and verify Cix →</a>
+      </div>
     </section>
 
     <section class="manifesto" id="why">
