@@ -1,6 +1,7 @@
 {
   "channel": "beta",
   "version": "0.2.57",
+  "release": "360",
   "architecture": "x86-64",
   "image_size": "69.9 MiB",
   "environment": "UEFI",

@@ -5,7 +5,8 @@ window.CIX_SITE = Object.freeze({ cacheBaseUrl: 'https://cache.cix.world' });
 
 const applyRelease = (release) => {
   const set = (key, value) => document.querySelectorAll(`[data-release="${key}"]`).forEach((node) => { node.textContent = value; });
-  set('channel', release.channel); set('version', release.version); set('architecture', release.architecture); set('image_size', release.image_size); set('environment', release.environment); set('iso', release.iso); set('iso_sha256', release.iso_sha256); set('signature_sha256', release.signature_sha256);
+  const releaseNumber = release.release || ((release.iso.match(/-(\d+)-x86_64\.iso$/) || [null, ''])[1]);
+  set('channel', release.channel); set('version', release.version); set('release', releaseNumber); set('architecture', release.architecture); set('image_size', release.image_size); set('environment', release.environment); set('iso', release.iso); set('iso_sha256', release.iso_sha256); set('signature_sha256', release.signature_sha256);
   set('release_key', release.release_key); set('release_key_id', release.release_key_id); set('retired_key', release.retired_key); set('retired_key_since', release.retired_key_since);
   const command = document.querySelector('.verify-terminal pre code');
   // A real shell continuation: backslash then newline. This used to emit a
