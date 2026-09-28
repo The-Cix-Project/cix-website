@@ -80,6 +80,7 @@ if (terminal) {
         if (child.nodeType === Node.TEXT_NODE) {
           for (const character of child.textContent) {
             target.append(document.createTextNode(character));
+            output.scrollTop = output.scrollHeight;
             await wait(16);
           }
         } else {
