@@ -7,6 +7,7 @@ const mobileNavigation = window.matchMedia('(max-width: 980px)');
 // the shared runtime normalises every page to the same order and active state.
 const primaryLinks = [
   ['index.html', 'Home', 'A Linux operating system for container infrastructure.'],
+  ['try.html', 'Try Cix', 'Choose a safe evaluation path before installing.'],
   ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
   ['get.html', 'Download Cix', 'Verify the current installer and release artefacts.'],
   ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
@@ -18,10 +19,11 @@ const primaryLinks = [
   ['services.html', 'Services', 'API-owned DNS, LDAP, DHCP, NTP, and syslog providers.'],
   ['status.html', 'Project status', 'Shipped capability, evidence, and current boundaries.'],
   ['proof.html', 'Product proof', 'Reproduced CLI, REST, and dashboard evidence.'],
+  ['contribute.html', 'Contribute', 'Source, contribution rules, and the project’s maintainer-led workflow.'],
   ['sitemap.html', 'Sitemap', 'A plain map of every public website page.'],
   ['404.html', 'Not found', 'The fallback page for an unknown website address.'],
 ];
-const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', '404.html'].includes(href));
+const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'try.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', 'contribute.html', '404.html'].includes(href));
 const footerLinks = [
   ['https://github.com/The-Cix-Project/cix', 'Public source mirror'],
   ['https://github.com/The-Cix-Project/cix/blob/master/docs/README.md', 'Documentation'],
