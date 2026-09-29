@@ -406,6 +406,7 @@ footer a:hover { color: var(--copper); }
   .system-window { justify-self: start; max-width: 680px; }
   .manifesto { grid-template-columns: 1fr; gap: 18px; }
   .paths-heading { grid-template-columns: 1fr; gap: 18px; }
+  .path-grid { grid-template-columns: repeat(2, 1fr); }
   .pillars { grid-template-columns: repeat(2, 1fr); }
   .architecture, .status { grid-template-columns: 1fr; gap: 60px; }
   .service-model-home { grid-template-columns: 1fr; gap: 50px; }
