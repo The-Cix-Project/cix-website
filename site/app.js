@@ -10,7 +10,7 @@ const primaryLinks = [
   ['try.html', 'Try Cix', 'Choose a safe evaluation path before installing.'],
   ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
   ['get.html', 'Download Cix', 'Verify the current installer and release artefacts.'],
-  ['trust.html', 'Trust and limits', 'Release integrity, security boundaries, compatibility, and beta limits.'],
+  ['trust.html', 'Trust and limits', 'Release integrity, security boundaries, compatibility, and alpha limits.'],
   ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
   ['api.html', 'API', 'The REST/OpenAPI boundary for engineers and automation.'],
   ['build.html', 'Build', 'Recipes, verified artefacts, self-hosting, and delivery.'],

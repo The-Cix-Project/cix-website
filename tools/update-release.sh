@@ -58,7 +58,7 @@ with urlopen(request, timeout=30) as response:
 with open(old_path, encoding="utf-8") as stream:
     release = json.load(stream)
 release.update({
-    "channel": "beta",
+    "channel": "alpha",
     "version": installer["version"],
     "release": str(installer["release"]),
     "architecture": "x86-64" if installer["arch"] == "x86_64" else installer["arch"],
