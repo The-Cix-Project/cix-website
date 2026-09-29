@@ -25,7 +25,7 @@
       <div class="hero-copy">
         <p class="eyebrow"><span class="live-dot"></span> Open-source Linux for dedicated infrastructure</p>
         <h1>Run the machine.<br><span>See everything.</span></h1>
-        <p class="hero-lede">Cix is a Linux operating system for operators who want one clear way to run containerised infrastructure. Every workload runs in a container; one API manages the host, boot, networking, storage, hardware, services, and workloads around it.</p>
+        <p class="hero-lede">Cix is a rolling-release Linux operating system, written in C and built from source for operators who want one clear way to run containerised infrastructure. Every workload runs in a container; one API manages the host, boot, networking, storage, hardware, services, and workloads around it.</p>
         <div class="actions">
           <a class="button primary" href="try.html">Try Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
           <a class="button secondary" href="get.html">Download the installer</a>
@@ -120,8 +120,10 @@ recipe-sync        pkg.sync               every 6h  ok</span></span>
         <p class="section-index">01 / The Cix proposition</p>
       <div>
         <h2>Infrastructure you can<br>explain end to end.</h2>
-        <p>Cix is for people running a dedicated machine as infrastructure: a small service host, an edge system, a lab platform, or a build-and-test appliance. The host stays focused on the machine; your services and applications live in containers with explicit networks, storage, limits, and hardware access.</p>
-        <p class="human-note"><strong>One machine. One control path.</strong> Cix keeps the cause-and-effect visible so operators can understand what changed, what is running, and what the next action is.</p>
+        <p>Cix is a rolling-release Linux operating system, written in C and built from source through its own CPDL/CBS package and build system. A Cix host can rebuild its control plane, kernel, root filesystem, packages, images, and installer, so the path from source to running system remains visible instead of disappearing behind a separate build service.</p>
+        <p>It is designed for containerised workloads from the ground up. Containers are not just an application layer: Cix reports their real CPU, memory, process, disk, network, readiness, and lifecycle state, while the same API controls the host’s networks, storage, devices, services, updates, backups, and recovery. DNS, LDAP, DHCP, NTP, and syslog can run as ordinary managed service containers rather than hidden host daemons.</p>
+        <p>Recipes define source, versions, dependencies, build environments, and checksums. Verified cache artefacts make installation practical; supported cache misses can build from source; immutable image versions and verified A/B host updates provide a controlled path to change.</p>
+        <p class="human-note"><strong>One machine. One control path.</strong> Cix keeps the cause-and-effect visible from source code to package, container, machine, and release.</p>
       </div>
     </section>
 
