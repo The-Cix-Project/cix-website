@@ -19,7 +19,10 @@ TIMER_FILE="/etc/systemd/system/cix-website-update.timer"
 CADDYFILE="/etc/caddy/Caddyfile"
 CADDY_SITES_DIR="/etc/caddy/sites-enabled"
 CIX_CADDYFILE="$CADDY_SITES_DIR/cix-website.caddy"
-DOWNLOAD_ISO="https://cache.cix.world/cix-installer-2.57.154-1-x86_64.iso"
+# The updater replaces this redirect from the verified release manifest before
+# the site is made current. Keep the bootstrap target generic rather than
+# advertising an unrelated historical ISO if cache refresh fails.
+DOWNLOAD_ISO="https://cache.cix.world/"
 DOMAIN=""
 
 usage() {

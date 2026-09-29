@@ -43,7 +43,7 @@ if not manifest.exists():
 else:
     try:
         release = json.loads(manifest.read_text(encoding="utf-8"))
-        required = {"version", "architecture", "image_size", "environment", "iso", "signature", "iso_sha256", "signature_sha256", "release_key", "release_key_id", "retired_key", "retired_key_since"}
+        required = {"version", "release", "architecture", "image_size", "environment", "iso", "signature", "iso_sha256", "signature_sha256", "release_key", "release_key_id", "retired_key", "retired_key_since"}
         missing = required - release.keys()
         if missing: errors.append(f"site/release.json: missing fields {sorted(missing)}")
         for key in ("iso_sha256", "signature_sha256"):
@@ -54,6 +54,18 @@ else:
             name = release.get(key)
             if name and not (ROOT / name).exists(): errors.append(f"site/release.json: {key} names {name}, which is not deployed in site/")
         if release.get("release_key") == release.get("retired_key"): errors.append("site/release.json: release_key and retired_key must differ")
+        iso = release.get("iso", "")
+        identity = re.fullmatch(r"cix-installer-(.+)-(\d+)-x86_64\.iso", iso)
+        if not identity:
+            errors.append("site/release.json: iso does not have the expected version-release filename")
+        else:
+            version_from_name, release_from_name = identity.groups()
+            if release.get("version") != version_from_name:
+                errors.append("site/release.json: version does not match the ISO filename")
+            if str(release.get("release")) != release_from_name:
+                errors.append("site/release.json: release does not match the ISO filename")
+        if release.get("signature") != iso + ".minisig":
+            errors.append("site/release.json: signature must be the detached signature for iso")
         get_page = (ROOT / "get.html").read_text(encoding="utf-8")
         if release.get("iso") and release["iso"] not in get_page:
             errors.append("site/get.html: static installer name does not match site/release.json")

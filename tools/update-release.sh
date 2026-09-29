@@ -42,6 +42,15 @@ if len(installers) != 1:
     raise SystemExit("update-release: expected exactly one x86_64 installer")
 
 installer = installers[0]
+name = installer["name"]
+expected_name = "cix-installer-%s-%s-%s.iso" % (
+    installer["version"], installer["release"], installer["arch"]
+)
+if name != expected_name:
+    raise SystemExit(
+        "update-release: cache identity disagrees with ISO name: "
+        "%s != %s" % (name, expected_name)
+    )
 request = Request(installer["signature_url"], headers={"User-Agent": "cix-website-release-updater/1"})
 with urlopen(request, timeout=30) as response:
     signature_sha256 = hashlib.sha256(response.read()).hexdigest()
@@ -51,10 +60,11 @@ with open(old_path, encoding="utf-8") as stream:
 release.update({
     "channel": "beta",
     "version": installer["version"],
+    "release": str(installer["release"]),
     "architecture": "x86-64" if installer["arch"] == "x86_64" else installer["arch"],
     "image_size": "%.1f MiB" % (installer["bytes"] / 1048576),
     "environment": "UEFI",
-    "iso": installer["name"],
+    "iso": name,
     "signature": installer["signature_name"],
     "iso_sha256": installer["sha256"],
     "signature_sha256": signature_sha256,
