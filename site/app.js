@@ -31,6 +31,7 @@ const footerLinks = [
   ['https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml', 'API'],
   ['https://github.com/The-Cix-Project/cix/blob/master/LICENSE', 'Licence'],
   ['https://github.com/The-Cix-Project/cix/blob/master/CONTRIBUTING.md', 'Contribute'],
+  ['https://github.com/The-Cix-Project/cix/issues', 'Issues and community'],
   ['trust.html', 'Trust and limits'],
   ['https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md', 'Brand policy'],
   ['sitemap.html', 'Sitemap'],
