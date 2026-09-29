@@ -10,6 +10,7 @@ const primaryLinks = [
   ['try.html', 'Try Cix', 'Choose a safe evaluation path before installing.'],
   ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
   ['get.html', 'Download Cix', 'Verify the current installer and release artefacts.'],
+  ['trust.html', 'Trust and limits', 'Release integrity, security boundaries, compatibility, and beta limits.'],
   ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
   ['api.html', 'API', 'The REST/OpenAPI boundary for engineers and automation.'],
   ['build.html', 'Build', 'Recipes, verified artefacts, self-hosting, and delivery.'],
@@ -23,13 +24,14 @@ const primaryLinks = [
   ['sitemap.html', 'Sitemap', 'A plain map of every public website page.'],
   ['404.html', 'Not found', 'The fallback page for an unknown website address.'],
 ];
-const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'try.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', 'contribute.html', '404.html'].includes(href));
+const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'try.html', 'trust.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', 'contribute.html', '404.html'].includes(href));
 const footerLinks = [
   ['https://github.com/The-Cix-Project/cix', 'Public source mirror'],
   ['https://github.com/The-Cix-Project/cix/blob/master/docs/README.md', 'Documentation'],
   ['https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml', 'API'],
   ['https://github.com/The-Cix-Project/cix/blob/master/LICENSE', 'Licence'],
   ['https://github.com/The-Cix-Project/cix/blob/master/CONTRIBUTING.md', 'Contribute'],
+  ['trust.html', 'Trust and limits'],
   ['https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md', 'Brand policy'],
   ['sitemap.html', 'Sitemap'],
 ];
