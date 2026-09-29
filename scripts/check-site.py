@@ -151,6 +151,13 @@ if brand_doc.exists():
     for ref in re.findall(r"!\[[^]]*\]\(([^)]+)\)", brand_doc.read_text(encoding="utf-8")):
         if not (brand_doc.parent / ref).exists(): errors.append(f"{brand_doc}: missing image {ref}")
 
+# The public short download URL is rewritten from the verified release
+# manifest by the VM updater. A checked-in ISO filename here would silently
+# turn a failed refresh into a stale download.
+caddy_template = REPO / "deploy/Caddyfile"
+if caddy_template.exists() and re.search(r"redir /download/?\s+\S*cix-installer-", caddy_template.read_text(encoding="utf-8")):
+    errors.append("deploy/Caddyfile: /download must not contain a hard-coded installer filename")
+
 if errors:
     print("SITE CHECK FAILED")
     print("\n".join(f"- {e}" for e in errors))
