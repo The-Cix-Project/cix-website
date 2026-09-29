@@ -87,6 +87,8 @@ for page in PAGES:
         target=local_target(ref)
         if target and not target.exists(): errors.append(f"{page.name}: missing local target {ref}")
     source = page.read_text(encoding="utf-8")
+    if "<footer" in source and "Source-native systems. Directly." not in source:
+        errors.append(f"{page.name}: static footer fallback is not aligned with the shared footer")
     for mojibake in ("ï¿", "â€", "â†", "Â·"):
         if mojibake in source:
             errors.append(f"{page.name}: possible UTF-8 mojibake sequence {mojibake!r}")
