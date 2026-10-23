@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Added `LICENSE` and `TRADEMARK.md` (2026-10-23, the owner's decision). The website is all rights reserved: its text, code, screenshots, diagrams, icons and brand assets are not licensed for reuse. `TRADEMARK.md` is the Cix repository's marks policy, including what counts as an official Cix artifact.
 - Cix is now GPL-3.0-or-later (Cix ADR-0352, 2026-10-23): the homepage terminal's banner line, the contribute page's description and DCO paragraph, and the API alignment notes name GPL-3.0-or-later instead of Apache-2.0. The Licence link already points at the Cix repository's `LICENSE`, which now holds the GPLv3 text.
 - Refreshed the product alignment against Cix `3a7d5fda` / live `v2.57.238`: documented the separate flat `cix-recipes` corpus, CPDL package builds executed by CBS with new shell publication refused and legacy shell compatibility, JSON image recipes, credential-regression protection, safe archive extraction, compiler-runtime preservation, and Cix-host floor tests gating releases, corrected the build-system boundary, refreshed status provenance, and updated the homepage host identity.
 - Added a real `/download` HTTP redirect to the current signed installer ISO; the production updater refreshes its Caddy target whenever the cache publishes a newer release.
