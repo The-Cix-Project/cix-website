@@ -269,8 +269,8 @@ recipe-sync        pkg.sync               every 6h  ok</span></span>
         <article>
           <div class="machine-icon"><img src="assets/icons/cgroup.svg" alt=""><span>01 / Isolation</span></div>
           <h3>Namespace containers by default.</h3>
-          <p>Containers use Linux namespaces and cgroup v2 controls, but full user-namespace UID/GID isolation is not enabled by default. Container processes currently run with real host UID 0; capability bounding-set trimming removes dangerous privileges, while user-namespace isolation remains an open implementation boundary.</p>
-          <ul><li>Linux namespaces and cgroup v2</li><li>Capability bounding-set controls</li><li>Explicit boundary: not a virtual machine</li></ul>
+          <p>Workloads use Linux namespaces, cgroup v2 controls, and user namespaces by default. Their image-derived roots are presented through id-mapped mounts; trusted internal build containers may opt out where required. Capability bounding-set trimming still applies, and this remains a container boundary rather than a virtual machine.</p>
+          <ul><li>Linux namespaces, user namespaces, and cgroup v2</li><li>Id-mapped image-derived roots</li><li>Explicit boundary: not a virtual machine</li></ul>
           <code>ContainerCreateRequest.userns</code>
         </article>
         <article>
