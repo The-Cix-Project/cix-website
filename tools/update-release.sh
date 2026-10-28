@@ -77,4 +77,25 @@ PY
 
 chmod 644 "$work/release.json"
 mv -f "$work/release.json" "$OUTPUT"
+
+# The production updater stores each archived website release under a directory
+# named for the source commit. Publish that identity beside release.json so the
+# live site can be checked without exposing deployment details in page copy.
+commit=$(basename "$(dirname "$(dirname "$OUTPUT")")")
+python3 - "$dir/build.json" "$commit" <<'PY'
+import json
+import os
+import sys
+from datetime import datetime, timezone
+
+output, commit = sys.argv[1:]
+temporary = output + ".tmp"
+with open(temporary, "w", encoding="utf-8") as stream:
+    json.dump({
+        "commit": commit,
+        "deployed_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+    }, stream, indent=2)
+    stream.write("\n")
+os.replace(temporary, output)
+PY
 echo "update-release: refreshed $OUTPUT" >&2
