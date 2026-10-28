@@ -6,7 +6,7 @@
     to the cixd daemon, which is the sole process with direct access to the
     container runtime library and every host/network/DNS/PKI/LDAP/NTP/package/exec
     primitive (API-First Mandate, ADR-0005). Below the daemon: the container runtime
-    it drives -- namespaces/cgroups, OverlayFS, the custom rtnetlink data plane --
+    it drives -- namespaces/cgroups, btrfs snapshots, the custom rtnetlink data plane --
     plus a consolidated log store with optional syslog forwarding, LDAP-backed
     Unix/SSH account sync, and the A/B boot / on-disk layout cixd manages as
     host PID 1.
@@ -320,12 +320,12 @@
   <rect x="310" y="542" width="220" height="120" class="card" fill="#ffffff" stroke="#efe3c4"/>
   <rect x="313" y="548" width="5" height="108" rx="2.5" fill="#d69e2e"/>
   <use href="#i-layers" x="324" y="550" width="15" height="15" style="color:#d69e2e"/>
-  <text x="420" y="560" text-anchor="middle" class="module-title">OverlayFS</text>
-  <text x="420" y="578" text-anchor="middle" class="module-text">shared, read-only lowerdir</text>
-  <text x="420" y="592" text-anchor="middle" class="module-text">(the image) + per-container</text>
-  <text x="420" y="606" text-anchor="middle" class="module-text">upperdir/workdir (ADR-0004)</text>
-  <text x="420" y="624" text-anchor="middle" class="module-text">config files staged pre-clone3</text>
-  <text x="420" y="638" text-anchor="middle" class="module-text">into upperdir (ADR-0030)</text>
+  <text x="420" y="560" text-anchor="middle" class="module-title">Btrfs snapshots</text>
+  <text x="420" y="578" text-anchor="middle" class="module-text">image version is a subvolume</text>
+  <text x="420" y="592" text-anchor="middle" class="module-text">each container gets its own</text>
+  <text x="420" y="606" text-anchor="middle" class="module-text">snapshot rootfs (ADR-0360)</text>
+  <text x="420" y="624" text-anchor="middle" class="module-text">config files staged into the</text>
+  <text x="420" y="638" text-anchor="middle" class="module-text">snapshot before pivot</text>
 
   <rect x="550" y="542" width="220" height="120" class="card" fill="#ffffff" stroke="#efe3c4"/>
   <rect x="553" y="548" width="5" height="108" rx="2.5" fill="#d69e2e"/>
@@ -356,7 +356,7 @@
   <rect x="58" y="774" width="5" height="78" rx="2.5" fill="#c05621"/>
   <use href="#i-cube" x="69" y="776" width="18" height="18" style="color:#c05621"/>
   <text x="165" y="788" text-anchor="middle" class="module-title">Container A</text>
-  <text x="165" y="804" text-anchor="middle" class="module-text">upperdir (own diff)</text>
+  <text x="165" y="804" text-anchor="middle" class="module-text">snapshot rootfs</text>
   <text x="165" y="818" text-anchor="middle" class="module-text">netns + pidns + cgroup</text>
   <text x="165" y="832" text-anchor="middle" class="module-text">veth → bridge (network N)</text>
   <text x="165" y="846" text-anchor="middle" class="module-text">restart/depends_on/readiness</text>
@@ -365,7 +365,7 @@
   <rect x="303" y="774" width="5" height="78" rx="2.5" fill="#c05621"/>
   <use href="#i-cube" x="314" y="776" width="18" height="18" style="color:#c05621"/>
   <text x="410" y="788" text-anchor="middle" class="module-title">Container B</text>
-  <text x="410" y="804" text-anchor="middle" class="module-text">upperdir (own diff)</text>
+  <text x="410" y="804" text-anchor="middle" class="module-text">snapshot rootfs</text>
   <text x="410" y="818" text-anchor="middle" class="module-text">netns + pidns + cgroup</text>
   <text x="410" y="832" text-anchor="middle" class="module-text">real NIC passthrough</text>
   <text x="410" y="846" text-anchor="middle" class="module-text">(fd-anchored, ADR-0022)</text>
@@ -374,15 +374,15 @@
   <rect x="548" y="774" width="5" height="78" rx="2.5" fill="#c05621"/>
   <use href="#i-cube" x="559" y="776" width="18" height="18" style="color:#c05621"/>
   <text x="655" y="788" text-anchor="middle" class="module-title">Container C</text>
-  <text x="655" y="804" text-anchor="middle" class="module-text">upperdir (own diff)</text>
+  <text x="655" y="804" text-anchor="middle" class="module-text">snapshot rootfs</text>
   <text x="655" y="818" text-anchor="middle" class="module-text">GPU grant: gpu:0</text>
   <text x="655" y="832" text-anchor="middle" class="module-text">(DRM + KFD nodes, ADR-0028/29)</text>
 
   <rect x="790" y="768" width="215" height="90" class="card" fill="#f8fafc" stroke="#e3e8ee"/>
   <rect x="793" y="774" width="5" height="78" rx="2.5" fill="#4a5568"/>
   <use href="#i-disk" x="804" y="776" width="18" height="18" style="color:#4a5568"/>
-  <text x="897" y="788" text-anchor="middle" class="module-title">shared lowerdir</text>
-  <text x="897" y="806" text-anchor="middle" class="module-text">one image on disk,</text>
+  <text x="897" y="788" text-anchor="middle" class="module-title">image snapshot source</text>
+  <text x="897" y="806" text-anchor="middle" class="module-text">one btrfs image version,</text>
   <text x="897" y="820" text-anchor="middle" class="module-text">e.g. /var/lib/cix/</text>
   <text x="897" y="834" text-anchor="middle" class="module-text">images/&lt;name&gt;/rootfs</text>
 
@@ -393,7 +393,7 @@
   <!-- daemon -> containers: primary flow, same bold treatment as the client arrows -->
   <line x1="530" y1="702" x2="530" y2="724" stroke="#3454d1" stroke-width="3" marker-end="url(#arrowFlow)"/>
   <rect x="540" y="704" width="185" height="16" rx="8" fill="#ffffff" stroke="#c7d2fe"/>
-  <text x="547" y="715" class="arrow-label" fill="#3454d1">clone3() + overlay mount</text>
+  <text x="547" y="715" class="arrow-label" fill="#3454d1">clone3() + snapshot rootfs</text>
 
   <!-- Logs/Console -> containers arrow (setns exec + build-log tail), routed
        along the right margin so it doesn't cross the runtime-library boxes'
@@ -416,12 +416,12 @@
   <rect x="1093" y="314" width="5" height="30" rx="2.5" fill="#718096"/>
   <use href="#i-disk" x="1104" y="316" width="14" height="14" style="color:#718096"/>
   <text x="1220" y="328" text-anchor="middle" class="module-text">images/ — one rootfs per image</text>
-  <text x="1220" y="342" text-anchor="middle" class="small-text">shared OverlayFS lowerdirs</text>
+  <text x="1220" y="342" text-anchor="middle" class="small-text">btrfs image-version subvolumes</text>
 
   <rect x="1090" y="358" width="260" height="42" class="card" fill="#ffffff" stroke="#e6e9ee"/>
   <rect x="1093" y="364" width="5" height="30" rx="2.5" fill="#718096"/>
   <use href="#i-folder" x="1104" y="366" width="13" height="13" style="color:#718096"/>
-  <text x="1220" y="378" text-anchor="middle" class="module-text">containers/ — per-container upperdir</text>
+  <text x="1220" y="378" text-anchor="middle" class="module-text">containers/ — snapshot rootfs</text>
   <text x="1220" y="392" text-anchor="middle" class="small-text">config files staged here (ADR-0030)</text>
 
   <!-- Issue #88 / ADR-0183: a volume's data is a direct child of BASE_DIR,
@@ -560,7 +560,7 @@
   <text x="1215" y="1032" text-anchor="middle" class="module-text">/bin/cixd runs as init= directly</text>
   <text x="1215" y="1054" text-anchor="middle" class="module-text">clone3, CLONE_INTO_CGROUP,</text>
   <text x="1215" y="1068" text-anchor="middle" class="module-text">CLONE_PIDFD, cgroup v2,</text>
-  <text x="1215" y="1082" text-anchor="middle" class="module-text">OverlayFS, rtnetlink, squashfs,</text>
+  <text x="1215" y="1082" text-anchor="middle" class="module-text">btrfs snapshots, rtnetlink, squashfs,</text>
   <text x="1215" y="1096" text-anchor="middle" class="module-text">BPF_CGROUP_DEVICE</text>
   <text x="1215" y="1118" text-anchor="middle" class="module-text">GPU: amdgpu + KFD (mainline,</text>
   <text x="1215" y="1132" text-anchor="middle" class="module-text">AMD only — no proprietary driver,</text>
@@ -582,7 +582,7 @@
   <text x="30" y="1284" class="small-text">Root+intermediate PKI CA tier and site-scoped DNS/PKI naming (ADR-0046/0047, ADR-0049-0053); stateless host-side per-container stats (ADR-0054).</text>
   <text x="30" y="1298" class="small-text">Phase 40: container file-read endpoint (ADR-0055); hostbuild artifacts (ADR-0056); self-hosted rebuild + REST-driven ISO assembly (ADR-0057, ADR-0064).</text>
   <text x="30" y="1312" class="small-text">Bare-metal readiness: cpu.max/cpuset, kernel modules (ADR-0060/61); ext4+btrfs disk quotas (ADR-0062/103/104); kernel routing + route CRUD (ADR-0066/67); ISO self-build (ADR-0063/64).</text>
-  <text x="30" y="1326" class="small-text">DNS/pkg reliability fixes; image versioning — pinned/rolling, per-version immutable rootfs (ADR-0107/108); per-container disk selection (ADR-0102); opt-in output capture (ADR-0112).</text>
+  <text x="30" y="1326" class="small-text">DNS/pkg reliability fixes; image versioning — pinned/rolling, per-version immutable rootfs (ADR-0107/108); btrfs snapshot-backed containers (ADR-0360); opt-in output capture (ADR-0112).</text>
   <text x="30" y="1340" class="small-text">LDAP: glauth registration, user/group CRUD, automatic SSH + service-account provisioning (ADR-0109, ADR-0111); NTP host clock sync + container time sources (ADR-0110).</text>
   <text x="30" y="1354" class="small-text">pkg/ redesign (five parts): configurable recipe repo + sync, build-artifact cache, declarative image recipes, rolling images/containers with restart jitter (ADR-0120-125).</text>
   <text x="30" y="1368" class="small-text">Logging/web-UI epic (six parts): transparent container log capture, optional syslog forwarding, merged log panel, host stats + process list pages (ADR-0126-132).</text>

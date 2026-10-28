@@ -44,7 +44,7 @@
   <rect class="band2" x="40" y="730" width="1320" height="154" rx="14"/>
   <text x="64" y="759" class="bandtitle">04  LINUX PRIMITIVES cixd DRIVES DIRECTLY</text>
   <rect class="card runtime" x="64" y="777" width="286" height="84" rx="9"/><text x="84" y="806" class="title">Isolation</text><text x="84" y="830" class="body">clone3 · namespaces · cgroup v2</text><text x="84" y="849" class="tiny">pidfds · device BPF grants</text>
-  <rect class="card runtime" x="372" y="777" width="286" height="84" rx="9"/><text x="392" y="806" class="title">Filesystem</text><text x="392" y="830" class="body">OverlayFS · images · upperdirs</text><text x="392" y="849" class="tiny">config staged before clone</text>
+  <rect class="card runtime" x="372" y="777" width="286" height="84" rx="9"/><text x="392" y="806" class="title">Filesystem</text><text x="392" y="830" class="body">Btrfs · image versions · snapshots</text><text x="392" y="849" class="tiny">each root derived from its image version</text>
   <rect class="card runtime" x="680" y="777" width="286" height="84" rx="9"/><text x="700" y="806" class="title">Network</text><text x="700" y="830" class="body">rtnetlink · bridges · routes</text><text x="700" y="849" class="tiny">custom C data plane</text>
   <rect class="card runtime" x="988" y="777" width="348" height="84" rx="9"/><text x="1008" y="806" class="title">Devices &amp; disks</text><text x="1008" y="830" class="body">PCI / USB / GPU · quotas · roles</text><text x="1008" y="849" class="tiny">named and port-based grants</text>
 
