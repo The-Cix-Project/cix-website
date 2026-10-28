@@ -136,6 +136,24 @@ fi
 	--cache-base="$cache_base" \
 	--output="$release/site/release.json"
 
+deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+python3 - "$release/site/build.json" "$commit" "$branch" "$deployed_at" <<'PY'
+import json
+import os
+import sys
+
+output, commit, branch, deployed_at = sys.argv[1:]
+temporary = output + ".tmp"
+with open(temporary, "w", encoding="utf-8") as stream:
+    json.dump({
+        "commit": commit,
+        "branch": branch,
+        "deployed_at": deployed_at,
+    }, stream, indent=2)
+    stream.write("\n")
+os.replace(temporary, output)
+PY
+
 download_target=$(python3 - "$release/site/release.json" "$cache_base" <<'PY'
 import json
 import sys

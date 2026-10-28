@@ -47,6 +47,14 @@ python3 scripts/check-site.py
 
 Deploy only after both checks pass. Record the deployed Git commit and verify `get.html`, `/download`, the Alpha marker, the detached signature, release key, source/API links, and the Cix Cache endpoint from a clean browser. The VM updater keeps `/download` pointed at the newest signed ISO. Do not publish LAN hostnames or private IP addresses; complete [`LAUNCH-CHECKLIST.md`](LAUNCH-CHECKLIST.md) before public cutover.
 
+The updater also publishes `/build.json`, which identifies the website commit currently being served:
+
+```sh
+curl --fail --silent --show-error https://cix.example.org/build.json
+```
+
+The Cix installer release in `/release.json` is separate: it is refreshed from Cix Cache and does not identify the website commit.
+
 ## Local development
 
 No Caddy, Node, or package installation is needed locally:
