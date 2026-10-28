@@ -74,6 +74,10 @@ else:
             expected = re.escape(digest[:32]) + r"<br>" + re.escape(digest[32:]) if digest else ""
             if expected and not re.search(r"<dt>" + re.escape(label) + r"</dt>\s*<dd>" + expected + r"</dd>", get_page):
                 errors.append(f"site/get.html: static {label} does not match site/release.json")
+        trust_page = (ROOT / "trust.html").read_text(encoding="utf-8")
+        trust_identity = f'<span data-release="version">{release.get("version")}</span>-<span data-release="release">{release.get("release")}</span>'
+        if trust_identity not in trust_page:
+            errors.append("site/trust.html: static release identity does not match site/release.json")
     except (OSError, json.JSONDecodeError) as exc:
         errors.append(f"site/release.json: invalid JSON ({exc})")
 for page in PAGES:
