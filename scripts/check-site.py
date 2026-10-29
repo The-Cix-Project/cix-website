@@ -69,6 +69,10 @@ else:
         get_page = (ROOT / "get.html").read_text(encoding="utf-8")
         if release.get("iso") and release["iso"] not in get_page:
             errors.append("site/get.html: static installer name does not match site/release.json")
+        for key in ("architecture", "image_size", "environment"):
+            expected = f'data-release="{key}">{release.get(key)}'
+            if expected not in get_page:
+                errors.append(f"site/get.html: static {key} does not match site/release.json")
         for label, key in (("ISO SHA-256", "iso_sha256"), ("Signature SHA-256", "signature_sha256")):
             digest = release.get(key)
             expected = re.escape(digest[:32]) + r"<br>" + re.escape(digest[32:]) if digest else ""
