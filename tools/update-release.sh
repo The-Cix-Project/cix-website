@@ -78,6 +78,57 @@ PY
 chmod 644 "$work/release.json"
 mv -f "$work/release.json" "$OUTPUT"
 
+python3 - "$dir" <<'PY'
+import json
+import os
+import re
+import sys
+
+site_dir = sys.argv[1]
+with open(os.path.join(site_dir, "release.json"), encoding="utf-8") as stream:
+    release = json.load(stream)
+
+def replace_static(path):
+    with open(path, encoding="utf-8") as stream:
+        text = stream.read()
+
+    for key in ("channel", "version", "release", "architecture", "image_size", "environment", "release_key", "release_key_id", "retired_key", "retired_key_since"):
+        value = str(release[key])
+        text = re.sub(
+            r'(data-release="' + re.escape(key) + r'">)[^<]*',
+            lambda match: match.group(1) + value,
+            text,
+        )
+
+    def artifact(match):
+        return release["signature"] if match.group(0).endswith(".minisig") else release["iso"]
+
+    text = re.sub(r'cix-installer-[^"\s<]+\.iso(?:\.minisig)?', artifact, text)
+    text = re.sub(
+        r'(<dt>ISO SHA-256</dt><dd>)[0-9a-f]{32}<br>[0-9a-f]{32}(</dd>)',
+        lambda match: match.group(1) + release["iso_sha256"][:32] + "<br>" + release["iso_sha256"][32:] + match.group(2),
+        text,
+    )
+    text = re.sub(
+        r'(<dt>Signature SHA-256</dt><dd>)[0-9a-f]{32}<br>[0-9a-f]{32}(</dd>)',
+        lambda match: match.group(1) + release["signature_sha256"][:32] + "<br>" + release["signature_sha256"][32:] + match.group(2),
+        text,
+    )
+    text = re.sub(r'(-p )cix-release-[^\s<]+\.pub', r'\1' + release["release_key"], text)
+    text = re.sub(r'(data-release-key-file[^>]*href=")[^"]+', r'\1' + release["release_key"], text)
+    text = re.sub(r'(data-retired-key-file[^>]*href=")[^"]+', r'\1' + release["retired_key"], text)
+
+    temporary = path + ".tmp"
+    with open(temporary, "w", encoding="utf-8") as stream:
+        stream.write(text)
+    os.replace(temporary, path)
+
+for name in ("get.html", "trust.html"):
+    path = os.path.join(site_dir, name)
+    if os.path.exists(path):
+        replace_static(path)
+PY
+
 # The production updater stores each archived website release under a directory
 # named for the source commit. Publish that identity beside release.json so the
 # live site can be checked without exposing deployment details in page copy.
