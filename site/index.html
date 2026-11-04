@@ -191,6 +191,15 @@ recipe-sync        pkg.sync               every 6h  ok</span></span>
       </article>
     </section>
 
+    <section class="verification-section" aria-labelledby="native-mcp-title">
+      <div><p class="section-index">Native automation</p><h2 id="native-mcp-title">MCP is part of the control plane.</h2></div>
+      <div>
+        <p>Cixd serves MCP beside REST. An agent receives a role-scoped tool list, calls the same operation handlers as every other client, and leaves the same audit evidence. No second authority. No agent-shaped bypass.</p>
+        <div class="mcp-proof"><div><span class="proof-label">agent credential</span><code>cix-agent · agents-dns</code><small>services:read · services:write · mcp:call</small></div><div class="proof-arrow">→</div><div><span class="proof-label">cixd /v1/mcp</span><code>createDnsRecord</code><small>allowed · audited · REST-equivalent</small></div><div class="proof-arrow">→</div><div><span class="proof-label">identity boundary</span><code>createUser</code><small>403 · identity:write unavailable</small></div></div>
+        <a class="text-link" href="api.html">See the native MCP and permission model →</a>
+      </div>
+    </section>
+
     <section class="architecture" id="architecture">
       <div class="architecture-intro">
         <p class="section-index">02 / Architecture</p>

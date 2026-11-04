@@ -317,6 +317,12 @@ footer a:hover { color: var(--copper); }
 .status-table p { margin: 0; color: #596367; font-size: 14px; }
 .verification-section { padding-top: 105px; padding-bottom: 105px; display: grid; grid-template-columns: .65fr 1.35fr; gap: 70px; color: var(--paper); background: var(--ferrite); }
 .verification-section h2 { font-size: 50px; }
+.mcp-proof { margin: 28px 0 24px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; border: 1px solid #3e474c; }
+.mcp-proof > div:not(.proof-arrow) { min-height: 112px; padding: 17px; display: flex; flex-direction: column; justify-content: center; background: rgba(255,255,255,.025); }
+.mcp-proof .proof-label { color: var(--copper); font: 9px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.mcp-proof code { margin: 9px 0 5px; color: var(--paper); font: 600 13px var(--mono); }
+.mcp-proof small { color: var(--nickel); font-size: 11px; line-height: 1.45; }
+.mcp-proof .proof-arrow { display: grid; place-items: center; padding: 0 12px; color: var(--copper); font: 20px var(--mono); border-left: 1px solid #3e474c; border-right: 1px solid #3e474c; }
 .verification-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid #3e474c; border-left: 1px solid #3e474c; }
 .verification-grid a { min-height: 210px; padding: 25px; display: flex; flex-direction: column; position: relative; border-right: 1px solid #3e474c; border-bottom: 1px solid #3e474c; text-decoration: none; }
 .verification-grid a:hover { background: rgba(216,121,69,.07); }
@@ -431,6 +437,8 @@ footer a:hover { color: var(--copper); }
   .hero-facts div + div { padding-left: 0; border-left: 0; }
   .terminal-output { height: 320px; padding: 20px; font-size: 11px; }
   .window-status { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .mcp-proof { grid-template-columns: 1fr; }
+  .mcp-proof .proof-arrow { min-height: 34px; border-top: 1px solid #3e474c; border-right: 0; border-bottom: 1px solid #3e474c; border-left: 0; }
   .manifesto, .resources, .machine-control, .status { padding-top: 78px; padding-bottom: 78px; }
   .path-grid, .pillars, .resource-grid, .source-path ol, .pipeline-notes { grid-template-columns: 1fr; }
   .evaluator-paths { padding-top: 78px; padding-bottom: 78px; }
