@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Refreshed the public capability pages against Cix `d8ff811a` / live `0.2.57-664`: documented same-kernel in-place control-plane handover, running-container continuity, and fallback behaviour while keeping kernel-changing updates reboot-based.
 - Refreshed the public capability pages against Cix `4dc304d1` / live `0.2.57-659`: made native MCP, role-scoped automation, app-password limits, auditability, output-owned builds, partition-aware storage, and build identity visible.
 - Added `LICENSE` and `TRADEMARK.md` (2026-10-23, the owner's decision). The website is all rights reserved: its text, code, screenshots, diagrams, icons and brand assets are not licensed for reuse. `TRADEMARK.md` is the Cix repository's marks policy, including what counts as an official Cix artefact.
 - Cix is now GPL-3.0-or-later (Cix ADR-0352, 2026-10-23): the homepage terminal's banner line, the contribute page's description and DCO paragraph, and the API alignment notes name GPL-3.0-or-later instead of Apache-2.0. The Licence link already points at the Cix repository's `LICENSE`, which now holds the GPLv3 text.
