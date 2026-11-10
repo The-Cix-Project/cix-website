@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Reviewed Cix through `e8039ead`: clarified that output-led and resumed package jobs carry their own upgrade state, preventing stale manifests and mixed-version path ownership.
 - Refreshed the public capability pages against Cix `b7bf0bbf` / live `0.2.57-673`: documented the unified cix-root image, sibling output convergence, helper-snapshot storage probing, non-blocking cache reads, and explicit probing state.
 - Refreshed the public capability pages against Cix `d8ff811a` / live `0.2.57-664`: documented same-kernel in-place control-plane handover, running-container continuity, and fallback behaviour while keeping kernel-changing updates reboot-based.
 - Refreshed the public capability pages against Cix `4dc304d1` / live `0.2.57-659`: made native MCP, role-scoped automation, app-password limits, auditability, output-owned builds, partition-aware storage, and build identity visible.
