@@ -4,6 +4,8 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Reviewed Cix through `80415e27`: documented rolling runtime dependencies and pin boundaries, shared recipe builds, output path transfers, expanded build composition, and corrected console prompts. Source provenance no longer implies a fresh live-host verification.
+
 - Clarified native AI-agent access through MCP, directory identities, group permissions, and credential restrictions; removed the stale tool count and corrected the example’s permission scope.
 - Fixed mobile hero widening during terminal animation: the single-column grid and its children can shrink to the viewport while terminal output scrolls inside its own panel.
 - Reviewed Cix through `e8039ead`: clarified that output-led and resumed package jobs carry their own upgrade state, preventing stale manifests and mixed-version path ownership.
