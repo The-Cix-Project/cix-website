@@ -4,6 +4,7 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Clarified native AI-agent access through MCP, directory identities, group permissions, and credential restrictions; removed the stale tool count and corrected the example’s permission scope.
 - Fixed mobile hero widening during terminal animation: the single-column grid and its children can shrink to the viewport while terminal output scrolls inside its own panel.
 - Reviewed Cix through `e8039ead`: clarified that output-led and resumed package jobs carry their own upgrade state, preventing stale manifests and mixed-version path ownership.
 - Refreshed the public capability pages against Cix `b7bf0bbf` / live `0.2.57-673`: documented the unified cix-root image, sibling output convergence, helper-snapshot storage probing, non-blocking cache reads, and explicit probing state.

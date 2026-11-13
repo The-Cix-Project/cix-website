@@ -192,10 +192,12 @@ recipe-sync        pkg.sync               every 6h  ok</span></span>
     </section>
 
     <section class="verification-section" aria-labelledby="native-mcp-title">
-      <div><p class="section-index">Native automation</p><h2 id="native-mcp-title">MCP is part of the control plane.</h2></div>
+      <div><p class="section-index">Native access for AI agents</p><h2 id="native-mcp-title">Give agents an identity.<br>Control what they can do.</h2></div>
       <div>
-        <p>Cixd serves MCP beside REST. An agent receives a role-scoped tool list, calls the same operation handlers as every other client, and leaves the same audit evidence. No second authority. No agent-shaped bypass.</p>
-        <div class="mcp-proof"><div><span class="proof-label">agent credential</span><code>cix-agent · agents-dns</code><small>services:read · services:write · mcp:call</small></div><div class="proof-arrow">→</div><div><span class="proof-label">cixd /v1/mcp</span><code>createDnsRecord</code><small>allowed · audited · REST-equivalent</small></div><div class="proof-arrow">→</div><div><span class="proof-label">identity boundary</span><code>createUser</code><small>403 · identity:write unavailable</small></div></div>
+        <p>Cix serves MCP directly from its operating-system control plane. Give each AI agent its own directory identity and revocable app password, grant permissions through groups, and audit its operations through the same handlers used by the CLI and dashboard.</p>
+        <p>MCP starts disabled. The standard agent group grants reads and gateway access; operators grant additional writes explicitly. App passwords cannot create users, change identity permissions, or mint credentials.</p>
+        <p class="proof-label">Example access policy · permissions apply to an area and verb</p>
+        <div class="mcp-proof"><div><span class="proof-label">directory identity</span><code>agent + service-write group</code><small>services:write grants service changes, including DNS records and servers</small></div><div class="proof-arrow">→</div><div><span class="proof-label">native MCP in cixd</span><code>Service operation</code><small>permission checked · result audited</small></div><div class="proof-arrow">→</div><div><span class="proof-label">credential restriction</span><code>Identity writes refused</code><small>App passwords cannot satisfy identity:write</small></div></div>
         <a class="text-link" href="api.html">See the native MCP and permission model →</a>
       </div>
     </section>
