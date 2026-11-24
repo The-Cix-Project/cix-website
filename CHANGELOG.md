@@ -4,6 +4,8 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Reviewed Cix through `cf235cbf`: replaced obsolete DHCP slicing and host time-source descriptions; documented failover, relays, pre-start LDAP identity, root CA repair, retained deployment secrets, install queues, roll groups, adopted volumes, firmware acquisition, and image-derived root delivery.
+
 - Reviewed Cix through `80415e27`: documented rolling runtime dependencies and pin boundaries, shared recipe builds, output path transfers, expanded build composition, and corrected console prompts. Source provenance no longer implies a fresh live-host verification.
 
 - Clarified native AI-agent access through MCP, directory identities, group permissions, and credential restrictions; removed the stale tool count and corrected the example’s permission scope.
