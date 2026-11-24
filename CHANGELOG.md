@@ -4,6 +4,8 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Rewrote the product overview around installing and operating Cix OS. The technical guides describe workload behaviour and compatibility, with dated host runs available in Engineering notes.
+
 - Made the release 697 handover the lead product proof, linked its build failures and the two recorded DNS permission cases, and documented the measured USB radio firmware path.
 
 - Revised the technical guides, installation, trust, proof and contributor pages against Cix `cf235cbf`. Corrected upgrade recovery and console behaviour, linked measured results to the relevant guides, and aligned navigation, sitemap fallbacks and missing-page recovery across all 17 pages.

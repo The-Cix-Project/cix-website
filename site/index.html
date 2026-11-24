@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Cix is a source-built Linux OS for dedicated container hosts, with native MCP, directory-backed permissions and same-kernel control-plane upgrades."><meta property="og:type" content="website"><meta property="og:title" content="Cix — Container infrastructure, directly."><meta property="og:description" content="Cix is a source-built Linux OS for dedicated container hosts, with native MCP, directory-backed permissions and same-kernel control-plane upgrades."><meta name="twitter:card" content="summary">
+<meta name="description" content="Cix is a source-built Linux OS for dedicated container hosts, with native MCP, directory-backed permissions and same-kernel control-plane upgrades."><meta property="og:type" content="website"><meta property="og:title" content="Cix OS — Linux for container hosts"><meta property="og:description" content="Cix is a source-built Linux OS for dedicated container hosts, with native MCP, directory-backed permissions and same-kernel control-plane upgrades."><meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0a0d0f">
-  <title>Cix — Container infrastructure, directly.</title>
+  <title>Cix OS — Linux for container hosts</title>
   <link rel="icon" href="assets/brand/cix-app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -23,163 +23,84 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="eyebrow">Open-source Linux for container hosts</p>
-        <h1>One host API.<br><span>A role for each agent.</span></h1>
-        <p class="hero-lede">Cix is a Linux operating system for container workloads. Its control plane serves the CLI, web dashboard and Model Context Protocol (MCP). Give each agent its own LDAP identity. The same role-based permissions govern its tools and the underlying API calls.</p>
+        <p class="eyebrow">Cix OS · Open source</p>
+        <h1>A Linux OS for<br><span>container hosts.</span></h1>
+        <p class="hero-lede">Install Cix on a dedicated machine or VM. Run your applications in containers. Use the web dashboard, CLI or REST API to manage their networks, storage and hardware.</p>
         <div class="actions">
-          <a class="button primary" href="try.html">Try Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
-          <a class="button secondary" href="api.html#native-mcp">Explore the access model</a>
+          <a class="button primary" href="get.html">Download Cix <img src="assets/icons/arrow-right.svg" alt=""></a>
+          <a class="button secondary" href="getting-started.html">Run your first container</a>
         </div>
       </div>
-
       <figure class="agent-record" id="native-mcp-title">
-        <figcaption>Native MCP <span>Recorded host run · 1 Nov 2026</span></figcaption>
-        <h2>One agent. Two calls.</h2>
-        <p>Claude Code connected to <code>cixd</code> as the directory user <code>cix-agent</code> with its own revocable app password.</p>
+        <figcaption>Native MCP <span>Example access policy</span></figcaption>
+        <h2>Give an AI agent read access.</h2>
+        <p>Enable Model Context Protocol (MCP) and give the agent its own LDAP identity and revocable app password. With the standard agent group, it can inspect what is running on your host.</p>
         <dl>
-          <div><dt><code>listContainers</code></dt><dd>Allowed</dd></div>
-          <div><dt><code>createDnsRecord</code></dt><dd>Refused</dd></div>
+          <div><dt>List containers</dt><dd>Allowed</dd></div>
+          <div><dt>Change a DNS record</dt><dd>Refused</dd></div>
         </dl>
-        <p>The agent could inspect workloads. Changing DNS required <code>services:write</code>. The audit log attributed both calls to the agent and its credential.</p>
-        <a href="https://raw.githubusercontent.com/The-Cix-Project/cix/cf235cbf4cb38d72f8552ff0d3b9b18cba789113/docs/roadmap/ROADMAP.md#:~:text=With%20the%20agent%27s%20own%20credential">Read the recorded permission checks ↗</a>
+        <p>Cix checks each call against the agent’s group permissions and records which credential made it.</p>
+        <a href="api.html#native-mcp">Set up agent access →</a>
       </figure>
     </section>
 
-    <section class="manifesto" id="why">
-      <p class="section-index">Host updates</p>
-      <div>
-        <h2>Replace the control plane while containers run.</h2>
-        <p>On 16 November, a Cix host switched to release 0.2.57-690 on slot A. All 14 containers kept their process IDs. The management API was away for 20 seconds while the new daemon took over.</p>
-        <p>Cix can make this handover when the kernel stays the same. A kernel change takes effect on reboot.</p>
-        <a class="text-link" href="https://raw.githubusercontent.com/The-Cix-Project/cix/cf235cbf4cb38d72f8552ff0d3b9b18cba789113/docs/roadmap/ROADMAP.md#:~:text=The%20690%20roll%2C%20run%20by%20hand">Inspect the upgrade record ↗</a>
+    <section class="resources" id="resources" aria-labelledby="machine-title">
+      <div class="section-heading">
+        <div><p class="section-index" id="why">Workloads</p><h2 id="machine-title">Give each service what it needs.</h2></div>
+        <p>A deployment describes the image to run, the processes to start and the resources the container can use. <a class="text-link" href="operate.html">Manage deployments →</a></p>
       </div>
-    </section>
-
-    <section class="source-path" id="build-system">
-      <div class="build-heading">
-        <div><p class="section-index">Source to running host</p><h2>Cix builds its<br>next release.</h2></div>
-        <div class="self-host-proof"><strong>From a running Cix host</strong><span>On 19 November, one recipe publication triggered a build whose outputs supplied the agent CLI, the host control plane and the installer tools. The host then switched itself to release 697.</span><a href="proof.html#release-run">Follow release 697 from publish to handover →</a></div>
-      </div>
-      <ol>
-        <li><span>01</span><img src="assets/icons/sync.svg" alt=""><strong>Sync</strong><small>Track recipe source</small></li>
-        <li><span>02</span><img src="assets/icons/source.svg" alt=""><strong>Verify</strong><small>Pin source + checksum</small></li>
-        <li><span>03</span><img src="assets/icons/terminal.svg" alt=""><strong>Build</strong><small>Compile inside Cix</small></li>
-        <li><span>04</span><img src="assets/icons/package.svg" alt=""><strong>Package</strong><small>Record files + version</small></li>
-        <li><span>05</span><img src="assets/icons/container.svg" alt=""><strong>Image</strong><small>Immutable rootfs versions</small></li>
-        <li><span>06</span><img src="assets/icons/refresh.svg" alt=""><strong>Deliver</strong><small>Rolling or A/B update</small></li>
-      </ol>
-      <div class="pipeline-notes"><p><strong>One package system</strong><span>Recipes, dependencies, source builds, install manifests, upgrades, and removals are managed by Cix.</span></p><p><strong>One pipeline model</strong><span>Packages, images, deployments, and host updates share visible stages, history, and a common view of what is waiting or blocked.</span></p><p><strong>Build artefacts</strong><span>Reuse checksum-verified artefacts when configured; build from source when the recipe supports the current CPDL/CBS path.</span></p><p><strong>API access</strong><span>Repository sync, build jobs, packages, images, deployments, artefacts, and updates are exposed through REST.</span></p></div>
-    </section>
-
-    <section class="architecture" id="architecture">
-      <div class="architecture-intro">
-        <p class="section-index">Architecture</p>
-        <h2>From client to kernel.</h2>
-        <p>Every operator surface converges on <code>cixd</code>. The daemon is the only process linked to the runtime, which uses the Linux mechanisms underneath directly.</p>
-        <a class="text-link" href="architecture.html">Explore the architecture <span>→</span></a><br>
-        <a class="text-link" href="proof.html#client-capture">See the CLI and dashboard capture <span>→</span></a>
-      </div>
-      <div class="flow" aria-label="Cix architecture overview">
-        <div class="flow-row clients">
-          <div><img src="assets/icons/terminal.svg" alt=""><span>cixctl</span><small>REST client</small></div>
-          <div><img src="assets/icons/api.svg" alt=""><span>Web dashboard</span><small>REST client</small></div>
-          <div><span class="brace">{ }</span><span>AI agents</span><small>Native MCP</small></div>
-        </div>
-        <div class="connector"><span>HTTP / JSON</span></div>
-        <div class="daemon"><small>PID 1 · API-FIRST CONTROL PLANE</small><strong>cixd</strong><span>C · TCC · epoll</span></div>
-        <div class="connector branches"><span>direct interfaces</span></div>
-        <div class="flow-row primitives">
-          <div><strong>clone3()</strong><small>namespaces + cgroups</small></div>
-          <div><strong>Btrfs snapshots</strong><small>image-derived roots</small></div>
-          <div><strong>rtnetlink</strong><small>network data plane</small></div>
-          <div><strong>/dev</strong><small>hardware grants</small></div>
-        </div>
-        <div class="kernel">KERNEL.ORG LINUX · OPERATOR-SELECTED RELEASE POLICY</div>
+      <div class="resource-grid">
+        <article><img src="assets/icons/container.svg" alt=""><h3>Run an application</h3><p>Declare its services and check their readiness. Read logs or open a configured container console from the dashboard.</p></article>
+        <article><img src="assets/icons/network.svg" alt=""><h3>Connect it to your network</h3><p>Attach a container to a bridge or give it a physical interface. Configure addresses, routes and VLANs through the host API.</p></article>
+        <article><img src="assets/icons/disk.svg" alt=""><h3>Keep data across updates</h3><p>Mount a persistent volume for application data. When an update replaces the container root, the data stays on the volume.</p></article>
+        <article><img src="assets/icons/hardware.svg" alt=""><h3>Assign a physical device</h3><p>Grant a workload access to a supported device, such as a USB radio. Use a named mapping when the deployment needs to refer to the same hardware again.</p></article>
       </div>
     </section>
 
     <section class="service-model-home" aria-labelledby="service-model-title">
       <div class="service-model-copy">
-        <p class="section-index">Platform services</p>
-        <h2 id="service-model-title">The host owns intent.<br>Containers serve protocols.</h2>
-        <p>Cix keeps infrastructure data visible through its API, then projects it into replaceable containers running real service software. DNS, LDAP, DHCP, NTP, syslog, and PKI become integrated platform capabilities without hiding their ownership or protocol boundaries.</p>
-        <a class="button dark-outline" href="services.html">Explore the service model <img src="assets/icons/arrow-right.svg" alt=""></a>
+        <p class="section-index">Network services</p>
+        <h2 id="service-model-title">Keep your DNS records when you replace a server.</h2>
+        <p>Manage DNS records in Cix. The host supplies them to registered dnsmasq containers, which answer queries on your network. Replacing a provider leaves the records on the host.</p>
+        <a class="button dark-outline" href="services.html">Configure network services <img src="assets/icons/arrow-right.svg" alt=""></a>
       </div>
-      <div class="service-model-flow" aria-label="Cix managed service data flow">
-        <div><small>API-OWNED INTENT</small><strong>records · identities · ranges · policy</strong></div>
-        <i>render · register · synchronise</i>
-        <div class="providers"><small>ORDINARY SERVICE CONTAINERS</small><span><b>dnsmasq</b><b>glauth</b><b>chrony</b><b>sysklogd</b></span></div>
-        <i>standard protocols</i>
-        <div><small>CONSUMERS</small><strong>host · workloads · network clients</strong></div>
-      </div>
-    </section>
-
-    <section class="resources" id="resources">
-      <div class="section-heading">
-        <div><p class="section-index">Resource model</p><h2>What the host manages.</h2></div>
-        <p>The API, CLI, web dashboard, and documentation describe the same resources with the same lifecycle logic. <a class="text-link" href="resources.html">Explore resources and hardware →</a></p>
-      </div>
-      <div class="resource-grid">
-        <article><img src="assets/icons/container.svg" alt=""><h3>Containers</h3><p>Namespace isolation, cgroup controls, supervised services, derived readiness, dependencies, and console.</p><code>/v1/containers</code></article>
-        <article><img src="assets/icons/network.svg" alt=""><h3>Networks</h3><p>Bridges, routes, VLANs, physical interfaces, addressing, DNS, and DHCP.</p><code>/v1/networks</code></article>
-        <article><img src="assets/icons/hardware.svg" alt=""><h3>Hardware</h3><p>Discover devices and assign supported hardware to containers. CPU and memory limits use cgroups.</p><code>/v1/devices</code></article>
-        <article><img src="assets/icons/package.svg" alt=""><h3>Software</h3><p>Recipes, source builds, packages, immutable images, artefacts, and rolling updates.</p><code>/v1/pkg</code></article>
+      <div class="service-model-flow" aria-label="How a DNS record reaches clients">
+        <div><small>CIX HOST</small><strong>DNS records</strong></div>
+        <i>supplies configuration to</i>
+        <div class="providers"><small>SERVICE CONTAINER</small><strong>dnsmasq</strong></div>
+        <i>answers queries from</i>
+        <div><small>NETWORK</small><strong>Applications and clients</strong></div>
       </div>
     </section>
 
-    <section class="machine-control" aria-labelledby="machine-title">
-      <div class="machine-intro"><p class="section-index">Control the real machine</p><h2 id="machine-title">Assign hardware to a workload.</h2><p>Cix makes host mechanisms visible as policy-driven API resources—from the identity a container runs under to the physical port a device occupies and the disk where state lives.</p></div>
-      <div class="machine-grid">
-        <article>
-          <div class="machine-icon"><img src="assets/icons/cgroup.svg" alt=""><span>01 / Isolation</span></div>
-          <h3>Namespace containers by default.</h3>
-          <p>Workloads use Linux namespaces, cgroup v2 controls, and user namespaces by default. Their image-derived roots are presented through id-mapped mounts; trusted internal build containers may opt out where required. Capability bounding-set trimming still applies, and this remains a container boundary rather than a virtual machine.</p>
-          <ul><li>Linux namespaces, user namespaces, and cgroup v2</li><li>Id-mapped image-derived roots</li><li>Explicit boundary: not a virtual machine</li></ul>
-          <code>ContainerCreateRequest.userns</code>
-        </article>
-        <article>
-          <div class="machine-icon"><img src="assets/icons/device.svg" alt=""><span>02 / Hardware</span></div>
-          <h3>Name hardware once. Resolve it live.</h3>
-          <p>Grant PCI, USB, GPU, raw disk, or physical network hardware by discovered ID or an operator-named device map. Exact mappings pin a bus/port location; vendor-model mappings follow matching hardware when it moves.</p>
-          <ul><li>BPF cgroup device enforcement</li><li>Optional devices + USB hotplug reaction</li><li>Atomic live attach and revoke</li></ul>
-          <code>/v1/devicemaps</code>
-        </article>
-        <article>
-          <div class="machine-icon"><img src="assets/icons/disk.svg" alt=""><span>03 / Storage</span></div>
-          <h3>Place storage by intent.</h3>
-          <p>Discover real disks and partitions, assign closed operational roles, format ext4 or btrfs, and migrate storage without inventing a parallel storage registry. The OS disk is protected from role assignment and formatting.</p>
-          <ul><li>State, logs, builds, backups, swap</li><li>Snapshot-backed roots and kernel quotas</li><li>Persistent volumes with enforced size limits, live usage, snapshots, and restore</li></ul>
-          <code>/v1/storage-roles</code>
-        </article>
+    <section class="manifesto" id="architecture">
+      <p class="section-index">Host updates</p>
+      <div>
+        <h2>Update the OS while your containers run.</h2>
+        <p>Cix stages an updated system image in the inactive boot slot. When the kernel stays the same, the new control plane can take over running containers. Reconnect management clients after the switch. A kernel change requires a reboot.</p>
+        <a class="text-link" href="operate.html">Plan a host update →</a>
       </div>
-      <p class="machine-boundary"><strong>Boundary:</strong> Cix containers use namespaces, not a hypervisor. Device grants are direct container access—not a VFIO/IOMMU virtual-machine isolation boundary. The installer also supports a Secure Boot-capable installed boot chain.</p>
     </section>
-
+    <section class="source-path" id="build-system">
+      <div class="build-heading">
+        <div><p class="section-index">Building from source</p><h2>Build your images on a Cix host.</h2></div>
+        <div class="self-host-proof"><strong>From package recipe to installer</strong><span>Choose the package outputs your image needs. Cix can reuse verified artefacts or compile supported recipes in build containers. The same system can build the control plane, kernel and installer ISO.</span><a href="build.html">Build packages and images →</a></div>
+      </div>
+    </section>
     <section class="status" id="status">
       <div class="status-copy">
-        <p class="section-index">Project status</p>
-        <h2>Evaluate the alpha.</h2>
-        <p>Cix is an alpha operating system. Check the current limitations before using it on a machine or workload that matters.</p>
+        <p class="section-index">Getting started · Alpha</p>
+        <h2>Start with one host.</h2>
+        <p>Use a spare x86-64 UEFI machine or a VM with console access. Verify the signed installer before writing the target disk.</p>
         <div class="actions">
-          <a class="button primary" href="status.html">See project status <img src="assets/icons/arrow-right.svg" alt=""></a>
-          <a class="button dark-outline" href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml">Explore the API</a>
+          <a class="button primary" href="get.html">Get the installer <img src="assets/icons/arrow-right.svg" alt=""></a>
+          <a class="button dark-outline" href="status.html">Check compatibility</a>
         </div>
       </div>
       <div class="proof-list">
-        <div><span>01</span><p><strong>Install target</strong><small>Use a disposable x86-64 UEFI machine or VM for your first install.</small></p></div>
-        <div><span>02</span><p><strong>Agent access</strong><small>MCP starts disabled. Enable it and provision a separate directory identity for the agent.</small></p></div>
-        <div><span>03</span><p><strong>Isolation</strong><small>Containers share the host kernel. Review device grants before assigning physical hardware.</small></p></div>
-      </div>
-    </section>
-
-    <section class="final-cta">
-      <img src="assets/brand/cix-mark.svg" alt="" width="110" height="65">
-      <p class="section-index">Cix / pronounced “six”</p>
-      <h2>Run it—or inspect every line.</h2>
-      <p>Start with the signed installer, or follow the design from public contract to implementation.</p>
-      <div class="actions">
-        <a class="button primary" href="get.html">Download the signed installer <img src="assets/icons/arrow-right.svg" alt=""></a>
-        <a class="button secondary" href="https://github.com/The-Cix-Project/cix">View source</a>
+        <div><span>01</span><p><strong>Install and connect</strong><small>Set the management address and reach the dashboard or CLI.</small></p></div>
+        <div><span>02</span><p><strong>Run a container</strong><small>Prepare the base image, attach a network and start a service.</small></p></div>
+        <div><span>03</span><p><strong>Inspect the workload</strong><small>Check its processes and open its declared console.</small></p></div>
       </div>
     </section>
   </main>
@@ -187,8 +108,8 @@
   <footer>
     <div class="footer-identity"><a class="brand footer-brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a><p>Source-native systems. Directly.</p></div>
     <div class="footer-links">
-      <div><h2>Guides</h2><ul><li><a href="operate.html">Operate</a></li><li><a href="api.html">API and MCP</a></li><li><a href="build.html">Build</a></li><li><a href="resources.html">Resources</a></li><li><a href="proof.html">Product proof</a></li></ul></div>
-      <div><h2>Project</h2><ul><li><a href="trust.html">Trust and limits</a></li><li><a href="contribute.html">Contribute</a></li><li><a href="https://github.com/The-Cix-Project/cix">Public source mirror</a></li><li><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/README.md">Documentation</a></li><li><a href="https://github.com/The-Cix-Project/cix/issues">Issues and community</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="operate.html">Operate</a></li><li><a href="api.html">API and MCP</a></li><li><a href="build.html">Build</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+      <div><h2>Project</h2><ul><li><a href="proof.html">Engineering notes</a></li><li><a href="trust.html">Trust and limits</a></li><li><a href="contribute.html">Contribute</a></li><li><a href="https://github.com/The-Cix-Project/cix">Public source mirror</a></li><li><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/README.md">Documentation</a></li><li><a href="https://github.com/The-Cix-Project/cix/issues">Issues and community</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
       <div><h2>Terms</h2><ul><li><a href="https://github.com/The-Cix-Project/cix/blob/master/LICENSE">Cix software licence</a></li><li><a href="https://github.com/The-Cix-Project/cix-website/blob/master/LICENSE">Website rights</a></li><li><a href="https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md">Brand policy</a></li></ul></div>
     </div>
   </footer>
