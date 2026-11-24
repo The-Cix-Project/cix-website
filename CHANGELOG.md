@@ -4,6 +4,8 @@ All notable website changes are recorded here in reverse chronological order. Da
 
 ## [Unreleased]
 
+- Replaced the homepage terminal animation with a recorded MCP permission check. Brought workload continuity and self-hosted OS builds forward, and linked project status to the measured runs at Cix revision `cf235cbf`.
+
 - Reviewed Cix through `cf235cbf`: replaced obsolete DHCP slicing and host time-source descriptions; documented failover, relays, pre-start LDAP identity, root CA repair, retained deployment secrets, install queues, roll groups, adopted volumes, firmware acquisition, and image-derived root delivery.
 
 - Reviewed Cix through `80415e27`: documented rolling runtime dependencies and pin boundaries, shared recipe builds, output path transfers, expanded build composition, and corrected console prompts. Source provenance no longer implies a fresh live-host verification.

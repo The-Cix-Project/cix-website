@@ -12,7 +12,7 @@ const primaryLinks = [
   ['get.html', 'Download Cix', 'Verify the current installer and release artefacts.'],
   ['trust.html', 'Trust and limits', 'Release integrity, security boundaries, compatibility, and alpha limits.'],
   ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
-  ['api.html', 'API', 'The REST/OpenAPI boundary for engineers and automation.'],
+  ['api.html', 'API', 'REST, native MCP, directory identities, and role-based access.'],
   ['build.html', 'Build', 'Recipes, verified artefacts, self-hosting, and delivery.'],
   ['resources.html', 'Resources', 'Containers, networks, storage, devices, and hardware limits.'],
   ['why.html', 'Why Cix', 'The operating model and the case for direct Linux primitives.'],
@@ -69,56 +69,6 @@ if (siteMap) {
     item.append(index + 1 + '. ', link, ' — ', note);
     return item;
   }));
-}
-
-const terminal = document.querySelector('[data-terminal]');
-if (terminal) {
-  const output = terminal.querySelector('.terminal-output');
-  const lines = [...terminal.querySelectorAll('.terminal-line')];
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) {
-    lines.forEach((line) => line.classList.add('is-visible'));
-  } else {
-    output.scrollTop = 0;
-    const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
-    const typeChildren = async (source, target) => {
-      for (const child of source.childNodes) {
-        if (child.nodeType === Node.TEXT_NODE) {
-          for (const character of child.textContent) {
-            target.append(document.createTextNode(character));
-            output.scrollTop = output.scrollHeight;
-            await wait(16);
-          }
-        } else {
-          const copy = child.cloneNode(false);
-          target.append(copy);
-          await typeChildren(child, copy);
-        }
-      }
-    };
-    (async () => {
-      const sources = lines.map((line) => line.cloneNode(true));
-      const code = output.querySelector('code');
-      while (true) {
-        code.replaceChildren();
-        output.scrollTop = 0;
-        for (const [index, source] of sources.entries()) {
-          if (index > 0) await wait(1150);
-          const line = document.createElement('span');
-          line.className = 'terminal-line';
-          code.append(line);
-          await typeChildren(source, line);
-          output.scrollTop = output.scrollHeight;
-        }
-        const cursor = document.createElement('span');
-        cursor.className = 'terminal-cursor';
-        cursor.setAttribute('aria-hidden', 'true');
-        code.append(cursor);
-        output.scrollTop = output.scrollHeight;
-        await wait(9000);
-      }
-    })();
-  }
 }
 
 if (footer) {

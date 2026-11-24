@@ -16,8 +16,8 @@
   <main id="main">
     <section class="page-hero">
       <p class="eyebrow">The case for Cix</p>
-      <h1>Why another<br>Linux distribution?</h1>
-      <p>Because infrastructure can expose Linux mechanisms directly without accumulating an orchestration stack between the operator and the machine.</p>
+      <h1>Why run Cix?</h1>
+      <p>Choose Cix when you want to give an agent scoped access to a dedicated host, build that host from source, and update its control plane while container workloads keep running.</p>
     </section>
 
     <section class="editorial-lead">
@@ -26,15 +26,20 @@
     </section>
 
     <section class="argument-grid">
-      <article><span>01</span><h2>The host stays thin.</h2><p>The host exists to boot, expose hardware, run the control plane, and support containers. Workloads carry the functionality. A read-only squashfs root and A/B update model keep live mutation out of the host upgrade path.</p><a href="architecture.html#host">Inspect the host architecture →</a></article>
-      <article><span>02</span><h2>Source is operational.</h2><p>Cix’s package system connects recipes, verified inputs, builds, packages, immutable images, artefacts, and rolling delivery. It can use its own container and recipe machinery to rebuild Cix and the kernel on-box.</p><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/guides/building-cix.md">Read the build guide ↗</a></article>
-      <article><span>03</span><h2>The API is the boundary.</h2><p><code>cixd</code> alone reaches the runtime and host primitives. The CLI and dashboard are clients of the same REST contract. Automation does not depend on reproducing private UI behaviour.</p><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml">Inspect OpenAPI ↗</a></article>
+      <article><span>01</span><h2>Change the host under running workloads.</h2><p>Cix stages a new read-only root in the inactive slot. On a same-kernel upgrade, the new daemon can take over the existing containers. Kernel changes use a reboot.</p><a href="architecture.html#host">Inspect the host architecture →</a></article>
+      <article><span>02</span><h2>Build the system on itself.</h2><p>Cix’s package system connects recipes, verified inputs, builds, packages, immutable images, artefacts, and rolling delivery. It can use its own container and recipe machinery to rebuild Cix and the kernel on-box.</p><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/guides/building-cix.md">Read the build guide ↗</a></article>
+      <article><span>03</span><h2>Give an agent a separate identity.</h2><p><code>cixd</code> alone reaches the runtime and host primitives. Its native MCP gateway checks each tool call against the same permissions as REST. Agents use revocable app passwords. The daemon refuses identity writes with those credentials, even for a user whose groups grant them.</p><a href="api.html#native-mcp">Inspect the MCP access model →</a></article>
       <article><span>04</span><h2>Hardware is explicit.</h2><p>Disks, physical interfaces, GPUs, USB and PCI devices, CPU, and memory become visible, assignable resources instead of implicit properties hidden behind “the host.”</p><a href="architecture.html#runtime">Follow the resource path →</a></article>
     </section>
 
     <section class="not-section">
-      <p class="section-index">Clear boundaries</p><h2>What Cix is not.</h2>
-      <div class="not-grid"><p><strong>Not a Kubernetes replacement.</strong><span>It is a systems distribution with its own operating model, not a drop-in implementation of another platform.</span></p><p><strong>Not merely a small distro.</strong><span>Size supports the architecture; it is not the entire proposition.</span></p><p><strong>Not a virtual-machine platform.</strong><span>Cix containers use Linux namespaces and cgroups. Device grants do not create a hypervisor isolation boundary.</span></p><p><strong>Not abstraction-free.</strong><span>Cix keeps abstractions that make necessary complexity more legible and rejects those that only obscure causality.</span></p></div>
+      <p class="section-index">Deployment fit</p><h2>Start with one dedicated machine.</h2>
+      <div class="not-grid">
+        <p><strong>Host</strong><span>Evaluate the alpha on an x86-64 UEFI machine or in a VM. Check storage and device support for the workload you intend to run.</span></p>
+        <p><strong>Isolation</strong><span>Workloads share the host kernel. A device grant gives a container direct access to that hardware.</span></p>
+        <p><strong>Scope</strong><span>Cix manages the local host. Multi-host scheduling remains outside the current operating model.</span></p>
+        <p><strong>First run</strong><span>Start with the signed installer and a disposable target. <a href="try.html">Choose an evaluation path →</a></span></p>
+      </div>
     </section>
 
   </main>
