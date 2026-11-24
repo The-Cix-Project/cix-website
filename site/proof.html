@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A reproduced Cix CLI, REST API, and dashboard workflow captured from a disposable real daemon."><meta property="og:type" content="website"><meta property="og:title" content="Product proof — Cix"><meta property="og:description" content="A reproduced CLI, REST API, and dashboard workflow from a real disposable Cix daemon."><meta name="twitter:card" content="summary">
+<meta name="description" content="Follow a recorded self-hosted Cix upgrade, compare two MCP identities changing DNS, and inspect an earlier CLI and dashboard capture."><meta property="og:type" content="website"><meta property="og:title" content="Product proof — Cix"><meta property="og:description" content="Follow a recorded self-hosted Cix upgrade, compare two MCP identities changing DNS, and inspect an earlier CLI and dashboard capture."><meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0a0d0f"><title>Product proof — Cix</title>
   <link rel="icon" href="assets/brand/cix-app-icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
 </head>
@@ -10,7 +10,41 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header"><a class="brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="47" height="28"><span>cix</span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button><nav id="site-nav" aria-label="Primary navigation"><a href="getting-started.html">Get started</a><a href="get.html">Download Cix</a><a href="why.html">Why Cix</a><a href="architecture.html">Architecture</a><a href="services.html">Services</a><a href="status.html">Project status</a><a class="nav-cta" href="https://github.com/The-Cix-Project/cix">View public source mirror <span aria-hidden="true">↗</span></a></nav></header>
   <main id="main">
-    <section class="page-hero proof-hero"><p class="eyebrow"><span class="live-dot"></span> Reproduced product workflow</p><h1>One site name in the CLI, REST and dashboard.</h1><p>This September 2026 capture follows one change on a disposable daemon. The CLI sets the site name, an independent REST request reads it back, and the dashboard displays the resulting hostname.</p></section>
+    <section class="page-hero proof-hero">
+      <p class="eyebrow">Engineering record · 19 November 2026</p>
+      <h1>A Cix host built its own upgrade.</h1>
+      <p>Release 0.2.57-697 began with a recipe publication. The running host built it once, reused the outputs in three images and switched its control plane to slot A. All 14 containers kept running.</p>
+    </section>
+
+    <section class="proof-workflow" id="release-run" aria-labelledby="release-title">
+      <div class="section-heading">
+        <div><p class="section-index">Release 697 · UTC</p><h2 id="release-title">From publish to handover.</h2></div>
+        <p>The host was configured to follow its control-plane packages. Publishing the recipe was the only manual step in this roll.</p>
+      </div>
+      <ol class="release-trace">
+        <li><time datetime="2026-11-19T05:24:46Z">05:24:46</time><h3>Recipe published</h3><p>The agent image needed a new <code>cixctl</code> and triggered the build. The root image reused the daemon and CLI outputs. The installer image reused the matching tools.</p></li>
+        <li><time datetime="2026-11-19T05:52:57Z">05:52:57</time><h3>New root detected</h3><p>The host saw that <code>cix-root</code> had changed. The kernel stayed the same, so the host could switch roots in place.</p></li>
+        <li><time datetime="2026-11-19T05:53:28Z">05:53:28</time><h3>Slot A took over</h3><p>The new daemon was running on release 697. Container workloads continued across the handover. Kernel changes take effect on reboot.</p></li>
+      </ol>
+      <p><a href="https://github.com/The-Cix-Project/cix/commit/0fa4cbcc52dccfa9de352465d6e6eadd2e20d1a4">Inspect the release record ↗</a></p>
+      <details class="run-detail"><summary>What happened when a build failed?</summary>
+        <p>Earlier that day, release 694 expected a file that had moved. Release 695 staged an empty main package. Both stopped before reaching the host root. The machine stayed on 693 with its containers running. <a href="https://github.com/The-Cix-Project/cix/commit/0bd1027708fa5d72092ec28496935471a2408b21">Read the two failed builds ↗</a></p>
+      </details>
+    </section>
+
+    <section class="verification-section" id="agent-runs">
+      <div><p class="section-index">Native MCP · 1–2 November 2026</p><h2>Who gets to change DNS?</h2></div>
+      <div>
+        <h3>The read-only identity</h3><p>Using <code>cix-agent</code>’s app password, a container listing succeeded. A DNS record creation was refused because the identity lacked <code>services:write</code>. Both calls appeared in the audit log. <a href="https://github.com/The-Cix-Project/cix/commit/a46b169d589b9120d028f5a1654d90ab4cf183b3">Inspect the refusal ↗</a></p>
+        <h3>The identity with write access</h3><p>In a separate run, <code>cix-agent-full</code> created, updated and deleted a DNS record through MCP. The audit recorded HTTP 201, 200 and 204 respectively. The permission covers service writes, including DNS servers as well as records. <a href="https://github.com/The-Cix-Project/cix/commit/aa99eb1f204049ce252d5daf0f0ead26cad250d3">Inspect the three writes ↗</a></p>
+        <a class="text-link" href="api.html#native-mcp">See how Cix checks a tool call →</a>
+      </div>
+    </section>
+
+    <section class="editorial-lead" id="client-capture">
+      <p class="section-index">Historical capture · September 2026</p>
+      <div><h2>One hostname in the CLI, REST and dashboard.</h2><p>A CLI write on a disposable daemon set the site identity. A separate REST read and the dashboard screenshot below show what changed.</p></div>
+    </section>
     <section class="proof-context" aria-label="Capture context"><div><small>Source revision</small><strong><code>4d5f4ffa</code></strong></div><div><small>Captured</small><strong>1 September 2026</strong></div><div><small>Daemon</small><strong>Captured daemon build, TCC</strong></div><div><small>Fixture</small><strong>Disposable local data directory</strong></div></section>
     <section class="proof-workflow"><div class="section-heading"><div><p class="section-index">The workflow</p><h2>Set the site name and read it back.</h2></div><p>The site identity is a small example chosen because it is safe to reproduce. The same client boundary applies throughout Cix: <code>cixctl</code> and the dashboard call the REST API rather than private control paths.</p></div><div class="workflow-grid">
       <article><span>01 / Baseline</span><h3>Read through the CLI.</h3><pre><code>$ cixctl site show
@@ -33,11 +67,6 @@ domain_suffix=invalid</code></pre></article>
  "domain_suffix":"invalid"}</code></pre></article>
     </div></section>
     <section class="dashboard-proof"><div><p class="section-index">The first-party dashboard</p><h2>The same state reaches the browser.</h2><p>The dashboard header below rendered <code>demo.cix.invalid</code> from the same daemon after the CLI write. The capture is intentionally narrow: it proves the product surface without exposing host inventory.</p></div><figure><img src="assets/screens/dashboard-identity-proof.png" alt="Cix dashboard showing the site identity demo.cix.invalid after it was set through cixctl"><figcaption>Actual Cix dashboard · disposable daemon · no reconstructed interface</figcaption></figure></section>
-    <section class="boundaries-section"><div><p class="section-index">Evidence scope</p><h2>Other runs you can inspect.</h2><p>Cix records evidence by path rather than turning one successful boot into a universal compatibility promise.</p></div><ul>
-        <li><strong>Agent permissions</strong><span>A directory identity listed containers and was refused a DNS write. <a href="status.html#agent-access">Follow the audit record.</a></span></li>
-        <li><strong>Workload continuity</strong><span>Fourteen containers kept their process IDs while a new control plane took over. <a href="status.html#host-updates">Inspect the upgrade timings.</a></span></li>
-        <li><strong>First workload</strong><span>To repeat a workflow on your own machine, use the current guide for installing packages in the base image and starting a service. <a href="getting-started.html">Run your first container.</a></span></li>
-      </ul></section>
     <section class="proof-contract"><p class="section-index">Follow the evidence</p><div><h2>Inspect the exact contract.</h2><p><code>GET /v1/system/site</code> and <code>PUT /v1/system/site</code> are defined in the OpenAPI document and described in the API guide. The CLI and dashboard implementations are in the same source tree.</p><div class="actions"><a class="button primary" href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml">Open OpenAPI <img src="assets/icons/arrow-right.svg" alt=""></a><a class="button dark-outline" href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/README.md#this-installs-identity-site-config">Read the API guide</a></div></div></section>
   </main>
   <footer>

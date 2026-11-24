@@ -20,7 +20,7 @@ const primaryLinks = [
   ['architecture.html', 'Architecture', 'Trace a client request from cixd to the kernel.'],
   ['services.html', 'Services', 'Run directory, DNS, DHCP and time services in containers.'],
   ['status.html', 'Project status', 'Inspect recorded host runs and current limits.'],
-  ['proof.html', 'Product proof', 'Follow a captured CLI change through REST and the dashboard.'],
+  ['proof.html', 'Product proof', 'Inspect a host upgrade, agent permissions and a dashboard capture.'],
   ['contribute.html', 'Contribute', 'Report a result or prepare a signed-off patch.'],
   ['sitemap.html', 'Sitemap', 'Find every public page.'],
   ['404.html', 'Not found', 'Return to the site from a missing address.'],
