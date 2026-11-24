@@ -19,8 +19,19 @@ SHARED_NAV = ["getting-started.html", "operate.html", "api.html", "build.html", 
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(); self.links=[]; self.images=[]; self.title=False; self.description=False
+        self.in_footer = False
+        self.footer_links = []
+
+    def handle_endtag(self, tag):
+        if tag == "footer":
+            self.in_footer = False
+
     def handle_starttag(self, tag, attrs):
         a=dict(attrs)
+        if tag == "footer":
+            self.in_footer = True
+        if self.in_footer and tag == "a":
+            self.footer_links.append(a.get("href", "").lstrip("/"))
         if tag in ("a", "link") and a.get("href"): self.links.append(a["href"])
         if tag in ("script", "img"):
             key="src" if tag == "script" else "src"
@@ -84,9 +95,13 @@ else:
             errors.append("site/trust.html: static release identity does not match site/release.json")
     except (OSError, json.JSONDecodeError) as exc:
         errors.append(f"site/release.json: invalid JSON ({exc})")
+home = Page()
+home.feed((ROOT / "index.html").read_text(encoding="utf-8"))
 for page in PAGES:
     if page.stat().st_size > MAX_PAGE: errors.append(f"{page.name}: page exceeds {MAX_PAGE} bytes")
     parser=Page(); parser.feed(page.read_text(encoding="utf-8"))
+    if parser.footer_links != home.footer_links:
+        errors.append(f"{page.name}: footer links differ from the homepage")
     if not parser.title: errors.append(f"{page.name}: missing title")
     if not parser.description: errors.append(f"{page.name}: missing meta description")
     for image in parser.images:

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1120" role="img" aria-labelledby="title desc">
   <title id="title">Cix architecture: intent to running system</title>
-  <desc id="desc">Operators and API clients send REST and JSON intent to cixd. cixd is the only process with direct access to Cix runtime and host primitives. It renders host-owned state, builds from source with an optional Cix Cache, and creates isolated workloads. Provider containers deliver DNS, DHCP, LDAP, NTP, and syslog while host identity and logs remain authoritative on the host. A read-only A/B host boots a selected Linux kernel policy through a Secure Boot-capable chain.</desc>
+  <desc id="desc">CLI, dashboard and REST clients reach cixd through its API. Agents use its native MCP gateway with directory-backed permissions. cixd is the only process with direct access to Cix runtime and host primitives. It renders host-owned state, builds from source with an optional Cix Cache, and creates isolated workloads. Provider containers deliver DNS, DHCP, LDAP, NTP, and syslog while host identity and logs remain authoritative on the host. A read-only A/B host boots a selected Linux kernel policy through a Secure Boot-capable chain.</desc>
   <style>
     .bg{fill:#091013}.band{fill:#101a1e;stroke:#33454c;stroke-width:2}.band2{fill:#0d171a;stroke:#33454c;stroke-width:2}.card{stroke-width:2}.client{fill:#13251f;stroke:#79c78a}.api{fill:#2b1c14;stroke:#e17b3d}.state{fill:#17222b;stroke:#70b7d0}.runtime{fill:#122529;stroke:#62b7c1}.work{fill:#17261d;stroke:#91cf78}.host{fill:#202229;stroke:#bbc0cb}.cache{fill:#282319;stroke:#e5b85d}.h{fill:#f4f0e8;font:700 23px system-ui,sans-serif;stroke:none}.kicker{fill:#ef8b4a;font:700 13px system-ui,sans-serif;letter-spacing:2px;stroke:none}.bandtitle{fill:#d4e0df;font:700 14px system-ui,sans-serif;letter-spacing:1.4px;stroke:none}.title{fill:#f4f0e8;font:700 19px system-ui,sans-serif;stroke:none}.body{fill:#b8c5c6;font:400 14px system-ui,sans-serif;stroke:none}.tiny{fill:#9aa9aa;font:400 12px system-ui,sans-serif;stroke:none}.label{fill:#f4f0e8;font:700 13px system-ui,sans-serif;stroke:none}.flow{fill:none;stroke:#e17b3d;stroke-width:3}.controlflow{fill:none;stroke:#70b7d0;stroke-width:2.5}.project{fill:none;stroke:#91cf78;stroke-width:2.5}.optional{fill:none;stroke:#e5b85d;stroke-width:2.5;stroke-dasharray:8 6}.lineLabel{fill:#d9e2df;font:600 12px system-ui,sans-serif;stroke:none}.legend{fill:#aebbbb;font:400 12px system-ui,sans-serif;stroke:none}
   </style>
@@ -22,14 +22,14 @@
   <rect class="card client" x="64" y="192" width="250" height="58" rx="9"/><text x="82" y="218" class="title">cixctl</text><text x="82" y="239" class="tiny">CLI + local console</text>
   <rect class="card client" x="337" y="192" width="250" height="58" rx="9"/><text x="355" y="218" class="title">Web dashboard</text><text x="355" y="239" class="tiny">vanilla HTML / CSS / JS</text>
   <rect class="card client" x="610" y="192" width="250" height="58" rx="9"/><text x="628" y="218" class="title">OpenAPI clients</text><text x="628" y="239" class="tiny">automation and integrations</text>
-  <rect class="card client" x="883" y="192" width="453" height="58" rx="9"/><text x="901" y="218" class="title">Physical console</text><text x="901" y="239" class="tiny">PID1-spawned cixctl on video or serial</text>
+  <rect class="card client" x="883" y="192" width="453" height="58" rx="9"/><text x="901" y="218" class="title">MCP clients</text><text x="901" y="239" class="tiny">Agent identity · group grants · per-call audit</text>
   <path class="flow" d="M189 271v36 M462 271v36 M735 271v36 M1109 271v36" marker-end="url(#arrow-orange)"/>
   <text x="610" y="298" text-anchor="middle" class="lineLabel">HTTP / JSON · every capability is an API contract</text>
 
   <!-- control -->
   <rect class="band2" x="40" y="320" width="1320" height="172" rx="14"/>
   <text x="64" y="349" class="bandtitle">02  CIX CONTROL BOUNDARY</text>
-  <rect class="card api" x="64" y="366" width="520" height="101" rx="10"/><text x="90" y="398" class="title">cixd · the sole host authority</text><text x="90" y="422" class="body">C · TCC · non-blocking epoll · PID 1</text><text x="90" y="446" class="tiny">REST, auth, lifecycle, network, storage, package, PKI and host interfaces</text>
+  <rect class="card api" x="64" y="366" width="520" height="101" rx="10"/><text x="90" y="398" class="title">cixd · the sole host authority</text><text x="90" y="422" class="body">C · TCC · non-blocking epoll · PID 1</text><text x="90" y="446" class="tiny">REST, MCP, auth, lifecycle, network, storage, package, PKI and host interfaces</text>
   <rect class="card api" x="610" y="366" width="726" height="101" rx="10"/><text x="636" y="398" class="title">Declared state becomes managed state</text><text x="636" y="422" class="body">API-owned intent → validation → host primitives or rendered providers</text><text x="636" y="446" class="tiny">Clients never link the runtime library or bypass cixd</text>
 
   <!-- state and supply chain -->
@@ -37,7 +37,7 @@
   <text x="64" y="564" class="bandtitle">03  HOST STATE, POLICY &amp; BUILD SUPPLY CHAIN</text>
   <rect class="card state" x="64" y="582" width="380" height="94" rx="10"/><text x="84" y="612" class="title">Host-owned state</text><text x="84" y="636" class="body">identity · groups · IDs · logs</text><text x="84" y="658" class="tiny">DNS / DHCP / NTP / LDAP intent is durable here</text>
   <rect class="card state" x="466" y="582" width="380" height="94" rx="10"/><text x="486" y="612" class="title">Storage &amp; update policy</text><text x="486" y="636" class="body">disk roles · volumes · boot · rollback</text><text x="486" y="658" class="tiny">read-only image, inactive-slot writes, verification</text>
-  <rect class="card cache" x="868" y="582" width="468" height="94" rx="10"/><text x="888" y="612" class="title">Source → artefact pipeline</text><text x="888" y="636" class="body">recipes + checksums → build → package → image / ISO</text><text x="888" y="658" class="tiny">Cix Cache is optional: hit reuses verified bytes; miss builds, then may publish</text>
+  <rect class="card cache" x="868" y="582" width="468" height="94" rx="10"/><text x="888" y="612" class="title">Source → artefact pipeline</text><text x="888" y="636" class="body">recipes + checksums → build → package → image / ISO</text><text x="888" y="658" class="tiny">Verified cache hits reuse artefacts · CPDL recipes can build on a miss</text>
 
   <!-- runtime -->
   <path class="controlflow" d="M324 492v42 M656 492v42 M1020 492v42" marker-end="url(#arrow-blue)"/>
@@ -53,7 +53,7 @@
   <rect class="band" x="40" y="922" width="1320" height="126" rx="14"/>
   <text x="64" y="951" class="bandtitle">05  WHAT RUNS ON THE HOST</text>
   <rect class="card work" x="64" y="968" width="606" height="58" rx="9"/><text x="84" y="994" class="title">Workload containers</text><text x="84" y="1015" class="tiny">apps receive their own namespaces, cgroup, filesystem, network and optional devices</text>
-  <rect class="card work" x="694" y="968" width="310" height="58" rx="9"/><text x="714" y="994" class="title">Service providers</text><text x="714" y="1015" class="tiny">dnsmasq · glauth · chrony · sysklogd</text>
+  <rect class="card work" x="694" y="968" width="310" height="58" rx="9"/><text x="714" y="994" class="title">Service providers</text><text x="714" y="1015" class="tiny">dnsmasq · dhcpd · glauth · chrony · syslog</text>
   <rect class="card host" x="1028" y="968" width="308" height="58" rx="9"/><text x="1048" y="994" class="title">Read-only A/B host</text><text x="1048" y="1015" class="tiny">kernel policy · Secure Boot path · verify / rollback</text>
 
   <!-- ownership links -->

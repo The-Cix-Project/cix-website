@@ -1,3 +1,4 @@
+const siteRoot = new URL('.', document.currentScript.src);
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('#site-nav');
 const footer = document.querySelector('footer');
@@ -6,37 +7,25 @@ const mobileNavigation = window.matchMedia('(max-width: 980px)');
 // Keep the public menu in one place. Pages retain a small static fallback, but
 // the shared runtime normalises every page to the same order and active state.
 const primaryLinks = [
-  ['index.html', 'Home', 'A Linux operating system for container infrastructure.'],
-  ['try.html', 'Try Cix', 'Choose a safe evaluation path before installing.'],
-  ['getting-started.html', 'Get started', 'The shortest path from installer to first useful workload.'],
-  ['get.html', 'Download Cix', 'Verify the current installer and release artefacts.'],
-  ['trust.html', 'Trust and limits', 'Release integrity, security boundaries, compatibility, and alpha limits.'],
-  ['operate.html', 'Operate', 'Deployments, pipeline state, readiness, consoles, and updates.'],
-  ['api.html', 'API', 'REST, native MCP, directory identities, and role-based access.'],
-  ['build.html', 'Build', 'Recipes, verified artefacts, self-hosting, and delivery.'],
-  ['resources.html', 'Resources', 'Containers, networks, storage, devices, and hardware limits.'],
-  ['why.html', 'Why Cix', 'The operating model and the case for direct Linux primitives.'],
-  ['architecture.html', 'Architecture', 'Ownership boundaries from client to kernel and workload.'],
-  ['services.html', 'Services', 'API-owned DNS, LDAP, DHCP, NTP, and syslog providers.'],
-  ['status.html', 'Project status', 'Shipped capability, evidence, and current boundaries.'],
-  ['proof.html', 'Product proof', 'Reproduced CLI, REST, and dashboard evidence.'],
-  ['contribute.html', 'Contribute', 'Source, contribution rules, and the project’s maintainer-led workflow.'],
-  ['sitemap.html', 'Sitemap', 'A plain map of every public website page.'],
-  ['404.html', 'Not found', 'The fallback page for an unknown website address.'],
+  ['index.html', 'Home', 'Cix on a dedicated container host.'],
+  ['try.html', 'Try Cix', 'Choose a VM or a hardware trial and check agent access.'],
+  ['getting-started.html', 'Get started', 'Boot the host and run a first container.'],
+  ['get.html', 'Download Cix', 'Download the UEFI installer, signature and release key.'],
+  ['trust.html', 'Trust and limits', 'Review agent permissions, isolation and release integrity.'],
+  ['operate.html', 'Operate', 'Plan host upgrades, workload restarts and persistent state.'],
+  ['api.html', 'API', 'Use REST or native MCP with directory-backed permissions.'],
+  ['build.html', 'Build', 'Follow package outputs into the root image and boot slot.'],
+  ['resources.html', 'Resources', 'Assign hardware, place volumes and adopt an existing filesystem.'],
+  ['why.html', 'Why Cix', 'Decide whether the operating model fits your machine.'],
+  ['architecture.html', 'Architecture', 'Trace a client request from cixd to the kernel.'],
+  ['services.html', 'Services', 'Run directory, DNS, DHCP and time services in containers.'],
+  ['status.html', 'Project status', 'Inspect recorded host runs and current limits.'],
+  ['proof.html', 'Product proof', 'Follow a captured CLI change through REST and the dashboard.'],
+  ['contribute.html', 'Contribute', 'Report a result or prepare a signed-off patch.'],
+  ['sitemap.html', 'Sitemap', 'Find every public page.'],
+  ['404.html', 'Not found', 'Return to the site from a missing address.'],
 ];
 const navigationLinks = primaryLinks.filter(([href]) => !['index.html', 'try.html', 'trust.html', 'operate.html', 'api.html', 'build.html', 'resources.html', 'sitemap.html', 'proof.html', 'contribute.html', '404.html'].includes(href));
-const footerLinks = [
-  ['https://github.com/The-Cix-Project/cix', 'Public source mirror'],
-  ['https://github.com/The-Cix-Project/cix/blob/master/docs/README.md', 'Documentation'],
-  ['https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml', 'API'],
-  ['https://github.com/The-Cix-Project/cix/blob/master/LICENSE', 'Cix software licence'],
-  ['https://github.com/The-Cix-Project/cix-website/blob/master/LICENSE', 'Website rights'],
-  ['https://github.com/The-Cix-Project/cix/blob/master/CONTRIBUTING.md', 'Contribute'],
-  ['https://github.com/The-Cix-Project/cix/issues', 'Issues and community'],
-  ['trust.html', 'Trust and limits'],
-  ['https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md', 'Brand policy'],
-  ['sitemap.html', 'Sitemap'],
-];
 
 window.CIX_SITE_MAP = primaryLinks;
 
@@ -44,7 +33,7 @@ if (navigation) {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   navigation.replaceChildren(...navigationLinks.map(([href, label]) => {
     const link = document.createElement('a');
-    link.href = href;
+    link.href = new URL(href, siteRoot).href;
     link.textContent = label;
     if (href === currentPage) link.setAttribute('aria-current', 'page');
     return link;
@@ -62,7 +51,7 @@ if (siteMap) {
   siteMap.replaceChildren(...primaryLinks.map(([href, label, description], index) => {
     const item = document.createElement('li');
     const link = document.createElement('a');
-    link.href = href;
+    link.href = new URL(href, siteRoot).href;
     link.textContent = label;
     const note = document.createElement('span');
     note.textContent = description;
@@ -72,25 +61,12 @@ if (siteMap) {
 }
 
 if (footer) {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  const brand = document.createElement('a');
-  brand.className = 'brand footer-brand';
-  brand.href = 'index.html';
-  brand.innerHTML = '<img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span>';
-
-  const strapline = document.createElement('p');
-  strapline.textContent = 'Source-native systems. Directly.';
-
-  const links = document.createElement('div');
-  footerLinks.forEach(([href, label]) => {
-    const link = document.createElement('a');
-    link.href = href;
-    link.textContent = label;
-    if (href === currentPage) link.setAttribute('aria-current', 'page');
-    links.append(link);
-  });
-
-  footer.replaceChildren(brand, strapline, links);
+  const currentPath = new URL(location.href).pathname;
+  for (const link of footer.querySelectorAll('.footer-links a')) {
+    if (link.origin === location.origin && link.pathname === currentPath) {
+      link.setAttribute('aria-current', 'page');
+    }
+  }
 }
 
 function closeNavigation({ returnFocus = false } = {}) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Cix is a Linux operating system for dedicated container infrastructure, managed through one API for workloads, networks, storage, hardware, and services."><meta property="og:type" content="website"><meta property="og:title" content="Cix — Container infrastructure, directly."><meta property="og:description" content="A Linux operating system for dedicated container infrastructure, managed through one API for workloads, networks, storage, hardware, and services."><meta name="twitter:card" content="summary">
+<meta name="description" content="Cix is a source-built Linux OS for dedicated container hosts, with native MCP, directory-backed permissions and same-kernel control-plane upgrades."><meta property="og:type" content="website"><meta property="og:title" content="Cix — Container infrastructure, directly."><meta property="og:description" content="Cix is a source-built Linux OS for dedicated container hosts, with native MCP, directory-backed permissions and same-kernel control-plane upgrades."><meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0a0d0f">
   <title>Cix — Container infrastructure, directly.</title>
   <link rel="icon" href="assets/brand/cix-app-icon.svg" type="image/svg+xml">
@@ -17,7 +17,7 @@
       <span>cix</span>
     </a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    <nav id="site-nav" aria-label="Primary navigation"><a href="getting-started.html">Get started</a><a href="why.html">Why Cix</a><a href="architecture.html">Architecture</a><a href="services.html">Services</a><a href="status.html">Project status</a><a class="nav-cta" href="https://github.com/The-Cix-Project/cix">View public source mirror <span aria-hidden="true">↗</span></a></nav>
+    <nav id="site-nav" aria-label="Primary navigation"><a href="getting-started.html">Get started</a><a href="get.html">Download Cix</a><a href="why.html">Why Cix</a><a href="architecture.html">Architecture</a><a href="services.html">Services</a><a href="status.html">Project status</a><a class="nav-cta" href="https://github.com/The-Cix-Project/cix">View public source mirror <span aria-hidden="true">↗</span></a></nav>
   </header>
 
   <main id="main">
@@ -68,7 +68,7 @@
         <li><span>05</span><img src="assets/icons/container.svg" alt=""><strong>Image</strong><small>Immutable rootfs versions</small></li>
         <li><span>06</span><img src="assets/icons/refresh.svg" alt=""><strong>Deliver</strong><small>Rolling or A/B update</small></li>
       </ol>
-      <div class="pipeline-notes"><p><strong>One package system</strong><span>Recipes, dependencies, source builds, install manifests, upgrades, and removals are managed by Cix.</span></p><p><strong>One pipeline model</strong><span>Packages, images, deployments, and host updates share visible stages, history, and a common view of what is waiting or blocked.</span></p><p><strong>Build artefacts</strong><span>Reuse checksum-verified artefacts when configured; build from source when the recipe supports the current CPDL/CBS path.</span></p><p><strong>API-controlled</strong><span>Repository sync, build jobs, packages, images, deployments, artefacts, and updates are exposed through REST.</span></p></div>
+      <div class="pipeline-notes"><p><strong>One package system</strong><span>Recipes, dependencies, source builds, install manifests, upgrades, and removals are managed by Cix.</span></p><p><strong>One pipeline model</strong><span>Packages, images, deployments, and host updates share visible stages, history, and a common view of what is waiting or blocked.</span></p><p><strong>Build artefacts</strong><span>Reuse checksum-verified artefacts when configured; build from source when the recipe supports the current CPDL/CBS path.</span></p><p><strong>API access</strong><span>Repository sync, build jobs, packages, images, deployments, artefacts, and updates are exposed through REST.</span></p></div>
     </section>
 
     <section class="architecture" id="architecture">
@@ -116,7 +116,7 @@
 
     <section class="resources" id="resources">
       <div class="section-heading">
-        <div><p class="section-index">Resource model</p><h2>The same nouns everywhere.</h2></div>
+        <div><p class="section-index">Resource model</p><h2>What the host manages.</h2></div>
         <p>The API, CLI, web dashboard, and documentation describe the same resources with the same lifecycle logic. <a class="text-link" href="resources.html">Explore resources and hardware →</a></p>
       </div>
       <div class="resource-grid">
@@ -184,7 +184,14 @@
     </section>
   </main>
 
-  <footer><a class="brand footer-brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a><p>Source-native systems. Directly.</p><div><a href="https://github.com/The-Cix-Project/cix">Public source mirror</a><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/README.md">Documentation</a><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/api/openapi.yaml">API</a><a href="https://github.com/The-Cix-Project/cix/blob/master/LICENSE">Cix software licence</a><a href="https://github.com/The-Cix-Project/cix-website/blob/master/LICENSE">Website rights</a><a href="https://github.com/The-Cix-Project/cix/blob/master/CONTRIBUTING.md">Contribute</a><a href="https://github.com/The-Cix-Project/cix/issues">Issues and community</a><a href="https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md">Brand policy</a><a href="trust.html">Trust and limits</a><a href="sitemap.html">Sitemap</a></div></footer>
+  <footer>
+    <div class="footer-identity"><a class="brand footer-brand" href="index.html"><img src="assets/brand/cix-mark.svg" alt="" width="39" height="23"><span>cix</span></a><p>Source-native systems. Directly.</p></div>
+    <div class="footer-links">
+      <div><h2>Guides</h2><ul><li><a href="operate.html">Operate</a></li><li><a href="api.html">API and MCP</a></li><li><a href="build.html">Build</a></li><li><a href="resources.html">Resources</a></li><li><a href="proof.html">Product proof</a></li></ul></div>
+      <div><h2>Project</h2><ul><li><a href="trust.html">Trust and limits</a></li><li><a href="contribute.html">Contribute</a></li><li><a href="https://github.com/The-Cix-Project/cix">Public source mirror</a></li><li><a href="https://github.com/The-Cix-Project/cix/blob/master/docs/README.md">Documentation</a></li><li><a href="https://github.com/The-Cix-Project/cix/issues">Issues and community</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+      <div><h2>Terms</h2><ul><li><a href="https://github.com/The-Cix-Project/cix/blob/master/LICENSE">Cix software licence</a></li><li><a href="https://github.com/The-Cix-Project/cix-website/blob/master/LICENSE">Website rights</a></li><li><a href="https://github.com/The-Cix-Project/cix/blob/master/TRADEMARK.md">Brand policy</a></li></ul></div>
+    </div>
+  </footer>
   <script src="app.js"></script>
 </body>
 </html>
